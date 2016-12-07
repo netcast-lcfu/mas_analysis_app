@@ -1,0 +1,14 @@
+<ion-view view-title="设备可配置规范" >
+    <ion-nav-buttons side="right">
+        <button class="button" ui-sref="login">个人信息</button>
+    </ion-nav-buttons>
+  <ion-content>
+      <ion-list>
+          <ion-item class="item-remove-animate item-icon-left" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/{{chat.url}}">
+            <i class="{{chat.icon}}"></i>
+            <span>{{chat.name}}</span>
+          </ion-item>
+
+      </ion-list>
+  </ion-content>
+</ion-view>
