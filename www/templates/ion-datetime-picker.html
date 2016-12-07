@@ -2,6 +2,13 @@
   <ion-content>
     <div class="list">
       <div class="item item-divider">Date picker</div>
+      <h3>日期：</h3>
+      <ionic-datepicker input-obj="datepickerObjectEnd">
+        <button class="button button-block button-positive"> {{datepickerObjectEnd.inputDate |
+          date:datepickerObjectEnd.dateFormat}}
+        </button>
+        {{scheduleInfo.scheduleDate|date:'fullDate'}}
+      </ionic-datepicker>
       <div class="item item-icon-left" ion-datetime-picker date ng-model="dateValue">
         <i class="icon ion-ios-calendar positive"></i>
         Click me to open the date picker:
