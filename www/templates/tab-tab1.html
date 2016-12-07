@@ -1,4 +1,4 @@
-<ion-view view-title="大数据与全文检索">
+<ion-view view-title="业务状态变化分析">
     <ion-nav-buttons side="right">
         <!--<button class="button" ui-sref="/tablogin">个人信息</button>-->
         <a class="button" href="#/login" >个人信息</a>
@@ -8,6 +8,11 @@
         <ion-item class="item-remove-animate item-icon-left" ng-repeat="chat in chats" href="#/tab/{{chat.url}}">
           <i class="{{chat.icon}}"></i>
           <span>{{chat.name}}</span>
+        </ion-item>
+
+        <ion-item class="item-remove-animate item-icon-left" href="#/showIonDatetimePicker">
+          <i class="icon ion-search"></i>
+          <span>测试日期控件</span>
         </ion-item>
 
       </ion-list>

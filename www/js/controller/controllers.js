@@ -106,6 +106,11 @@ angular.module('myApp.controllers')
     };
   })
   .controller('testIonDatePickerCtrl', function ($scope) {
+
+    // 添加返回按钮
+    $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+      viewData.enableBack = true;
+    });
     var disabledDates = [
       new Date(1437719836326),
       new Date(),

@@ -3,7 +3,7 @@ angular.module('myApp.services', []);
 angular.module("myApp", ['ionic', 'ngCordova','ion-datetime-picker','myApp.controllers', 'myApp.services'])
 //定义常量
   .constant("ApiEndpoint", {
-    url:'http://10.1.1.92:8080/mas_analysis',
+    url: 'http://10.1.1.91:8080/mas_analysis',
     //url: 'http://127.0.0.1:8080/mas_analysis',
     //访问超时时间3s
     timeout: 3000
@@ -93,13 +93,13 @@ angular.module("myApp", ['ionic', 'ngCordova','ion-datetime-picker','myApp.contr
       .state('showIonDatetimePicker', {
         url: '/showIonDatetimePicker',
         templateUrl: 'templates/ion-datetime-picker.html',
-        controller: ''
+        controller: 'testIonDatePickerCtrl'
       })
     ;
     //主页
     $urlRouterProvider.otherwise('login');
   })
-  .run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, UserService,$ionicLoading,$cordovaToast) {
+  .run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, UserService, $ionicLoading, $cordovaToast, $ionicPickerI18n) {
     $ionicPlatform.ready(function () {
       //使用 cordova InAppBrowser 插件
       if (window.cordova && window.cordova.InAppBrowser) {
@@ -110,6 +110,12 @@ angular.module("myApp", ['ionic', 'ngCordova','ion-datetime-picker','myApp.contr
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
       }
+      // 日期时间选择插件的本地化
+      $ionicPickerI18n.weekdays = ["日", "一", "二", "三", "四", "五", "六"];
+      $ionicPickerI18n.months = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
+      $ionicPickerI18n.ok = "确定";
+      $ionicPickerI18n.cancel = "取消";
+
       // if (window.StatusBar) {
       //   // org.apache.cordova.statusbar required
       //   StatusBar.styleDefault();
