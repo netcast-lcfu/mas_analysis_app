@@ -52,7 +52,7 @@ body.grade-c {
 }
 
 .content {
-  // used for content areas not using the content directive
+  // used for tabContent areas not using the tabContent directive
   position: relative;
 }
 
@@ -221,8 +221,8 @@ ion-infinite-scroll {
 }
 
 
-// Pad top/bottom of content so it doesn't hide behind .bar-title and .bar-tab.
-// Note: For these to work, content must come after both bars in the markup
+// Pad top/bottom of tabContent so it doesn't hide behind .bar-title and .bar-tab.
+// Note: For these to work, tabContent must come after both bars in the markup
 /* If you change these, change platform.scss as well */
 .has-header {
   top: $bar-height;

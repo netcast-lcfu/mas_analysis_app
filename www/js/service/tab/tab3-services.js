@@ -7,8 +7,8 @@ angular.module('myApp.services')
     var chats = [{
       id: 0,
       icon: 'icon ion-pie-graph',
-      name: '扇区信息',
-      url: 'tab3/showSectorAreaInfo'
+      name: 'KPI完成进度查询',
+      url: 'tab3/queryKpiCompletedProgress'
     }];
 
     return {

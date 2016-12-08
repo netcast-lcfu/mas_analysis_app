@@ -1,0 +1,33 @@
+<ion-view view-title="KPI完成进度查询">
+  <ion-content class="padding">
+    <div class="list">
+      <div class="item item-divider">查询条件</div>
+      <div class="item item-input item-select">
+        <div class="input-label">
+          行政区域:
+        </div>
+        <select ng-model="condition.adminArea"
+                ng-options=" area.areaId as area.areaName for area in adminAreaData track by area.areaId"></select>
+      </div>
+      <div class="item item-input item-select">
+        <div class="input-label">
+          年份:
+        </div>
+        <select ng-model="condition.year"
+                ng-options="year for year in yearData"></select>
+      </div>
+      <div class="item item-input item-select">
+        <div class="input-label">
+          月份:
+        </div>
+        <select ng-model="condition.month"
+                ng-options="month.id as month.name for month in monthData track by month.id"></select>
+      </div>
+      <div class="item item-text-wrap">
+        <button class="button" ng-click="query()">查询</button>
+        <button class="button" ng-click="restData()">重置</button>
+      </div>
+    </div>
+    <div id="main" style="width: 90%;height:500px;"></div>
+  </ion-content>
+</ion-view>

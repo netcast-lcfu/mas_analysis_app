@@ -6,8 +6,7 @@
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
   <link rel="stylesheet" type="text/css" href="lib/ionic/css/ionic.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
-  <!--<link href="lib/ionRangeSlider/ion.rangeSlider.css" rel="stylesheet">-->
-  <!--<link href="lib/ionRangeSlider/ion.rangeSlider.skinHTML5.css" rel="stylesheet">-->
+
   <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
   -->
@@ -22,6 +21,8 @@
   <!-- jquery library and picture slider -->
   <!--<script src="lib/jquery/jquery-1.11.3.min.js"></script>-->
 
+  <!--<link href="lib/ionRangeSlider/ion.rangeSlider.css" rel="stylesheet">-->
+  <!--<link href="lib/ionRangeSlider/ion.rangeSlider.skinHTML5.css" rel="stylesheet">-->
   <!-- range slider used to select range -->
   <!--<script src="lib/ionRangeSlider/ion.rangeSlider.min.js"></script>-->
 
@@ -34,22 +35,27 @@
   <!-- JS -->
   <script src="js/app.js"></script>
   <script src="js/service/utils/api-service.js"></script>
-  <script src="js/controller/user/login-controller.js"></script>
-  <script src="js/controller/tab/tab-controller.js"></script>
-  <script src="js/controller/content/content-controller.js"></script>
-  <script src="js/controller/test/test-controller.js"></script>
+  <script src="js/controller/login-controller.js"></script>
+  <script src="js/controller/tab-controller.js"></script>
+  <script src="js/controller/content-controller.js"></script>
+  <script src="js/controller/test-controller.js"></script>
   <script src="js/service/user/user-service.js"></script>
   <script src="js/service/tab/tab1-services.js"></script>
   <script src="js/service/tab/tab2-services.js"></script>
   <script src="js/service/tab/tab3-services.js"></script>
   <script src="js/service/utils/storage.js"></script>
-  <!--<script src="js/echarts/echarts.js"></script>-->
+  <script src="js/echarts/echarts.js"></script>
 </head>
 <body ng-app="myApp">
 <!--导航框架之导航栏-->
 <ion-nav-bar class="bar-positive">
   <ion-nav-back-button>返回</ion-nav-back-button>
 </ion-nav-bar>
+<!--
+      The views will be rendered in the <ion-nav-view> directive below
+      Templates are in the /templates folder (but you could also
+      have templates inline in this html file if you'd like).
+    -->
 <ion-nav-view></ion-nav-view>
 </body>
 </html>

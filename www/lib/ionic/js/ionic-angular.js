@@ -1563,7 +1563,7 @@ function($rootScope, $state, $location, $document, $ionicPlatform, $ionicHistory
  * @ngdoc method
  * @name $ionicConfigProvider#scrolling.jsScrolling
  * @description  Whether to use JS or Native scrolling. Defaults to native scrolling. Setting this to
- * `true` has the same effect as setting each `ion-content` to have `overflow-scroll='false'`.
+ * `true` has the same effect as setting each `ion-tabContent` to have `overflow-scroll='false'`.
  * @param {boolean} value Defaults to `false` as of Ionic 1.2
  * @returns {boolean}
  */
@@ -2138,7 +2138,7 @@ var LOADING_TPL =
 
 var LOADING_HIDE_DEPRECATED = '$ionicLoading instance.hide() has been deprecated. Use $ionicLoading.hide().';
 var LOADING_SHOW_DEPRECATED = '$ionicLoading instance.show() has been deprecated. Use $ionicLoading.show().';
-var LOADING_SET_DEPRECATED = '$ionicLoading instance.setContent() has been deprecated. Use $ionicLoading.show({ template: \'my content\' }).';
+var LOADING_SET_DEPRECATED = '$ionicLoading instance.setContent() has been deprecated. Use $ionicLoading.show({ template: \'my tabContent\' }).';
 
 /**
  * @ngdoc service
@@ -2217,8 +2217,8 @@ function($ionicLoadingConfig, $ionicBody, $ionicTemplateLoader, $ionicBackdrop, 
      * function still returns an $ionicLoading instance for backwards compatiblity,
      * its use has been deprecated.
      * @param {object} opts The options for the loading indicator. Available properties:
-     *  - `{string=}` `template` The html content of the indicator.
-     *  - `{string=}` `templateUrl` The url of an html template to load as the content of the indicator.
+     *  - `{string=}` `template` The html tabContent of the indicator.
+     *  - `{string=}` `templateUrl` The url of an html template to load as the tabContent of the indicator.
      *  - `{object=}` `scope` The scope to be a child of. Default: creates a child of $rootScope.
      *  - `{boolean=}` `noBackdrop` Whether to hide the backdrop. By default it will be shown.
      *  - `{boolean=}` `hideOnStateChange` Whether to hide the loading spinner when navigating
@@ -2250,7 +2250,7 @@ function($ionicLoadingConfig, $ionicBody, $ionicTemplateLoader, $ionicBackdrop, 
         self.show = function(options) {
           var templatePromise = options.templateUrl ?
             $ionicTemplateLoader.load(options.templateUrl) :
-            //options.content: deprecated
+            //options.tabContent: deprecated
             $q.when(options.template || options.content || '');
 
           self.scope = options.scope || self.scope;
@@ -2381,10 +2381,10 @@ function($ionicLoadingConfig, $ionicBody, $ionicTemplateLoader, $ionicBackdrop, 
  *
  * Related: {@link ionic.controller:ionicModal ionicModal controller}.
  *
- * The Modal is a content pane that can go over the user's main view
+ * The Modal is a tabContent pane that can go over the user's main view
  * temporarily.  Usually used for making a choice or editing an item.
  *
- * Put the content of the modal inside of an `<ion-modal-view>` element.
+ * Put the tabContent of the modal inside of an `<ion-modal-view>` element.
  *
  * **Notes:**
  * - A modal will broadcast 'modal.shown', 'modal.hidden', and 'modal.removed' events from its originating
@@ -2401,9 +2401,9 @@ function($ionicLoadingConfig, $ionicBody, $ionicTemplateLoader, $ionicBackdrop, 
  *     <ion-header-bar>
  *       <h1 class="title">My Modal title</h1>
  *     </ion-header-bar>
- *     <ion-content>
+ *     <ion-tabContent>
  *       Hello!
- *     </ion-content>
+ *     </ion-tabContent>
  *   </ion-modal-view>
  * </script>
  * ```
@@ -2700,7 +2700,7 @@ function($rootScope, $ionicBody, $compile, $timeout, $ionicPlatform, $ionicTempl
      * @ngdoc method
      * @name $ionicModal#fromTemplate
      * @param {string} templateString The template string to use as the modal's
-     * content.
+     * tabContent.
      * @param {object} options Options to be passed {@link ionic.controller:ionicModal#initialize ionicModal#initialize} method.
      * @returns {object} An instance of an {@link ionic.controller:ionicModal}
      * controller.
@@ -3009,7 +3009,7 @@ IonicModule
  *
  * Related: {@link ionic.controller:ionicPopover ionicPopover controller}.
  *
- * The Popover is a view that floats above an app’s content. Popovers provide an
+ * The Popover is a view that floats above an app’s tabContent. Popovers provide an
  * easy way to present or gather information from the user and are
  * commonly used in the following situations:
  *
@@ -3017,7 +3017,7 @@ IonicModule
  * - Select a commonly used tool or configuration
  * - Present a list of actions to perform inside one of your views
  *
- * Put the content of the popover inside of an `<ion-popover-view>` element.
+ * Put the tabContent of the popover inside of an `<ion-popover-view>` element.
  *
  * @usage
  * ```html
@@ -3030,9 +3030,9 @@ IonicModule
  *     <ion-header-bar>
  *       <h1 class="title">My Popover Title</h1>
  *     </ion-header-bar>
- *     <ion-content>
+ *     <ion-tabContent>
  *       Hello!
- *     </ion-content>
+ *     </ion-tabContent>
  *   </ion-popover-view>
  * </script>
  * ```
@@ -3041,7 +3041,7 @@ IonicModule
  * .controller('MyController', function($scope, $ionicPopover) {
  *
  *   // .fromTemplate() method
- *   var template = '<ion-popover-view><ion-header-bar> <h1 class="title">My Popover Title</h1> </ion-header-bar> <ion-content> Hello! </ion-content></ion-popover-view>';
+ *   var template = '<ion-popover-view><ion-header-bar> <h1 class="title">My Popover Title</h1> </ion-header-bar> <ion-tabContent> Hello! </ion-tabContent></ion-popover-view>';
  *
  *   $scope.popover = $ionicPopover.fromTemplate(template, {
  *     scope: $scope
@@ -3201,7 +3201,7 @@ function($ionicModal, $ionicPosition, $document, $window) {
      * @ngdoc method
      * @name $ionicPopover#fromTemplate
      * @param {string} templateString The template string to use as the popovers's
-     * content.
+     * tabContent.
      * @param {object} options Options to be passed to the initialize method.
      * @returns {object} An instance of an {@link ionic.controller:ionicPopover}
      * controller (ionicPopover is built on top of $ionicPopover).
@@ -3253,7 +3253,7 @@ var POPUP_TPL =
  *
  * The popup system has support for more flexible versions of the built in `alert()`, `prompt()`,
  * and `confirm()` functions that users are used to, in addition to allowing popups with completely
- * custom content and look.
+ * custom tabContent and look.
  *
  * An input can be given an `autofocus` attribute so it automatically receives focus when
  * the popup first shows. However, depending on certain use-cases this can cause issues with
@@ -3376,7 +3376,7 @@ function($ionicTemplateLoader, $ionicBackdrop, $q, $timeout, $rootScope, $ionicB
      *   subTitle: '', // String (optional). The sub-title of the popup.
      *   template: '', // String (optional). The html template to place in the popup body.
      *   templateUrl: '', // String (optional). The URL of an html template to place in the popup   body.
-     *   scope: null, // Scope (optional). A scope to link to the popup content.
+     *   scope: null, // Scope (optional). A scope to link to the popup tabContent.
      *   buttons: [{ // Array[Object] (optional). Buttons to place in the popup footer.
      *     text: 'Cancel',
      *     type: 'button-default',
@@ -3841,9 +3841,9 @@ IonicModule
  *
  * ```html
  * <body ng-controller="MainCtrl">
- *   <ion-content>
+ *   <ion-tabContent>
  *     <button ng-click="scrollTop()">Scroll to Top!</button>
- *   </ion-content>
+ *   </ion-tabContent>
  * </body>
  * ```
  * ```js
@@ -3859,16 +3859,16 @@ IonicModule
  *
  * ```html
  * <body ng-controller="MainCtrl">
- *   <ion-content delegate-handle="mainScroll">
+ *   <ion-tabContent delegate-handle="mainScroll">
  *     <button ng-click="scrollMainToTop()">
- *       Scroll content to top!
+ *       Scroll tabContent to top!
  *     </button>
  *     <ion-scroll delegate-handle="small" style="height: 100px;">
  *       <button ng-click="scrollSmallToTop()">
  *         Scroll small area to top!
  *       </button>
  *     </ion-scroll>
- *   </ion-content>
+ *   </ion-tabContent>
  * </body>
  * ```
  * ```js
@@ -4005,12 +4005,12 @@ IonicModule
  * ```html
  * <body ng-controller="MainCtrl">
  *   <ion-side-menus>
- *     <ion-side-menu-content>
+ *     <ion-side-menu-tabContent>
  *       Content!
  *       <button ng-click="toggleLeftSideMenu()">
  *         Toggle Left Side Menu
  *       </button>
- *     </ion-side-menu-content>
+ *     </ion-side-menu-tabContent>
  *     <ion-side-menu side="left">
  *       Left Menu!
  *     <ion-side-menu>
@@ -4075,18 +4075,18 @@ IonicModule
   /**
    * @ngdoc method
    * @name $ionicSideMenuDelegate#canDragContent
-   * @param {boolean=} canDrag Set whether the content can or cannot be dragged to open
+   * @param {boolean=} canDrag Set whether the tabContent can or cannot be dragged to open
    * side menus.
-   * @returns {boolean} Whether the content can be dragged to open side menus.
+   * @returns {boolean} Whether the tabContent can be dragged to open side menus.
    */
   'canDragContent',
   /**
    * @ngdoc method
    * @name $ionicSideMenuDelegate#edgeDragThreshold
-   * @param {boolean|number=} value Set whether the content drag can only start if it is below a certain threshold distance from the edge of the screen. Accepts three different values:
+   * @param {boolean|number=} value Set whether the tabContent drag can only start if it is below a certain threshold distance from the edge of the screen. Accepts three different values:
    *  - If a non-zero number is given, that many pixels is used as the maximum allowed distance from the edge that starts dragging the side menu.
    *  - If true is given, the default number of pixels (25) is used as the maximum allowed distance.
-   *  - If false or 0 is given, the edge drag threshold is disabled, and dragging from anywhere on the content is allowed.
+   *  - If false or 0 is given, the edge drag threshold is disabled, and dragging from anywhere on the tabContent is allowed.
    * @returns {boolean} Whether the drag can start only from within the edge of screen threshold.
    */
   'edgeDragThreshold'
@@ -5121,7 +5121,7 @@ function($provide) {
     $location.hash = function(value) {
       if (isDefined(value) && value.length > 0) {
         $timeout(function() {
-          var scroll = document.querySelector('.scroll-content');
+          var scroll = document.querySelector('.scroll-tabContent');
           if (scroll) {
             scroll.scrollTop = 0;
           }
@@ -5654,7 +5654,7 @@ function($scope, $attrs, $element, $timeout) {
  * @usage
  * ```html
  * {% raw %}
- * <ion-content ng-controller="MyCtrl">
+ * <ion-tabContent ng-controller="MyCtrl">
  *   <button class="button" ng-click="showDeleteButtons()"></button>
  *   <ion-list>
  *     <ion-item ng-repeat="i in items">
@@ -5662,7 +5662,7 @@ function($scope, $attrs, $element, $timeout) {
  *       <ion-delete-button class="ion-minus-circled"></ion-delete-button>
  *     </ion-item>
  *   </ion-list>
- * </ion-content>
+ * </ion-tabContent>
  * {% endraw %}
  * ```
 
@@ -7070,7 +7070,7 @@ IonicModule
 
       if (!scrollParent || !scrollParent.classList.contains('ionic-scroll') ||
         !scrollChild || !scrollChild.classList.contains('scroll')) {
-        throw new Error('Refresher must be immediate child of ion-content or ion-scroll');
+        throw new Error('Refresher must be immediate child of ion-tabContent or ion-scroll');
       }
 
 
@@ -7396,7 +7396,7 @@ function($scope, $attrs, $ionicSideMenuDelegate, $ionicPlatform, $ionicBody, $io
   };
 
   /**
-   * Set the content view controller if not passed in the constructor options.
+   * Set the tabContent view controller if not passed in the constructor options.
    *
    * @param {object} content
    */
@@ -7597,7 +7597,7 @@ function($scope, $attrs, $ionicSideMenuDelegate, $ionicPlatform, $ionicBody, $io
 
   /**
    * Given an event object, find the final resting position of this side
-   * menu. For example, if the user "throws" the content to the right and
+   * menu. For example, if the user "throws" the tabContent to the right and
    * releases the touch, the left menu should snap open (animated, of course).
    *
    * @param {Event} e the gesture event to use for snapping
@@ -7728,7 +7728,7 @@ function($scope, $attrs, $ionicSideMenuDelegate, $ionicPlatform, $ionicBody, $io
 
     if (isDragging) {
       self.openAmount(offsetX + (lastX - startX));
-      //self.content.setCanScroll(false);
+      //self.tabContent.setCanScroll(false);
     }
   };
 
@@ -8624,7 +8624,7 @@ IonicModule
           '<input type="checkbox">' +
           '<i class="checkbox-icon"></i>' +
         '</div>' +
-        '<div class="item-content disable-pointer-events" ng-transclude></div>' +
+        '<div class="item-tabContent disable-pointer-events" ng-transclude></div>' +
       '</label>',
     compile: function(element, attr) {
       var input = element.find('input');
@@ -8684,26 +8684,26 @@ IonicModule
  * @usage
  * #### Basic Item List ([codepen](http://codepen.io/ionic/pen/0c2c35a34a8b18ad4d793fef0b081693))
  * ```html
- * <ion-content>
+ * <ion-tabContent>
  *   <ion-item collection-repeat="item in items">
  *     {% raw %}{{item}}{% endraw %}
  *   </ion-item>
- * </ion-content>
+ * </ion-tabContent>
  * ```
  *
  * #### Grid of Images ([codepen](http://codepen.io/ionic/pen/5515d4efd9d66f780e96787387f41664))
  * ```html
- * <ion-content>
+ * <ion-tabContent>
  *   <img collection-repeat="photo in photos"
  *     item-width="33%"
  *     item-height="200px"
  *     ng-src="{% raw %}{{photo.url}}{% endraw %}">
- * </ion-content>
+ * </ion-tabContent>
  * ```
  *
  * #### Horizontal Scroller, Dynamic Item Width ([codepen](http://codepen.io/ionic/pen/67cc56b349124a349acb57a0740e030e))
  * ```html
- * <ion-content>
+ * <ion-tabContent>
  *   <h2>Available Kittens:</h2>
  *   <ion-scroll direction="x" class="available-scroller">
  *     <div class="photo" collection-repeat="photo in main.photos"
@@ -8711,7 +8711,7 @@ IonicModule
  *        <img ng-src="{% raw %}{{photo.src}}{% endraw %}">
  *     </div>
  *   </ion-scroll>
- * </ion-content>
+ * </ion-tabContent>
  * ```
  *
  * @param {expression} collection-repeat The expression indicating how to enumerate a collection,
@@ -9650,7 +9650,7 @@ function RepeatManagerFactory($rootScope, $window, $$rAF) {
  * @restrict E
  *
  * @description
- * The ionContent directive provides an easy to use content area that can be configured
+ * The ionContent directive provides an easy to use tabContent area that can be configured
  * to use Ionic's custom Scroll View, or the built in overflow scrolling of the browser.
  *
  * While we recommend using the custom Scroll features in Ionic in most cases, sometimes
@@ -9662,8 +9662,8 @@ function RepeatManagerFactory($rootScope, $window, $$rAF) {
  * directive, and infinite scrolling with the {@link ionic.directive:ionInfiniteScroll}
  * directive.
  *
- * If there is any dynamic content inside the ion-content, be sure to call `.resize()` with {@link ionic.service:$ionicScrollDelegate}
- * after the content has been added.
+ * If there is any dynamic tabContent inside the ion-tabContent, be sure to call `.resize()` with {@link ionic.service:$ionicScrollDelegate}
+ * after the tabContent has been added.
  *
  * Be aware that this directive gets its own child scope. If you do not understand why this
  * is important, you can read [https://docs.angularjs.org/guide/scope](https://docs.angularjs.org/guide/scope).
@@ -9672,19 +9672,19 @@ function RepeatManagerFactory($rootScope, $window, $$rAF) {
  * with {@link ionic.service:$ionicScrollDelegate}.
  * @param {string=} direction Which way to scroll. 'x' or 'y' or 'xy'. Default 'y'.
  * @param {boolean=} locking Whether to lock scrolling in one direction at a time. Useful to set to false when zoomed in or scrolling in two directions. Default true.
- * @param {boolean=} padding Whether to add padding to the content.
+ * @param {boolean=} padding Whether to add padding to the tabContent.
  * Defaults to true on iOS, false on Android.
- * @param {boolean=} scroll Whether to allow scrolling of content.  Defaults to true.
+ * @param {boolean=} scroll Whether to allow scrolling of tabContent.  Defaults to true.
  * @param {boolean=} overflow-scroll Whether to use overflow-scrolling instead of
  * Ionic scroll. See {@link ionic.provider:$ionicConfigProvider} to set this as the global default.
  * @param {boolean=} scrollbar-x Whether to show the horizontal scrollbar. Default true.
  * @param {boolean=} scrollbar-y Whether to show the vertical scrollbar. Default true.
  * @param {string=} start-x Initial horizontal scroll position. Default 0.
  * @param {string=} start-y Initial vertical scroll position. Default 0.
- * @param {expression=} on-scroll Expression to evaluate when the content is scrolled.
+ * @param {expression=} on-scroll Expression to evaluate when the tabContent is scrolled.
  * @param {expression=} on-scroll-complete Expression to evaluate when a scroll action completes. Has access to 'scrollLeft' and 'scrollTop' locals.
  * @param {boolean=} has-bouncing Whether to allow scrolling to bounce past the edges
- * of the content.  Defaults to true on iOS, false on Android.
+ * of the tabContent.  Defaults to true on iOS, false on Android.
  * @param {number=} scroll-event-interval Number of milliseconds between each firing of the 'on-scroll' expression. Default 10.
  */
 IonicModule
@@ -9703,7 +9703,7 @@ function($timeout, $controller, $ionicBind, $ionicConfig) {
       var innerElement;
       var scrollCtrl;
 
-      element.addClass('scroll-content ionic-scroll');
+      element.addClass('scroll-tabContent ionic-scroll');
 
       if (attr.scroll != 'false') {
         //We cannot use normal transclude here because it breaks element.data()
@@ -9712,7 +9712,7 @@ function($timeout, $controller, $ionicBind, $ionicConfig) {
         innerElement.append(element.contents());
         element.append(innerElement);
       } else {
-        element.addClass('scroll-content-false');
+        element.addClass('scroll-tabContent-false');
       }
 
       var nativeScrolling = attr.overflowScroll !== "false" && (attr.overflowScroll === "true" || !$ionicConfig.scrolling.jsScrolling());
@@ -9840,8 +9840,8 @@ function($timeout, $controller, $ionicBind, $ionicConfig) {
  * same menu on the left side when the tablet is in landscape mode. The `exposeAsideWhen` attribute
  * directive can be used to accomplish a similar interface.
  *
- * By default, side menus are hidden underneath its side menu content, and can be opened by either
- * swiping the content left or right, or toggling a button to show the side menu. However, by adding the
+ * By default, side menus are hidden underneath its side menu tabContent, and can be opened by either
+ * swiping the tabContent left or right, or toggling a button to show the side menu. However, by adding the
  * `exposeAsideWhen` attribute directive to an {@link ionic.directive:ionSideMenu} element directive,
  * a side menu can be given instructions on "when" the menu should be exposed (always viewable). For
  * example, the `expose-aside-when="large"` attribute will keep the side menu hidden when the viewport's
@@ -9856,9 +9856,9 @@ function($timeout, $controller, $ionicBind, $ionicConfig) {
  * @usage
  * ```html
  * <ion-side-menus>
- *   <!-- Center content -->
- *   <ion-side-menu-content>
- *   </ion-side-menu-content>
+ *   <!-- Center tabContent -->
+ *   <ion-side-menu-tabContent>
+ *   </ion-side-menu-tabContent>
  *
  *   <!-- Left menu -->
  *   <ion-side-menu expose-aside-when="large">
@@ -10218,7 +10218,7 @@ IonicModule
  * @restrict E
  *
  * @description
- * Adds a fixed header bar above some content.
+ * Adds a fixed header bar above some tabContent.
  *
  * Can also be a subheader (lower down) if the 'bar-subheader' class is applied.
  * See [the header CSS docs](/docs/components/#subheader).
@@ -10228,7 +10228,7 @@ IonicModule
  * titles, Android aligns them left).
  * Available: 'left', 'right', or 'center'.  Defaults to the same as the platform.
  * @param {boolean=} no-tap-scroll By default, the header bar will scroll the
- * content to the top when tapped.  Set no-tap-scroll to true to disable this
+ * tabContent to the top when tapped.  Set no-tap-scroll to true to disable this
  * behavior.
  * Available: true or false.  Defaults to false.
  *
@@ -10243,9 +10243,9 @@ IonicModule
  *     <button class="button">Right Button</button>
  *   </div>
  * </ion-header-bar>
- * <ion-content>
- *   Some content!
- * </ion-content>
+ * <ion-tabContent>
+ *   Some tabContent!
+ * </ion-tabContent>
  * ```
  */
 .directive('ionHeaderBar', headerFooterBarDirective(true))
@@ -10257,12 +10257,12 @@ IonicModule
  * @restrict E
  *
  * @description
- * Adds a fixed footer bar below some content.
+ * Adds a fixed footer bar below some tabContent.
  *
  * Can also be a subfooter (higher up) if the 'bar-subfooter' class is applied.
  * See [the footer CSS docs](/docs/components/#footer).
  *
- * Note: If you use ionFooterBar in combination with ng-if, the surrounding content
+ * Note: If you use ionFooterBar in combination with ng-if, the surrounding tabContent
  * will not align correctly.  This will be fixed soon.
  *
  * @param {string=} align-title Where to align the title.
@@ -10270,9 +10270,9 @@ IonicModule
  *
  * @usage
  * ```html
- * <ion-content>
- *   Some content!
- * </ion-content>
+ * <ion-tabContent>
+ *   Some tabContent!
+ * </ion-tabContent>
  * <ion-footer-bar align-title="left" class="bar-assertive">
  *   <div class="buttons">
  *     <button class="button">Left Button</button>
@@ -10398,7 +10398,7 @@ function headerFooterBarDirective(isHeader) {
  * the user gets to the bottom of the page or near the bottom of the page.
  *
  * The expression you pass in for `on-infinite` is called when the user scrolls
- * greater than `distance` away from the bottom of the content.  Once `on-infinite`
+ * greater than `distance` away from the bottom of the tabContent.  Once `on-infinite`
  * is done loading new data, it should broadcast the `scroll.infiniteScrollComplete`
  * event from your controller (see below example).
  *
@@ -10414,7 +10414,7 @@ function headerFooterBarDirective(isHeader) {
  *
  * @usage
  * ```html
- * <ion-content ng-controller="MyController">
+ * <ion-tabContent ng-controller="MyController">
  *   <ion-list>
  *   ....
  *   ....
@@ -10424,7 +10424,7 @@ function headerFooterBarDirective(isHeader) {
  *     on-infinite="loadMore()"
  *     distance="1%">
  *   </ion-infinite-scroll>
- * </ion-content>
+ * </ion-tabContent>
  * ```
  * ```js
  * function MyController($scope, $http) {
@@ -10671,7 +10671,7 @@ IonicModule
 
       if (isComplexItem) {
         var innerElement = jqLite(isAnchor ? '<a></a>' : '<div></div>');
-        innerElement.addClass('item-content');
+        innerElement.addClass('item-tabContent');
 
         if (isDefined($attrs.href) || isDefined($attrs.ngHref)) {
           innerElement.attr('ng-href', '{{$href()}}');
@@ -10696,7 +10696,7 @@ IonicModule
           return $attrs.target;
         };
 
-        var content = $element[0].querySelector('.item-content');
+        var content = $element[0].querySelector('.item-tabContent');
         if (content) {
           $scope.$on('$collectionRepeatLeave', function() {
             if (content && content.$$ionicOptionsOpen) {
@@ -11059,7 +11059,7 @@ function keyboardAttachGetClientHeight(element) {
 * @restrict E
 * @description
 * The List is a widely used interface element in almost any mobile app, and can include
-* content ranging from basic text all the way to buttons, toggles, icons, and thumbnails.
+* tabContent ranging from basic text all the way to buttons, toggles, icons, and thumbnails.
 *
 * Both the list, which contains items, and the list items themselves can be any HTML
 * element. The containing element requires the `list` class and each list item requires
@@ -11551,7 +11551,7 @@ IonicModule
  * We can add buttons depending on the currently visible view using
  * {@link ionic.directive:ionNavButtons}.
  *
- * Note that the ion-nav-bar element will only work correctly if your content has an
+ * Note that the ion-nav-bar element will only work correctly if your tabContent has an
  * ionView around it.
  *
  * @usage
@@ -11565,7 +11565,7 @@ IonicModule
  *   <!-- where the initial view template will be rendered -->
  *   <ion-nav-view>
  *     <ion-view>
- *       <ion-content>Hello!</ion-content>
+ *       <ion-tabContent>Hello!</ion-tabContent>
  *     </ion-view>
  *   </ion-nav-view>
  * </body>
@@ -11575,7 +11575,7 @@ IonicModule
  * with {@link ionic.service:$ionicNavBarDelegate}.
  * @param align-title {string=} Where to align the title of the navbar.
  * Available: 'left', 'right', 'center'. Defaults to 'center'.
- * @param {boolean=} no-tap-scroll By default, the navbar will scroll the content
+ * @param {boolean=} no-tap-scroll By default, the navbar will scroll the tabContent
  * to the top when tapped.  Set no-tap-scroll to true to disable this behavior.
  *
  * </table><br/>
@@ -11634,9 +11634,9 @@ IonicModule
  *         I'm a button on the primary of the navbar!
  *       </button>
  *     </ion-nav-buttons>
- *     <ion-content>
- *       Some super content here!
- *     </ion-content>
+ *     <ion-tabContent>
+ *       Some super tabContent here!
+ *     </ion-tabContent>
  *   </ion-view>
  * </ion-nav-view>
  * ```
@@ -11742,9 +11742,9 @@ IonicModule
  *     <ion-nav-title>
  *       <img src="logo.svg">
  *     </ion-nav-title>
- *     <ion-content>
- *       Some super content here!
- *     </ion-content>
+ *     <ion-tabContent>
+ *       Some super tabContent here!
+ *     </ion-tabContent>
  *   </ion-view>
  * </ion-nav-view>
  * ```
@@ -11878,10 +11878,10 @@ IonicModule
  * <script id="home" type="text/ng-template">
  *   <!-- The title of the ion-view will be shown on the navbar -->
  *   <ion-view view-title="Home">
- *     <ion-content ng-controller="HomeCtrl">
- *       <!-- The content of the page -->
+ *     <ion-tabContent ng-controller="HomeCtrl">
+ *       <!-- The tabContent of the page -->
  *       <a href="#/music">Go to music page!</a>
- *     </ion-content>
+ *     </ion-tabContent>
  *   </ion-view>
  * </script>
  * ```
@@ -12076,7 +12076,7 @@ function eventStopPropagation(e) {
  * @module ionic
  * @restrict E
  *
- * @description A simple container that fits content, with no side effects.  Adds the 'pane' class to the element.
+ * @description A simple container that fits tabContent, with no side effects.  Adds the 'pane' class to the element.
  */
 IonicModule
 .directive('ionPane', function() {
@@ -12153,8 +12153,8 @@ IonicModule
     template:
       '<label class="item item-radio">' +
         '<input type="radio" name="radio-group">' +
-        '<div class="radio-content">' +
-          '<div class="item-content disable-pointer-events" ng-transclude></div>' +
+        '<div class="radio-tabContent">' +
+          '<div class="item-tabContent disable-pointer-events" ng-transclude></div>' +
           '<i class="radio-icon disable-pointer-events icon ion-checkmark"></i>' +
         '</div>' +
       '</label>',
@@ -12210,7 +12210,7 @@ IonicModule
  * @usage
  *
  * ```html
- * <ion-content ng-controller="MyController">
+ * <ion-tabContent ng-controller="MyController">
  *   <ion-refresher
  *     pulling-text="Pull to refresh..."
  *     on-refresh="doRefresh()">
@@ -12218,7 +12218,7 @@ IonicModule
  *   <ion-list>
  *     <ion-item ng-repeat="item in items"></ion-item>
  *   </ion-list>
- * </ion-content>
+ * </ion-tabContent>
  * ```
  * ```js
  * angular.module('testApp', ['ionic'])
@@ -12263,7 +12263,7 @@ IonicModule
     controller: '$ionicRefresher',
     template:
     '<div class="scroll-refresher invisible" collection-repeat-ignore>' +
-      '<div class="ionic-refresher-content" ' +
+      '<div class="ionic-refresher-tabContent" ' +
       'ng-class="{\'ionic-refresher-with-text\': pullingText || refreshingText}">' +
         '<div class="icon-pulling" ng-class="{\'pulling-rotation-disabled\':disablePullingRotation}">' +
           '<i class="icon {{pullingIcon}}"></i>' +
@@ -12312,7 +12312,7 @@ IonicModule
  * @restrict E
  *
  * @description
- * Creates a scrollable container for all content inside.
+ * Creates a scrollable container for all tabContent inside.
  *
  * @usage
  *
@@ -12325,9 +12325,9 @@ IonicModule
  * ```
  *
  * Note that it's important to set the height of the scroll box as well as the height of the inner
- * content to enable scrolling. This makes it possible to have full control over scrollable areas.
+ * tabContent to enable scrolling. This makes it possible to have full control over scrollable areas.
  *
- * If you'd just like to have a center content scrolling area, use {@link ionic.directive:ionContent} instead.
+ * If you'd just like to have a center tabContent scrolling area, use {@link ionic.directive:ionContent} instead.
  *
  * @param {string=} delegate-handle The handle used to identify this scrollView
  * with {@link ionic.service:$ionicScrollDelegate}.
@@ -12342,7 +12342,7 @@ IonicModule
  * @param {integer=} min-zoom The smallest zoom amount allowed (default is 0.5)
  * @param {integer=} max-zoom The largest zoom amount allowed (default is 3)
  * @param {boolean=} has-bouncing Whether to allow scrolling to bounce past the edges
- * of the content.  Defaults to true on iOS, false on Android.
+ * of the tabContent.  Defaults to true on iOS, false on Android.
  */
 IonicModule
 .directive('ionScroll', [
@@ -12498,24 +12498,24 @@ IonicModule
  * @parent ionic.directive:ionSideMenus
  *
  * @description
- * A container for the main visible content, sibling to one or more
+ * A container for the main visible tabContent, sibling to one or more
  * {@link ionic.directive:ionSideMenu} directives.
  *
  * @usage
  * ```html
- * <ion-side-menu-content
+ * <ion-side-menu-tabContent
  *   edge-drag-threshold="true"
- *   drag-content="true">
- * </ion-side-menu-content>
+ *   drag-tabContent="true">
+ * </ion-side-menu-tabContent>
  * ```
  * For a complete side menu example, see the
  * {@link ionic.directive:ionSideMenus} documentation.
  *
- * @param {boolean=} drag-content Whether the content can be dragged. Default true.
- * @param {boolean|number=} edge-drag-threshold Whether the content drag can only start if it is below a certain threshold distance from the edge of the screen.  Default false. Accepts three types of values:
+ * @param {boolean=} drag-tabContent Whether the tabContent can be dragged. Default true.
+ * @param {boolean|number=} edge-drag-threshold Whether the tabContent drag can only start if it is below a certain threshold distance from the edge of the screen.  Default false. Accepts three types of values:
    *  - If a non-zero number is given, that many pixels is used as the maximum allowed distance from the edge that starts dragging the side menu.
    *  - If true is given, the default number of pixels (25) is used as the maximum allowed distance.
-   *  - If false or 0 is given, the edge drag threshold is disabled, and dragging from anywhere on the content is allowed.
+   *  - If false or 0 is given, the edge drag threshold is disabled, and dragging from anywhere on the tabContent is allowed.
  *
  */
 IonicModule
@@ -12530,7 +12530,7 @@ function($timeout, $ionicGesture, $window) {
     require: '^ionSideMenus',
     scope: true,
     compile: function(element, attr) {
-      element.addClass('menu-content pane');
+      element.addClass('menu-tabContent pane');
 
       return { pre: prelink };
       function prelink($scope, $element, $attr, sideMenuCtrl) {
@@ -12551,7 +12551,7 @@ function($timeout, $ionicGesture, $window) {
           });
         }
 
-        // Listen for taps on the content to close the menu
+        // Listen for taps on the tabContent to close the menu
         function onContentTap(gestureEvt) {
           if (sideMenuCtrl.getOpenAmount() !== 0) {
             sideMenuCtrl.close();
@@ -12744,12 +12744,12 @@ IonicModule
  * @restrict E
  *
  * @description
- * A container element for side menu(s) and the main content. Allows the left and/or right side menu
- * to be toggled by dragging the main content area side to side.
+ * A container element for side menu(s) and the main tabContent. Allows the left and/or right side menu
+ * to be toggled by dragging the main tabContent area side to side.
  *
  * To automatically close an opened menu, you can add the {@link ionic.directive:menuClose} attribute
  * directive. The `menu-close` attribute is usually added to links and buttons within
- * `ion-side-menu-content`, so that when the element is clicked, the opened side menu will
+ * `ion-side-menu-tabContent`, so that when the element is clicked, the opened side menu will
  * automatically close.
  *
  * "Burger Icon" toggles can be added to the header with the {@link ionic.directive:menuToggle}
@@ -12757,8 +12757,8 @@ IonicModule
  * directive. The side menu will automatically hide on child pages, but can be overridden with the
  * enable-menu-with-back-views attribute mentioned below.
  *
- * By default, side menus are hidden underneath their side menu content and can be opened by swiping
- * the content left or right or by toggling a button to show the side menu. Additionally, by adding the
+ * By default, side menus are hidden underneath their side menu tabContent and can be opened by swiping
+ * the tabContent left or right or by toggling a button to show the side menu. Additionally, by adding the
  * {@link ionic.directive:exposeAsideWhen} attribute directive to an
  * {@link ionic.directive:ionSideMenu} element directive, a side menu can be given instructions about
  * "when" the menu should be exposed (always viewable).
@@ -12775,7 +12775,7 @@ IonicModule
  *
  * @usage
  * To use side menus, add an `<ion-side-menus>` parent element. This will encompass all pages that have a
- * side menu, and have at least 2 child elements: 1 `<ion-side-menu-content>` for the center content,
+ * side menu, and have at least 2 child elements: 1 `<ion-side-menu-tabContent>` for the center tabContent,
  * and one or more `<ion-side-menu>` directives for each side menu(left/right) that you wish to place.
  *
  * ```html
@@ -12784,9 +12784,9 @@ IonicModule
  *   <ion-side-menu side="left">
  *   </ion-side-menu>
  *
- *   <ion-side-menu-content>
- *   <!-- Main content, usually <ion-nav-view> -->
- *   </ion-side-menu-content>
+ *   <ion-side-menu-tabContent>
+ *   <!-- Main tabContent, usually <ion-nav-view> -->
+ *   </ion-side-menu-tabContent>
  *
  *   <!-- Right menu -->
  *   <ion-side-menu side="right">
@@ -13409,7 +13409,7 @@ IonicModule
  * @parent ionic.directive:ionTabs
  *
  * @description
- * Contains a tab's content.  The content only exists while the given tab is selected.
+ * Contains a tab's tabContent.  The tabContent only exists while the given tab is selected.
  *
  * Each ionTab has its own view history.
  *
@@ -13490,11 +13490,11 @@ function($compile, $ionicConfig, $ionicBind, $ionicViewSwitcher) {
           isNavView = true;
         }
         if (childElementCount === 1) {
-          // make the 1 child element the primary tab content container
+          // make the 1 child element the primary tab tabContent container
           tabContentEle = tabContentEle.children[0];
         }
         if (!isNavView) tabContentEle.classList.add('pane');
-        tabContentEle.classList.add('tab-content');
+        tabContentEle.classList.add('tab-tabContent');
       }
 
       return function link($scope, $element, $attr, ctrls) {
@@ -13564,7 +13564,7 @@ function($compile, $ionicConfig, $ionicBind, $ionicViewSwitcher) {
               isTabContentAttached = true;
             }
 
-            // remove the hide class so the tabs content shows up
+            // remove the hide class so the tabs tabContent shows up
             $ionicViewSwitcher.viewEleIsActive(childElement, true);
 
           } else if (isTabContentAttached && childElement) {
@@ -13691,7 +13691,7 @@ IonicModule
  * See the {@link ionic.directive:ionTab} directive's documentation for more details on
  * individual tabs.
  *
- * Note: do not place ion-tabs inside of an ion-content element; it has been known to cause a
+ * Note: do not place ion-tabs inside of an ion-tabContent element; it has been known to cause a
  * certain CSS bug.
  *
  * @usage
@@ -13699,15 +13699,15 @@ IonicModule
  * <ion-tabs class="tabs-positive tabs-icon-top">
  *
  *   <ion-tab title="Home" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
- *     <!-- Tab 1 content -->
+ *     <!-- Tab 1 tabContent -->
  *   </ion-tab>
  *
  *   <ion-tab title="About" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
- *     <!-- Tab 2 content -->
+ *     <!-- Tab 2 tabContent -->
  *   </ion-tab>
  *
  *   <ion-tab title="Settings" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
- *     <!-- Tab 3 content -->
+ *     <!-- Tab 3 tabContent -->
  *   </ion-tab>
  *
  * </ion-tabs>
@@ -13926,7 +13926,7 @@ function($timeout, $ionicConfig) {
  * @parent ionNavView
  *
  * @description
- * A container for view content and any navigational and header bar information. When a view
+ * A container for view tabContent and any navigational and header bar information. When a view
  * enters and exits its parent {@link ionic.directive:ionNavView}, the view also emits view
  * information, such as its title, whether the back button should be displayed or not, whether the
  * corresponding {@link ionic.directive:ionNavBar} should be displayed or not, which transition the view
@@ -13947,9 +13947,9 @@ function($timeout, $ionicConfig) {
  * <ion-nav-bar></ion-nav-bar>
  * <ion-nav-view>
  *   <ion-view view-title="My Page">
- *     <ion-content>
+ *     <ion-tabContent>
  *       Hello!
- *     </ion-content>
+ *     </ion-tabContent>
  *   </ion-view>
  * </ion-nav-view>
  * ```

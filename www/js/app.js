@@ -101,12 +101,12 @@ angular.module("myApp", ['ionic', 'ngCordova', 'ion-datetime-picker', 'myApp.con
           }
         }
       })
-      .state('tab.showSectorAreaInfo', {
-        url: '/tab3/showSectorAreaInfo',
+      .state('tab.queryKpiCompletedProgress', {
+        url: '/tab3/queryKpiCompletedProgress',
         views: {
           'tab-tab3': {
-            templateUrl: 'templates/tabContent/showSectorAreaInfo.html',
-            controller: 'showSectorAreaInfoCtrl'
+            templateUrl: 'templates/kpi/queryKpiCompletedProgress.html',
+            controller: 'queryKpiCompletedProgressCtrl'
           }
         }
       })
@@ -154,8 +154,16 @@ angular.module("myApp", ['ionic', 'ngCordova', 'ion-datetime-picker', 'myApp.con
         console.log(UserService.isLogin());
         if(UserService.isLogin()) {
           $cordovaToast.showShortBottom("登录成功!");
+          // $ionicLoading.show({
+          //   template: "登录成功!",
+          //   duration: 1500
+          // });
           $state.go("tab.tab1");
         }else{
+          // $ionicLoading.show({
+          //   template: "本地保存数据和服务器不同步,请重新登录!",
+          //   duration: 1500
+          // });
           $cordovaToast.showShortCenter("本地保存数据和服务器不同步,请重新登录!");
           $state.go("login");
         }

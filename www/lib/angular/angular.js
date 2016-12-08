@@ -2718,7 +2718,7 @@
       wrap = wrapMap[tag] || wrapMap._default;
       tmp.innerHTML = wrap[1] + html.replace(XHTML_TAG_REGEXP, "<$1></$2>") + wrap[2];
 
-      // Descend through wrappers to the right content
+      // Descend through wrappers to the right tabContent
       i = wrap[0];
       while (i--) {
         tmp = tmp.lastChild;
@@ -3695,7 +3695,7 @@
    * it into the current AngularJS scope.
    *
    * ```js
-   * var $div = $('<div ng-controller="MyCtrl">{{content.label}}</div>');
+   * var $div = $('<div ng-controller="MyCtrl">{{tabContent.label}}</div>');
    * $(document.body).append($div);
    *
    * angular.element(document).injector().invoke(function($compile) {
@@ -4405,7 +4405,7 @@
             module = module[module.length - 1];
           }
           if (e.message && e.stack && e.stack.indexOf(e.message) == -1) {
-            // Safari & FF's stack traces don't contain error.message content
+            // Safari & FF's stack traces don't contain error.message tabContent
             // unlike those of Chrome and IE
             // So if stack doesn't contain message, we create a new string that contains both.
             // Since error.stack is read-only in Safari, I'm overriding e and not e.stack here.
@@ -4723,7 +4723,7 @@
             // This is true ONLY if the call to `elem.scrollIntoView()` initially aligns `elem` at the
             // top of the viewport.
             //
-            // IF the number of pixels from the top of `elem` to the end of the page's content is less
+            // IF the number of pixels from the top of `elem` to the end of the page's tabContent is less
             // than the height of the viewport, then `elem.scrollIntoView()` will align the `elem` some
             // way down the page.
             //
@@ -6102,7 +6102,7 @@
    *
    * ```html
    *   <script type="text/ng-template" id="templateId.html">
-   *     <p>This is the content of the template</p>
+   *     <p>This is the tabContent of the template</p>
    *   </script>
    * ```
    *
@@ -6115,7 +6115,7 @@
    * ```js
    * var myApp = angular.module('myApp', []);
    * myApp.run(function($templateCache) {
- *   $templateCache.put('templateId.html', 'This is the content of the template');
+ *   $templateCache.put('templateId.html', 'This is the tabContent of the template');
  * });
    * ```
    *
@@ -10069,10 +10069,10 @@
             var headers = config.headers;
             var reqData = transformData(config.data, headersGetter(headers), undefined, config.transformRequest);
 
-            // strip content-type if data is undefined
+            // strip tabContent-type if data is undefined
             if (isUndefined(reqData)) {
               forEach(headers, function (value, header) {
-                if (lowercase(header) === 'content-type') {
+                if (lowercase(header) === 'tabContent-type') {
                   delete headers[header];
                 }
               });
@@ -10242,7 +10242,7 @@
          * Shortcut method to perform `POST` request.
          *
          * @param {string} url Relative or absolute URL specifying the destination of the request
-         * @param {*} data Request content
+         * @param {*} data Request tabContent
          * @param {Object=} config Optional configuration object
          * @returns {HttpPromise} Future object
          */
@@ -10255,7 +10255,7 @@
          * Shortcut method to perform `PUT` request.
          *
          * @param {string} url Relative or absolute URL specifying the destination of the request
-         * @param {*} data Request content
+         * @param {*} data Request tabContent
          * @param {Object=} config Optional configuration object
          * @returns {HttpPromise} Future object
          */
@@ -10268,7 +10268,7 @@
          * Shortcut method to perform `PATCH` request.
          *
          * @param {string} url Relative or absolute URL specifying the destination of the request
-         * @param {*} data Request content
+         * @param {*} data Request tabContent
          * @param {Object=} config Optional configuration object
          * @returns {HttpPromise} Future object
          */
@@ -16567,7 +16567,7 @@
      *
      *     The typical usage for the blacklist is to **block
      *     [open redirects](http://cwe.mitre.org/data/definitions/601.html)** served by your domain as
-     *     these would otherwise be trusted but actually return content from the redirected domain.
+     *     these would otherwise be trusted but actually return tabContent from the redirected domain.
      *
      *     Finally, **the blacklist overrides the whitelist** and has the final say.
      *
@@ -16687,7 +16687,7 @@
         // mutable objects, we ensure here that the value passed in is actually a string.
         if (typeof trustedValue !== 'string') {
           throw $sceMinErr('itype',
-            'Attempted to trust a non-string value in a content requiring a string: Context: {0}',
+            'Attempted to trust a non-string value in a tabContent requiring a string: Context: {0}',
             type);
         }
         return new Constructor(trustedValue);
@@ -24069,10 +24069,10 @@
    * @name ngInclude#$includeContentRequested
    * @eventType emit on the scope ngInclude was declared in
    * @description
-   * Emitted every time the ngInclude content is requested.
+   * Emitted every time the ngInclude tabContent is requested.
    *
    * @param {Object} angularEvent Synthetic event object.
-   * @param {String} src URL of content to load.
+   * @param {String} src URL of tabContent to load.
    */
 
 
@@ -24081,10 +24081,10 @@
    * @name ngInclude#$includeContentLoaded
    * @eventType emit on the current ngInclude scope
    * @description
-   * Emitted every time the ngInclude content is reloaded.
+   * Emitted every time the ngInclude tabContent is reloaded.
    *
    * @param {Object} angularEvent Synthetic event object.
-   * @param {String} src URL of content to load.
+   * @param {String} src URL of tabContent to load.
    */
 
 
@@ -24096,7 +24096,7 @@
    * Emitted when a template HTTP request yields an erroneous response (status < 200 || status > 299)
    *
    * @param {Object} angularEvent Synthetic event object.
-   * @param {String} src URL of content to load.
+   * @param {String} src URL of tabContent to load.
    */
   var ngIncludeDirective = ['$templateRequest', '$anchorScroll', '$animate',
     function ($templateRequest, $anchorScroll, $animate) {
@@ -24152,10 +24152,10 @@
                   ctrl.template = response;
 
                   // Note: This will also link all children of ng-include that were contained in the original
-                  // html. If that content contains controllers, ... they could pollute/change the scope.
-                  // However, using ng-include on an element with additional content does not make sense...
+                  // html. If that tabContent contains controllers, ... they could pollute/change the scope.
+                  // However, using ng-include on an element with additional tabContent does not make sense...
                   // Note: We can't remove them in the cloneAttchFn of $transclude as that
-                  // function is called before linking the content, which would apply child
+                  // function is called before linking the tabContent, which would apply child
                   // directives to non existing elements.
                   var clone = $transclude(newScope, function (clone) {
                     cleanupLastIncludeContent();
@@ -24185,8 +24185,8 @@
     }];
 
 // This directive is called during the $transclude call of the first `ngInclude` directive.
-// It will replace and compile the content of the element with the loaded template.
-// We need this directive so that the element content is already filled when
+// It will replace and compile the tabContent of the element with the loaded template.
+// We need this directive so that the element tabContent is already filled when
 // the link function of another directive on the same element as ngInclude
 // is called.
   var ngIncludeFillContentDirective = ['$compile',
@@ -28289,7 +28289,7 @@
       compile: function (element, attr) {
 
         // If the value attribute is not defined then we fall back to the
-        // text content of the option element, which may be interpolated
+        // text tabContent of the option element, which may be interpolated
         if (isUndefined(attr.value)) {
           var interpolateFn = $interpolate(element.text(), true);
           if (!interpolateFn) {
