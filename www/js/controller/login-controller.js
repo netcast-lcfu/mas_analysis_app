@@ -35,12 +35,10 @@ angular.module('myApp.controllers')
         //   duration: 1000
         // });
       } else {
-        $ionicLoading.show({
-          templateUrl: '<ion-spinner icon="bubbles" class="spinner-balanced"></ion-spinner>'
-        });
+        //$ionicLoading.show();
         UserService.login($scope.user.username, $scope.user.password).then(function () {
           //登录成功
-          $ionicLoading.hide();
+          //$ionicLoading.hide();
           $cordovaToast.showShortBottom("登录成功!");
           $state.go("tab.tab1");
         }, function (err) {

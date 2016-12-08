@@ -1,14 +1,16 @@
+//预先加载Controller Services Utils模块
 angular.module('myApp.controllers', []);
 angular.module('myApp.services', []);
-angular.module("myApp", ['ionic', 'ngCordova','ion-datetime-picker','myApp.controllers', 'myApp.services'])
+angular.module("myApp.utils", []);
+angular.module("myApp", ['ionic', 'ngCordova', 'ion-datetime-picker', 'myApp.controllers', 'myApp.services', 'myApp.utils'])
 //定义常量
   .constant("ApiEndpoint", {
-    url: 'http://10.1.1.91:8080/mas_analysis',
+    url: 'http://10.1.1.89:8080/mas_analysis',
     //url: 'http://127.0.0.1:8080/mas_analysis',
     //访问超时时间3s
     timeout: 3000
   })
-  .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {
 
     $ionicConfigProvider.platform.ios.tabs.style('standard');
     $ionicConfigProvider.platform.ios.tabs.position('bottom');
@@ -16,13 +18,31 @@ angular.module("myApp", ['ionic', 'ngCordova','ion-datetime-picker','myApp.contr
     $ionicConfigProvider.platform.android.tabs.position('standard');
 
     $ionicConfigProvider.platform.ios.navBar.alignTitle('center');
-    $ionicConfigProvider.platform.android.navBar.alignTitle('left');
+    $ionicConfigProvider.platform.android.navBar.alignTitle('center');
 
     $ionicConfigProvider.platform.ios.backButton.previousTitleText('').icon('ion-ios-arrow-thin-left');
     $ionicConfigProvider.platform.android.backButton.previousTitleText('').icon('ion-android-arrow-back');
 
     $ionicConfigProvider.platform.ios.views.transition('ios');
     $ionicConfigProvider.platform.android.views.transition('android');
+
+    // Android 将tab位置移到底部
+    $ionicConfigProvider.tabs.position('bottom');
+    $ionicConfigProvider.tabs.style('');
+
+    //避免每次http交互$ionicloading等待很久
+    $httpProvider.interceptors.push(function ($rootScope) {
+      return {
+        request: function (config) {
+          $rootScope.$broadcast('loading:show');
+          return config;
+        },
+        response: function (response) {
+          $rootScope.$broadcast('loading:hide');
+          return response;
+        }
+      }
+    });
 
     $stateProvider
       //登陆
@@ -116,6 +136,14 @@ angular.module("myApp", ['ionic', 'ngCordova','ion-datetime-picker','myApp.contr
       $ionicPickerI18n.ok = "确定";
       $ionicPickerI18n.cancel = "取消";
 
+      $rootScope.$on('loading:show', function () {
+        $ionicLoading.show();
+      });
+
+      $rootScope.$on('loading:hide', function () {
+        $ionicLoading.hide();
+      });
+
       // if (window.StatusBar) {
       //   // org.apache.cordova.statusbar required
       //   StatusBar.styleDefault();
@@ -156,9 +184,4 @@ angular.module("myApp", ['ionic', 'ngCordova','ion-datetime-picker','myApp.contr
     //
     //
     // });
-  })
-  .config(['$ionicConfigProvider', function ($ionicConfigProvider) {
-    // 将tab位置移到底部
-    $ionicConfigProvider.tabs.position('bottom');
-    $ionicConfigProvider.tabs.style('');
-  }]);
+  });

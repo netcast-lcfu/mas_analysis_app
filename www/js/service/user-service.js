@@ -1,5 +1,5 @@
 angular.module('myApp.services')
-  .factory('UserService', function ($cordovaPreferences, $q, $filter, ApiService) {
+  .factory('UserService', function ($q, $filter, ApiService, StorageUtil) {
 
     var loginUser = {
       // token:'',
@@ -36,18 +36,8 @@ angular.module('myApp.services')
               };
 
               //将凭据保存到本地
-              $cordovaPreferences.store('userId', loginUser.userId)
-                .success(function (value) {
-
-                })
-                .error(function (error) {
-                });
-              $cordovaPreferences.store('token', loginUser.token)
-                .success(function (value) {
-
-                })
-                .error(function (error) {
-                });
+              StorageUtil.set("userId", loginUser.userId);
+              StorageUtil.set("token", loginUser.token);
             }
           }, function (err) {
             return $q.reject(err);
@@ -70,18 +60,8 @@ angular.module('myApp.services')
               //注销成功 清空用户信息
               loginUser = {};
               //移除本地的凭据
-              $cordovaPreferences.remove('userId')
-                .success(function (value) {
-
-                })
-                .error(function (error) {
-                });
-              $cordovaPreferences.remove('token')
-                .success(function (value) {
-
-                })
-                .error(function (error) {
-                });
+              StorageUtil.remove("userId");
+              StorageUtil.remove("token");
             }
           }, function (err) {
             return $q.reject(err);
@@ -140,55 +120,31 @@ angular.module('myApp.services')
       console.log("into userService readLocalToken method...");
       var userId = '';
       var token = '';
-      var promise1 = $cordovaPreferences.fetch('userId')
-        .success(function (value) {
-          console.log("fetch userId");
-          console.log(value);
-          userId = value;
-        })
-        .error(function (error) {
-          console.log("fetch userId error");
-          console.log(error);
-          return $q.reject(error);
-        });
-      var promise2 = $cordovaPreferences.fetch('token')
-        .success(function (value) {
-          console.log("fetch token");
-          console.log(value);
-          token = value;
-        })
-        .error(function (error) {
-          console.log("fetch token error");
-          console.log(error);
-          return $q.reject(error);
-        });
 
-      return $q.all([promise1, promise2])
-        .then(function () {
-          console.log("readLocalToken success...");
-          //从服务器获取最新的数据,判断凭据是否过期
-          return getUserInfo(userId, token).then(function (userInfo) {
-            console.log("getUserInfoByTokenFormService success...");
-             loginUser = {
-              token: token,
-              userId: userId,
-              account: userInfo.account,
-              userName: userInfo.userName,
-              sex: userInfo.sex,
-              officePhone: userInfo.officePhone,
-              mobilPhone: userInfo.mobilPhone,
-              email: userInfo.email
-            };
-            console.log(loginUser);
-          }, function (err) {
-            console.log("getUserInfoByTokenFormService fail...");
-            //获取凭据失败,表示未登录或者凭据过期
-            return $q.reject(err);
-          });
-        },function (error) {
-          console.log(error);
-          return $q.reject(error);
-        });
+      userId = StorageUtil.get("userId");
+      token = StorageUtil.get("token");
+
+      console.log("readLocalToken success...");
+      //从服务器获取最新的数据,判断凭据是否过期
+      return getUserInfo(userId, token).then(function (userInfo) {
+        console.log("getUserInfoByTokenFormService success...");
+        loginUser = {
+          token: token,
+          userId: userId,
+          account: userInfo.account,
+          userName: userInfo.userName,
+          sex: userInfo.sex,
+          officePhone: userInfo.officePhone,
+          mobilPhone: userInfo.mobilPhone,
+          email: userInfo.email
+        };
+        console.log(loginUser);
+      }, function (err) {
+        console.log("getUserInfoByTokenFormService fail...");
+        //获取凭据失败,表示未登录或者凭据过期
+        return $q.reject(err);
+      });
+
     };
 
 
