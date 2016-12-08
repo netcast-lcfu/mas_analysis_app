@@ -11,13 +11,19 @@ var platformsDir = path.resolve(__dirname, '../../platforms');
 var pluginsDir = path.resolve(__dirname, '../../plugins');
 
 try {
-  fs.mkdirSync(platformsDir, function(err) {
-    if (err) { console.error(err); }
+  fs.mkdirSync(platformsDir, function (err) {
+    if (err) {
+      console.error(err);
+    }
   });
-} catch (ex) {} // eslint-disable-line no-empty
+} catch (ex) {
+} // eslint-disable-line no-empty
 
 try {
-  fs.mkdirSync(pluginsDir, function(err) {
-    if (err) { console.error(err); }
+  fs.mkdirSync(pluginsDir, function (err) {
+    if (err) {
+      console.error(err);
+    }
   });
-} catch (ex) {} // eslint-disable-line no-empty
+} catch (ex) {
+} // eslint-disable-line no-empty

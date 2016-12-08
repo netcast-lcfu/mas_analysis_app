@@ -8,7 +8,7 @@ var packageJSON = require('../../package.json');
 
 packageJSON.cordovaPlugins = packageJSON.cordovaPlugins || [];
 
-process.env.CORDOVA_PLUGINS.split(',').forEach(function(plugin) {
+process.env.CORDOVA_PLUGINS.split(',').forEach(function (plugin) {
   var index = packageJSON.cordovaPlugins.indexOf(plugin);
   if (index > -1) {
     packageJSON.cordovaPlugins.splice(index, 1);

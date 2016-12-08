@@ -48,19 +48,19 @@ angular.module("myApp", ['ionic', 'ngCordova', 'ion-datetime-picker', 'myApp.con
       //登陆
       .state('login', {
         url: '/login',
-        templateUrl: 'templates/login.html',
+        templateUrl: 'templates/user/login.html',
         controller: 'loginController'
       })
       .state('tab', {
         url: "/tab",
         abstract: true,
-        templateUrl: 'templates/tabs.html'
+        templateUrl: 'templates/tab/tabs.html'
       })
       .state('tab.tab1', {
         url: '/tab1',
         views: {
           'tab-tab1': {
-            templateUrl: 'templates/tab-tab1.html',
+            templateUrl: 'templates/tab/tab-tab1.html',
             controller: 'tab1Controller'
           }
         }
@@ -69,7 +69,7 @@ angular.module("myApp", ['ionic', 'ngCordova', 'ion-datetime-picker', 'myApp.con
         url: '/tab2',
         views: {
           'tab-tab2': {
-            templateUrl: 'templates/tab-tab2.html',
+            templateUrl: 'templates/tab/tab-tab2.html',
             controller: 'tab2Controller'
           }
         }
@@ -78,7 +78,7 @@ angular.module("myApp", ['ionic', 'ngCordova', 'ion-datetime-picker', 'myApp.con
         url: '/tab3',
         views: {
           'tab-tab3': {
-            templateUrl: 'templates/tab-tab3.html',
+            templateUrl: 'templates/tab/tab-tab3.html',
             controller: 'tab3Controller'
           }
         }
@@ -87,7 +87,7 @@ angular.module("myApp", ['ionic', 'ngCordova', 'ion-datetime-picker', 'myApp.con
         url: '/tab1/queryKnowledgeLib',
         views: {
           'tab-tab1': {
-            templateUrl: 'templates/queryKnowledgeLib.html',
+            templateUrl: 'templates/tabContent/queryKnowledgeLib.html',
             controller: 'queryKnowledgeLibCtrl'
           }
         }
@@ -96,7 +96,7 @@ angular.module("myApp", ['ionic', 'ngCordova', 'ion-datetime-picker', 'myApp.con
         url: '/tab2/showBusiInfo',
         views: {
           'tab-tab2': {
-            templateUrl: 'templates/showBusiInfo.html',
+            templateUrl: 'templates/tabContent/showBusiInfo.html',
             controller: 'showBusiInfoCtrl'
           }
         }
@@ -105,14 +105,14 @@ angular.module("myApp", ['ionic', 'ngCordova', 'ion-datetime-picker', 'myApp.con
         url: '/tab3/showSectorAreaInfo',
         views: {
           'tab-tab3': {
-            templateUrl: 'templates/showSectorAreaInfo.html',
+            templateUrl: 'templates/tabContent/showSectorAreaInfo.html',
             controller: 'showSectorAreaInfoCtrl'
           }
         }
       })
       .state('showIonDatetimePicker', {
         url: '/showIonDatetimePicker',
-        templateUrl: 'templates/ion-datetime-picker.html',
+        templateUrl: 'templates/test/ion-datetime-picker.html',
         controller: 'testIonDatePickerCtrl'
       })
     ;

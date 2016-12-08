@@ -8,7 +8,7 @@ var packageJSON = require('../../package.json');
 var path = require('path');
 
 packageJSON.cordovaPlugins = packageJSON.cordovaPlugins || [];
-process.env.CORDOVA_PLUGINS.split(',').forEach(function(plugin) {
+process.env.CORDOVA_PLUGINS.split(',').forEach(function (plugin) {
   var configString;
   var idRegEx;
   var id;
@@ -28,10 +28,10 @@ process.env.CORDOVA_PLUGINS.split(',').forEach(function(plugin) {
         return;
       }
 
-      configString = fs.readFileSync(pluginXmlPath, { encoding: 'utf8' });
+      configString = fs.readFileSync(pluginXmlPath, {encoding: 'utf8'});
       idRegEx = new RegExp('<plugin[^>]*id="(.*)"', 'i');
       id = idRegEx.exec(configString)[1];
-      pluginToAdd = { id: id, locator: plugin };
+      pluginToAdd = {id: id, locator: plugin};
     } catch (ex) {
       console.log('There was an error retrieving the plugin.xml filr from the 010_register_plugin.js hook', ex);
     }
@@ -43,7 +43,7 @@ process.env.CORDOVA_PLUGINS.split(',').forEach(function(plugin) {
     packageJSON.cordovaPlugins.push(pluginToAdd);
   } else if (typeof pluginToAdd == 'object') {
     var pluginExists = false;
-    packageJSON.cordovaPlugins.forEach(function(checkPlugin) {
+    packageJSON.cordovaPlugins.forEach(function (checkPlugin) {
       if (typeof checkPlugin == 'object' && checkPlugin.id === pluginToAdd.id) {
         pluginExists = true;
       }

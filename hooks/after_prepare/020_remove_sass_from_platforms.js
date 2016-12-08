@@ -9,7 +9,7 @@ var path = require('path');
 
 function deleteFolderRecursive(removePath) {
   if (fs.existsSync(removePath)) {
-    fs.readdirSync(removePath).forEach(function(file) {
+    fs.readdirSync(removePath).forEach(function (file) {
       var curPath = path.join(removePath, file);
       if (fs.lstatSync(curPath).isDirectory()) { // recurse
         deleteFolderRecursive(curPath);

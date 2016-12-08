@@ -18,8 +18,8 @@ try {
 }
 
 packageJSON.cordovaPlugins = packageJSON.cordovaPlugins || [];
-packageJSON.cordovaPlugins.forEach(function(plugin) {
-  exec('cordova plugin add ' + plugin, function(error, stdout) {
+packageJSON.cordovaPlugins.forEach(function (plugin) {
+  exec('cordova plugin add ' + plugin, function (error, stdout) {
     sys.puts(stdout);
   });
 });
