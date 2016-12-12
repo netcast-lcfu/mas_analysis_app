@@ -96,10 +96,73 @@ angular.module("myApp.services")
         });
     };
 
+    //获取KPI完成进度查询条件
+    var getKpiCompletedProgressCondition = function (userId, token) {
+      console.log("into api service getKpiCompletedProgressCondition method...");
+      var req = {
+        method: 'post',
+        url: ApiEndpoint.url + '/appKPIAction.do?method=getKpiCompletedProgressCondition',
+        params: {
+          userId: userId,
+          token: token
+        },
+        timeout: ApiEndpoint.timeout
+      };
+
+      return $http.post(req.url, null, req)
+        .then(function (response) {
+          if (typeof response.data === 'object') {
+            console.log("api service getKpiCompletedProgressCondition success");
+            return response.data;
+          } else {
+            console.log("api service getKpiCompletedProgressCondition invalid");
+            // invalid response
+            return $q.reject(response.data);
+          }
+        }, function (response) {
+          console.log("api service getKpiCompletedProgressCondition fail");
+          return $q.reject('服务器连接超时,请检查网络!');
+        });
+    };
+
+    //获取KPI完成进度查询
+    var getKPICompletedProgress = function (userId, token,areaId,year,periodId) {
+      console.log("into api service getKPICompletedProgress method...");
+      var req = {
+        method: 'post',
+        url: ApiEndpoint.url + '/appKPIAction.do?method=getKPICompletedProgress',
+        params: {
+          userId: userId,
+          token: token,
+          areaId:areaId,
+          year:year,
+          periodId:periodId
+        },
+        timeout: ApiEndpoint.timeout
+      };
+
+      return $http.post(req.url, null, req)
+        .then(function (response) {
+          if (typeof response.data === 'object') {
+            console.log("api service getKPICompletedProgress success");
+            return response.data;
+          } else {
+            console.log("api service getKPICompletedProgress invalid");
+            // invalid response
+            return $q.reject(response.data);
+          }
+        }, function (response) {
+          console.log("api service getKPICompletedProgress fail");
+          return $q.reject('服务器连接超时,请检查网络!');
+        });
+    };
+
     return {
       login: login,
       getUserInfo: getUserInfo,
-      loginOut: loginOut
+      loginOut: loginOut,
+      getKpiCompletedProgressCondition: getKpiCompletedProgressCondition,
+      getKPICompletedProgress:getKPICompletedProgress
     }
   });
 

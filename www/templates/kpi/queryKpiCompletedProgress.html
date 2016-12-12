@@ -6,8 +6,8 @@
         <div class="input-label">
           行政区域:
         </div>
-        <select ng-model="condition.adminArea"
-                ng-options=" area.areaId as area.areaName for area in adminAreaData track by area.areaId"></select>
+        <select ng-model="condition.area"
+                ng-options="area.areaName for area in adminAreaData track by area.areaId"></select>
       </div>
       <div class="item item-input item-select">
         <div class="input-label">
@@ -20,12 +20,12 @@
         <div class="input-label">
           月份:
         </div>
-        <select ng-model="condition.month"
-                ng-options="month.id as month.name for month in monthData track by month.id"></select>
+        <select ng-model="condition.period"
+                ng-options="period.periodName for period in periodData track by period.periodId"></select>
       </div>
       <div class="item item-text-wrap">
-        <button class="button" ng-click="query()">查询</button>
-        <button class="button" ng-click="restData()">重置</button>
+        <a class="button button-block icon-left ion-search calm" ng-click="query()">查询</a>
+        <a class="button button-block icon-left ion-refresh dark" ng-click="restData()">重置</a>
       </div>
     </div>
     <div id="main" style="width: 90%;height:500px;"></div>
