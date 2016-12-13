@@ -72,7 +72,7 @@ angular.module('myApp.controllers')
 
       KpiService.getKPICompletedProgress(userId,token, areaId, year, periodId).then(function (data) {
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'));
+        var myChart = echarts.init(document.getElementById('main'),'macarons');
         // 指定图表的配置项和数据
 
         myChart.showLoading({
@@ -83,7 +83,8 @@ angular.module('myApp.controllers')
 
         var option = {
           title: {
-            text: '',
+            show:false,
+            text: 'KPI完成进度',
             x: 'center'
           },
           tooltip: {
@@ -178,11 +179,12 @@ angular.module('myApp.controllers')
           },
           legend: {
             data: ['月完成进度', '年完成进度'],
-            x: 'left'
+            x: 'right',
+            orient:'vertical' //布局走向 vertical 垂直 horizontal水平
           },
           grid: {
-            left: '1%',
-            right: '1%',
+            left: '2%',
+            right: '2%',
             bottom: '5%',
             containLabel: true
           },
