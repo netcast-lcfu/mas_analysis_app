@@ -159,7 +159,6 @@ angular.module('myApp.controllers')
                 }
               });
 
-
               setTimeout(function () {
                 callback(ticket, res);// 仅为了模拟异步回调
               }, 500);
@@ -182,9 +181,9 @@ angular.module('myApp.controllers')
             x: 'left'
           },
           grid: {
-            left: '10%',
-            right: '10%',
-            bottom: '15%',
+            left: '1%',
+            right: '1%',
+            bottom: '5%',
             containLabel: true
           },
           xAxis: [
