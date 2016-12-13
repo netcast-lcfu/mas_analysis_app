@@ -6,8 +6,13 @@ angular.module('myApp.services')
     // Some fake testing data
     var chats = [{
       id: 0,
+      icon: 'icon ion-cash',
+      name: '当日现金流量分析',
+      url: 'tab2/showBusiInfo'
+    },{
+      id: 1,
       icon: 'icon ion-map',
-      name: '业务信息',
+      name: '当日缴费渠道分析',
       url: 'tab2/showBusiInfo'
     }];
 

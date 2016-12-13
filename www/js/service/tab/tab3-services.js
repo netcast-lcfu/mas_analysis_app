@@ -6,7 +6,7 @@ angular.module('myApp.services')
     // Some fake testing data
     var chats = [{
       id: 0,
-      icon: 'icon ion-pie-graph',
+      icon: 'icon ion-ios-search-strong',
       name: 'KPI完成进度查询',
       url: 'tab3/queryKpiCompletedProgress'
     }];
