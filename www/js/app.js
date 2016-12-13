@@ -142,7 +142,7 @@ myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, UserServi
         //   template: "本地保存数据和服务器不同步,请重新登录!",
         //   duration: 1500
         // });
-        $cordovaToast.showShortCenter("本地保存数据和服务器不同步,请重新登录!");
+        $cordovaToast.showShortBottom("本地保存数据和服务器不同步,请重新登录!");
         $state.go("login");
       }
     }, function (err) {
@@ -150,7 +150,7 @@ myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, UserServi
       //   template: "之前未登录,或本地凭据已失效,请重新登录!",
       //   duration: 1500
       // });
-      $cordovaToast.showShortCenter("您之前未登录或登录保存的凭据已过期,请重新登录!");
+      $cordovaToast.showShortBottom("您之前未登录或登录保存的凭据已过期,请重新登录!");
       $state.go("login");
     });
   });
