@@ -69,21 +69,21 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
         }
       }
     })
-    .state('tab.queryKnowledgeLib', {
-      url: '/tab1/queryKnowledgeLib',
+    .state('tab.mainBusiStateChangeAnalysis', {
+      url: '/tab1/mainBusiStateChangeAnalysis',
       views: {
         'tab-tab1': {
-          templateUrl: 'templates/tabContent/queryKnowledgeLib.html',
-          controller: 'queryKnowledgeLibCtrl'
+          templateUrl: 'templates/mainBusi/main-busi-state-change-analysis.html',
+          controller: 'mainBusiStateChangeAnalysisCtrl'
         }
       }
     })
-    .state('tab.showBusiInfo', {
-      url: '/tab2/showBusiInfo',
+    .state('tab.cashFlowChannelAnalysis', {
+      url: '/tab2/cashFlowChannelAnalysis',
       views: {
         'tab-tab2': {
-          templateUrl: 'templates/tabContent/showBusiInfo.html',
-          controller: 'showBusiInfoCtrl'
+          templateUrl: 'templates/cashFlow/cash-flow-channel-analysis.html',
+          controller: 'cashFlowChannelAnalysisCtrl'
         }
       }
     })
@@ -91,7 +91,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
       url: '/tab3/queryKpiCompletedProgress',
       views: {
         'tab-tab3': {
-          templateUrl: 'templates/kpi/queryKpiCompletedProgress.html',
+          templateUrl: 'templates/kpi/query-kpi-completed-progress.html',
           controller: 'queryKpiCompletedProgressCtrl'
         }
       }

@@ -1,14 +1,11 @@
 angular.module('myApp.services')
 
   .factory('Chats', function () {
-    // Might use a resource here that returns a JSON array
-
-    // Some fake testing data
     var chats = [{
       id: 0,
       icon: 'icon ion-ios-analytics',
       name: '主营业务状态变化分析',
-      url: 'tab1/queryKnowledgeLib'
+      url: 'tab1/mainBusiStateChangeAnalysis'
     }];
 
     return {
