@@ -260,7 +260,7 @@ angular.module('myApp.controllers')
     };
 
     //重置按钮
-    $scope.restData = function () {
+    $scope.resetData = function () {
       $scope.condition.area = adminAreaDatas[0];
       $scope.condition.year = yearDatas[0];
       $scope.condition.period = periodDatas[0];
