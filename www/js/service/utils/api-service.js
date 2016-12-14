@@ -22,6 +22,7 @@ angular.module("myApp.services")
 
       return $http.post(req.url, null, req)
         .then(function (response) {
+          console.log(response);
           if (typeof response.data === 'object') {
             console.log("api service login success");
             return response.data;
@@ -55,6 +56,7 @@ angular.module("myApp.services")
 
       return $http.post(req.url, null, req)
         .then(function (response) {
+          console.log(response);
           if (typeof response.data === 'object') {
             console.log("api service loginOut success");
             return response.data;
@@ -90,6 +92,7 @@ angular.module("myApp.services")
 
       return $http.post(req.url, null, req)
         .then(function (response) {
+          console.log(response);
           if (typeof response.data === 'object') {
             console.log("api service getUserInfo success");
             return response.data;
@@ -120,6 +123,7 @@ angular.module("myApp.services")
 
       return $http.post(req.url, null, req)
         .then(function (response) {
+          console.log(response);
           if (typeof response.data === 'object') {
             console.log("api service getKpiCompletedProgressCondition success");
             return response.data;
@@ -153,6 +157,7 @@ angular.module("myApp.services")
 
       return $http.post(req.url, null, req)
         .then(function (response) {
+          console.log(response);
           if (typeof response.data === 'object') {
             console.log("api service getKPICompletedProgress success");
             return response.data;
@@ -192,6 +197,7 @@ angular.module("myApp.services")
 
       return $http.post(req.url, null, req)
         .then(function (response) {
+          console.log(response);
           if (typeof response.data === 'object') {
             console.log("api service getCashFlowInfo success");
             return response.data;
