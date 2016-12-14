@@ -8,6 +8,9 @@ angular.module('myApp.controllers')
       period: ''
     };
 
+    //是否显示查询结果
+    $scope.show_query_result = false;
+
     // 添加返回按钮
     $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
       viewData.enableBack = true;
@@ -60,6 +63,9 @@ angular.module('myApp.controllers')
 
     //查询按钮
     $scope.query = function () {
+      //显示查询结果
+      $scope.show_query_result = true;
+
       console.log("into query kpi data...");
       console.log($scope.condition);
 
@@ -189,7 +195,7 @@ angular.module('myApp.controllers')
             bottom: '5%',
             containLabel: true
           },
-          yAxis: [
+          xAxis: [
             {
               type: 'category',
               name: '业务指标',
@@ -203,7 +209,7 @@ angular.module('myApp.controllers')
               data: data.xAxisData
             }
           ],
-          xAxis: [
+          yAxis: [
             {
               type: 'value',
               name: '完成百分比',
