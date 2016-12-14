@@ -7,8 +7,8 @@ var myApp = angular.module("myApp", ['ionic', 'ngCordova', 'ion-datetime-picker'
 myApp.constant("ApiEndpoint", {
   url: 'http://10.1.1.92:8080/mas_analysis',
   //url: 'http://127.0.0.1:8080/mas_analysis',
-  //访问超时时间3s
-  timeout: 3000
+  //访问超时时间6s
+  timeout: 6000
 });
 // //配置
 // myApp.config(function ($httpProvider) {
