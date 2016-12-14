@@ -10,6 +10,7 @@ myApp.constant("ApiEndpoint", {
   //访问超时时间3s
   timeout: 3000
 });
+//配置
 myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
   $ionicConfigProvider.platform.ios.tabs.style('standard');

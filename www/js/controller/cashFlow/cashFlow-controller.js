@@ -56,7 +56,7 @@ angular.module('myApp.controllers')
             }
           },
           legend: {
-            orient: 'horizontal',//布局走向 vertical 垂直 horizontal水平
+            orient: 'vertical',//布局走向 vertical 垂直 horizontal水平
             x: 'left',
             data: data.legends
           },
@@ -64,9 +64,18 @@ angular.module('myApp.controllers')
             {
               name: '缴费渠道占比',
               type: 'pie',
-              radius: 90,
+              radius: '55%',
               center: ['55%', '40%'],
-              data: data.pieDatas
+              data: data.pieDatas,
+              itemStyle:{
+                normal:{
+                  label:{
+                    show: true,
+                    formatter: '{b} : {c} ({d}%)'
+                  },
+                  labelLine :{show:true}
+                }
+              }
             }
           ]
         };
