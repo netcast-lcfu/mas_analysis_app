@@ -32,6 +32,7 @@ angular.module("myApp.services")
           }
         }, function (response) {
           console.log("api service login error");
+          console.log(response);
           return $q.reject('服务器连接超时,请检查网络!');
         });
     };
@@ -64,6 +65,7 @@ angular.module("myApp.services")
           }
         }, function (response) {
           console.log("api service loginOut error");
+          console.log(response);
           return $q.reject('服务器连接超时,请检查网络!');
         });
     };
@@ -92,6 +94,7 @@ angular.module("myApp.services")
           }
         }, function (response) {
           console.log("api service getUserInfo error");
+          console.log(response);
           return $q.reject('服务器连接超时,请检查网络!');
         });
     };
@@ -121,6 +124,7 @@ angular.module("myApp.services")
           }
         }, function (response) {
           console.log("api service getKpiCompletedProgressCondition error");
+          console.log(response);
           return $q.reject('服务器连接超时,请检查网络!');
         });
     };
@@ -153,6 +157,7 @@ angular.module("myApp.services")
           }
         }, function (response) {
           console.log("api service getKPICompletedProgress error");
+          console.log(response);
           return $q.reject('服务器连接超时,请检查网络!');
         });
     };
@@ -191,6 +196,7 @@ angular.module("myApp.services")
           }
         }, function (response) {
           console.log("api service getCashFlowInfo error");
+          console.log(response);
           return $q.reject('服务器连接超时,请检查网络!');
         });
     };
