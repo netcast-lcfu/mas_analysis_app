@@ -22,12 +22,18 @@ angular.module('myApp.controllers')
         $cordovaToast.showShortCenter('请选择结束日期!');
         return;
       }
+      if($scope.condition.startPayDate.getTime() >= $scope.condition.endPayDate.getTime()){
+        $cordovaToast.showShortCenter('开始日期不能大于结束日期!');
+        return;
+      }
 
       var startPayDate = $filter('date')($scope.condition.startPayDate, 'yyyy-MM-dd HH:mm:ss');
       var endPayDate = $filter('date')($scope.condition.endPayDate, 'yyyy-MM-dd HH:mm:ss');
 
       var userId = UserService.getLoginUser().userId;
       var token = UserService.getLoginUser().token;
+
+      $ionicLoading.show();
 
       CashFlowService.getCashFlowInfo(userId, token, startPayDate, endPayDate).then(function (data) {
         // 基于准备好的dom，初始化echarts实例
@@ -56,6 +62,7 @@ angular.module('myApp.controllers')
             }
           },
           legend: {
+            show:false,
             x:'center',//水平位置
             y:'top',//垂直位置
             orient: 'horizontal', //布局走向 vertical 垂直 horizontal水平
@@ -65,7 +72,7 @@ angular.module('myApp.controllers')
             {
               name: '缴费渠道占比',
               type: 'pie',
-              radius: '40%',
+              radius: '42%',
               center: ['50%','52%'],
               // label: {
               //   normal: {
@@ -86,7 +93,9 @@ angular.module('myApp.controllers')
         };
         myChart.setOption(option);
         myChart.hideLoading();
+        $ionicLoading.hide();
       }, function (err) {
+        $ionicLoading.hide();
         $cordovaToast.showShortCenter(err);
       });
     };
