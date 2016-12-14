@@ -93,9 +93,9 @@ angular.module('myApp.controllers')
 
         var option = {
           title: {
-            show: false,
+            show: true,
             text: 'KPI完成进度',
-            x: 'center'
+            x: 'left'
           },
           tooltip: {
             trigger: 'axis',
@@ -189,14 +189,14 @@ angular.module('myApp.controllers')
           },
           legend: {
             data: ['月完成进度', '年完成进度'],
-            x:'right',//水平位置
-            y:'top',//垂直位置
+            x: 'right',//水平位置
+            y: 'top',//垂直位置
             orient: 'vertical' //布局走向 vertical 垂直 horizontal水平
           },
           grid: {
             left: '2%',
             right: '2%',
-            bottom: '5%',
+            bottom: '2%',
             containLabel: true
           },
           xAxis: [

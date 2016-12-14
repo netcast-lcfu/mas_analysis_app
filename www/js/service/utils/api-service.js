@@ -140,7 +140,7 @@ angular.module("myApp.services")
     };
 
     //获取KPI完成进度查询
-    var getKPICompletedProgress = function (userId, token,areaId,year,periodId) {
+    var getKPICompletedProgress = function (userId, token, areaId, year, periodId) {
       console.log("into api service getKPICompletedProgress method...");
       var req = {
         method: 'post',
@@ -148,9 +148,9 @@ angular.module("myApp.services")
         params: {
           userId: userId,
           token: token,
-          areaId:areaId,
-          year:year,
-          periodId:periodId
+          areaId: areaId,
+          year: year,
+          periodId: periodId
         },
         timeout: ApiEndpoint.timeout
       };
@@ -181,7 +181,7 @@ angular.module("myApp.services")
      * @param endPayDate
      * @returns {*}
      */
-    var getCashFlowInfo = function (userId,token,startPayDate,endPayDate) {
+    var getCashFlowInfo = function (userId, token, startPayDate, endPayDate) {
       console.log("into api service getCashFlowInfo method...");
       var req = {
         method: 'post',
@@ -189,8 +189,8 @@ angular.module("myApp.services")
         params: {
           userId: userId,
           token: token,
-          startPayDate:startPayDate,
-          endPayDate:endPayDate
+          startPayDate: startPayDate,
+          endPayDate: endPayDate
         },
         timeout: ApiEndpoint.timeout
       };
@@ -218,8 +218,8 @@ angular.module("myApp.services")
       getUserInfo: getUserInfo,
       loginOut: loginOut,
       getKpiCompletedProgressCondition: getKpiCompletedProgressCondition,
-      getKPICompletedProgress:getKPICompletedProgress,
-      getCashFlowInfo:getCashFlowInfo
+      getKPICompletedProgress: getKPICompletedProgress,
+      getCashFlowInfo: getCashFlowInfo
     }
   });
 

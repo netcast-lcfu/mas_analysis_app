@@ -9,8 +9,8 @@ angular.module('myApp.controllers')
     });
 
     $scope.condition = {
-      startPayDate: '',
-      endPayDate: ''
+      startPayDate: new Date(),
+      endPayDate: new Date()
     };
 
     $scope.query = function () {
@@ -23,8 +23,8 @@ angular.module('myApp.controllers')
         return;
       }
 
-      var startPayDate = $filter('date')($scope.condition.startPayDate, 'yyyy-MM-dd H:mm:ss');
-      var endPayDate = $filter('date')($scope.condition.endPayDate, 'yyyy-MM-dd H:mm:ss');
+      var startPayDate = $filter('date')($scope.condition.startPayDate, 'yyyy-MM-dd HH:mm:ss');
+      var endPayDate = $filter('date')($scope.condition.endPayDate, 'yyyy-MM-dd HH:mm:ss');
 
       var userId = UserService.getLoginUser().userId;
       var token = UserService.getLoginUser().token;
@@ -57,7 +57,7 @@ angular.module('myApp.controllers')
           },
           legend: {
             x:'center',//水平位置
-            y:'bottom',//垂直位置
+            y:'top',//垂直位置
             orient: 'horizontal', //布局走向 vertical 垂直 horizontal水平
             data: data.legends
           },
@@ -65,7 +65,8 @@ angular.module('myApp.controllers')
             {
               name: '缴费渠道占比',
               type: 'pie',
-              radius: '90%',
+              radius: '40%',
+              center: ['50%','52%'],
               // label: {
               //   normal: {
               //     position: 'inner' //内置文本标签
