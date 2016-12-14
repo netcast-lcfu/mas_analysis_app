@@ -65,16 +65,16 @@ angular.module('myApp.controllers')
               name: '缴费渠道占比',
               type: 'pie',
               radius: '90%',
-              label: {
-                normal: {
-                  position: 'inner' //内置文本标签
-                }
-              },
-              labelLine: {
-                normal: {
-                  show: false     //不需要设置引导线
-                }
-              },
+              // label: {
+              //   normal: {
+              //     position: 'inner' //内置文本标签
+              //   }
+              // },
+              // labelLine: {
+              //   normal: {
+              //     show: false     //不需要设置引导线
+              //   }
+              // },
               data: data.pieDatas
             }
           ]
