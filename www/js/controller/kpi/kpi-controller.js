@@ -189,7 +189,7 @@ angular.module('myApp.controllers')
             bottom: '5%',
             containLabel: true
           },
-          xAxis: [
+          yAxis: [
             {
               type: 'category',
               name: '业务指标',
@@ -203,7 +203,7 @@ angular.module('myApp.controllers')
               data: data.xAxisData
             }
           ],
-          yAxis: [
+          xAxis: [
             {
               type: 'value',
               name: '完成百分比',
