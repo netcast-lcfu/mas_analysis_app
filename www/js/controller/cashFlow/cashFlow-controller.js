@@ -64,18 +64,18 @@ angular.module('myApp.controllers')
             {
               name: '缴费渠道占比',
               type: 'pie',
-              radius: '55%',
-              center: ['55%', '40%'],
-              data: data.pieDatas,
-              itemStyle:{
-                normal:{
-                  label:{
-                    show: true,
-                    formatter: '{b} : {c} ({d}%)'
-                  },
-                  labelLine :{show:true}
+              radius: '90%',
+              label: {
+                normal: {
+                  position: 'inner' //内置文本标签
                 }
-              }
+              },
+              labelLine: {
+                normal: {
+                  show: false     //不需要设置引导线
+                }
+              },
+              data: data.pieDatas
             }
           ]
         };
