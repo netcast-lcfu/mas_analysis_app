@@ -14,6 +14,15 @@ angular.module('myApp.controllers')
     };
 
     $scope.query = function () {
+      if(!Boolean($scope.condition.startPayDate)){
+        $cordovaToast.showShortCenter('请选择开始日期!');
+        return;
+      }
+      if(!Boolean($scope.condition.endPayDate)){
+        $cordovaToast.showShortCenter('请选择结束日期!');
+        return;
+      }
+
       var startPayDate = $filter('date')($scope.condition.startPayDate, 'yyyy-MM-dd H:mm:ss');
       var endPayDate = $filter('date')($scope.condition.endPayDate, 'yyyy-MM-dd H:mm:ss');
 
@@ -31,6 +40,7 @@ angular.module('myApp.controllers')
 
         var option = {
           title: {
+            show:false,
             text: '现金流量渠道占比分析',
             x: 'center'
           },
@@ -46,8 +56,8 @@ angular.module('myApp.controllers')
             }
           },
           legend: {
-            orient: 'vertical',
-            left: 'left',
+            orient: 'horizontal',//布局走向 vertical 垂直 horizontal水平
+            x: 'left',
             data: data.legends
           },
           series: [
@@ -55,7 +65,7 @@ angular.module('myApp.controllers')
               name: '缴费渠道占比',
               type: 'pie',
               radius: 90,
-              center: ['55%', '60%'],
+              center: ['55%', '40%'],
               data: data.pieDatas
             }
           ]
