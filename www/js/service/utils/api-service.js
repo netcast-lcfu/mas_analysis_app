@@ -70,6 +70,12 @@ angular.module("myApp.services")
         });
     };
 
+    /**
+     *  获取用户信息
+     * @param userId
+     * @param token
+     * @returns {*}
+     */
     var getUserInfo = function (userId, token) {
       console.log("into api service getUserInfo method...");
       var req = {

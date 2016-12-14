@@ -13,6 +13,7 @@ angular.module('myApp.services')
       return ApiService.getCashFlowInfo(userId, token, startPayDate, endPayDate).then(function (data) {
         if (Boolean(data.code) && data.code == 'success') {
           console.log('CashFlowService getCashFlowInfo success');
+          console.log(data);
           return {
             legends: data.legends,
             pieDatas: data.pieDatas
