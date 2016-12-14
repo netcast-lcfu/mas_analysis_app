@@ -31,7 +31,7 @@ angular.module("myApp.services")
             return $q.reject(response.data);
           }
         }, function (response) {
-          console.log("api service login fail");
+          console.log("api service login error");
           return $q.reject('服务器连接超时,请检查网络!');
         });
     };
@@ -63,7 +63,7 @@ angular.module("myApp.services")
             return $q.reject(response.data);
           }
         }, function (response) {
-          console.log("api service loginOut fail");
+          console.log("api service loginOut error");
           return $q.reject('服务器连接超时,请检查网络!');
         });
     };
@@ -91,7 +91,7 @@ angular.module("myApp.services")
             return $q.reject(response.data);
           }
         }, function (response) {
-          console.log("api service getUserInfo fail");
+          console.log("api service getUserInfo error");
           return $q.reject('服务器连接超时,请检查网络!');
         });
     };
@@ -120,7 +120,7 @@ angular.module("myApp.services")
             return $q.reject(response.data);
           }
         }, function (response) {
-          console.log("api service getKpiCompletedProgressCondition fail");
+          console.log("api service getKpiCompletedProgressCondition error");
           return $q.reject('服务器连接超时,请检查网络!');
         });
     };
@@ -152,7 +152,45 @@ angular.module("myApp.services")
             return $q.reject(response.data);
           }
         }, function (response) {
-          console.log("api service getKPICompletedProgress fail");
+          console.log("api service getKPICompletedProgress error");
+          return $q.reject('服务器连接超时,请检查网络!');
+        });
+    };
+
+    /**
+     * 获取现金流量分析数据
+     * @param userId
+     * @param token
+     * @param startPayDate
+     * @param endPayDate
+     * @returns {*}
+     */
+    var getCashFlowInfo = function (userId,token,startPayDate,endPayDate) {
+      console.log("into api service getCashFlowInfo method...");
+      var req = {
+        method: 'post',
+        url: ApiEndpoint.url + '/appCashFlowAction.do?method=getCashFlowChannelsInfo',
+        params: {
+          userId: userId,
+          token: token,
+          startPayDate:startPayDate,
+          endPayDate:endPayDate
+        },
+        timeout: ApiEndpoint.timeout
+      };
+
+      return $http.post(req.url, null, req)
+        .then(function (response) {
+          if (typeof response.data === 'object') {
+            console.log("api service getCashFlowInfo success");
+            return response.data;
+          } else {
+            console.log("api service getCashFlowInfo invalid");
+            // invalid response
+            return $q.reject(response.data);
+          }
+        }, function (response) {
+          console.log("api service getCashFlowInfo error");
           return $q.reject('服务器连接超时,请检查网络!');
         });
     };
@@ -162,7 +200,8 @@ angular.module("myApp.services")
       getUserInfo: getUserInfo,
       loginOut: loginOut,
       getKpiCompletedProgressCondition: getKpiCompletedProgressCondition,
-      getKPICompletedProgress:getKPICompletedProgress
+      getKPICompletedProgress:getKPICompletedProgress,
+      getCashFlowInfo:getCashFlowInfo
     }
   });
 

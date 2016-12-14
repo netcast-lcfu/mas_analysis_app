@@ -1,7 +1,7 @@
 angular.module('myApp.controllers')
 
 //现金流量渠道分析
-  .controller('cashFlowChannelAnalysisCtrl', function ($scope,$filter,$ionicLoading, $cordovaToast, UserService,ApiEndpoint) {
+  .controller('cashFlowChannelAnalysisCtrl', function ($scope, $filter, $ionicLoading, $cordovaToast, UserService, CashFlowService) {
 
     // 添加返回按钮
     $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
@@ -14,11 +14,60 @@ angular.module('myApp.controllers')
     };
 
     $scope.query = function () {
-      var startPayDate = $filter('date')($scope.condition.startPayDate,'yyyy-MM-dd H:mm:ss');
-      var endPayDate = $filter('date')($scope.condition.endPayDate,'yyyy-MM-dd H:mm:ss');
-      console.log('格式化后的日期:');
-      console.log(startPayDate);
-      console.log(endPayDate);
+      var startPayDate = $filter('date')($scope.condition.startPayDate, 'yyyy-MM-dd H:mm:ss');
+      var endPayDate = $filter('date')($scope.condition.endPayDate, 'yyyy-MM-dd H:mm:ss');
+
+      var userId = UserService.getLoginUser().userId;
+      var token = UserService.getLoginUser().token;
+
+      CashFlowService.getCashFlowInfo(userId, token, startPayDate, endPayDate).then(function (data) {
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'), 'macarons');
+        // 指定图表的配置项和数据
+
+        myChart.showLoading({
+          text: '正在努力加载中...'
+        });
+
+        var option = {
+          title: {
+            text: '现金流量渠道占比分析',
+            x: 'center'
+          },
+          tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+          },
+          toolbox: {     //工具栏
+            show: false,
+            feature: {
+              restore: {show: true},
+              saveAsImage: {show: true}
+            }
+          },
+          legend: {
+            orient: 'vertical',
+            left: 'left',
+            data: data.legends
+          },
+          series: [
+            {
+              name: '缴费渠道占比',
+              type: 'pie',
+              radius: 90,
+              center: ['55%', '60%'],
+              data: data.pieDatas
+            }
+          ]
+        };
+        window.onresize = function () {
+          myChart.resize(); //使图表适应屏幕
+        };
+        myChart.setOption(option);
+        myChart.hideLoading();
+      }, function (err) {
+        $cordovaToast.showShortCenter(err);
+      });
     };
 
     $scope.resetData = function () {

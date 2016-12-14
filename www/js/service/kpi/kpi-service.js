@@ -1,5 +1,4 @@
 angular.module('myApp.services')
-  //KPIService
   .factory('KpiService', function ($q, $filter, ApiService) {
 
     /**
@@ -12,7 +11,7 @@ angular.module('myApp.services')
       console.log('into KpiService getKpiCompletedProgressCondition method...');
       return ApiService.getKpiCompletedProgressCondition(userId,token).then(function (data) {
         if(Boolean(data.code) && data.code == 'success'){
-          console.log('KpiService getKpiCompletedProgressCondition success...');
+          console.log('KpiService getKpiCompletedProgressCondition success');
           console.log(data);
           return {
             adminAreaDatas:data.areaList,
@@ -20,9 +19,11 @@ angular.module('myApp.services')
             periodDatas:data.periodList
           };
         }else{
+          console.log('KpiService getKpiCompletedProgressCondition invalid');
           return $q.reject(data.msg);
         }
       },function (err) {
+        console.log('KpiService getKpiCompletedProgressCondition error');
         return $q.reject(err);
       });
     }
@@ -38,7 +39,7 @@ angular.module('myApp.services')
     function getKPICompletedProgress(userId,token,areaId,year,periodId) {
       console.log('into KpiService getKPICompletedProgress method...');
       return ApiService.getKPICompletedProgress(userId,token,areaId,year,periodId).then(function (data) {
-        console.log('KpiService getKPICompletedProgress success...');
+        console.log('KpiService getKPICompletedProgress success');
         console.log(data);
         if(Boolean(data.code) && data.code == 'success'){
           return {
@@ -47,9 +48,11 @@ angular.module('myApp.services')
             seriesYearData:data.seriesYearData
           };
         }else{
+          console.log('KpiService getKPICompletedProgress invalid');
           return $q.reject(data.msg);
         }
       },function (err) {
+        console.log('KpiService getKPICompletedProgress error');
         return $q.reject(err);
       });
     }

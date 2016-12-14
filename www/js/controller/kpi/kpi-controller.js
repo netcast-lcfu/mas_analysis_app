@@ -1,7 +1,7 @@
 angular.module('myApp.controllers')
 
 //查询KPI完成进度
-  .controller('queryKpiCompletedProgressCtrl', function ($scope, $ionicLoading, $cordovaToast, UserService, KpiService,ApiEndpoint) {
+  .controller('queryKpiCompletedProgressCtrl', function ($scope, $ionicLoading, $cordovaToast, UserService, KpiService, ApiEndpoint) {
     $scope.condition = {
       area: '',
       year: '',
@@ -70,9 +70,9 @@ angular.module('myApp.controllers')
       var year = $scope.condition.year;
       var periodId = $scope.condition.period.periodId;
 
-      KpiService.getKPICompletedProgress(userId,token, areaId, year, periodId).then(function (data) {
+      KpiService.getKPICompletedProgress(userId, token, areaId, year, periodId).then(function (data) {
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'),'macarons');
+        var myChart = echarts.init(document.getElementById('main'), 'macarons');
         // 指定图表的配置项和数据
 
         myChart.showLoading({
@@ -83,7 +83,7 @@ angular.module('myApp.controllers')
 
         var option = {
           title: {
-            show:false,
+            show: false,
             text: 'KPI完成进度',
             x: 'center'
           },
@@ -93,17 +93,17 @@ angular.module('myApp.controllers')
               var res = params[0].name;
               var busiSubName = params[0].name;
 
-              var params = {
+              var params1 = {
                 "method": "getMonthCompletedProgressItemDetail",
                 "areaId": areaId,
-                "year":year,
+                "year": year,
                 "periodId": periodId,
                 "busiSubName": busiSubName
               };
               $.ajax({
                 type: "POST",
                 url: actionUrl,
-                data: params,
+                data: params1,
                 async: false,
                 dataType: "json",
                 contentType: "application/x-www-form-urlencoded; charset=utf-8",
@@ -127,16 +127,16 @@ angular.module('myApp.controllers')
                 }
               });
 
-              var params = {
+              var params2 = {
                 "method": "getYearCompletedProgressItemDetail",
                 "areaId": areaId,
-                "year":year,
+                "year": year,
                 "busiSubName": busiSubName
               };
               $.ajax({
                 type: "POST",
                 url: actionUrl,
-                data: params,
+                data: params2,
                 async: false,
                 dataType: "json",
                 contentType: "application/x-www-form-urlencoded; charset=utf-8",
@@ -180,7 +180,7 @@ angular.module('myApp.controllers')
           legend: {
             data: ['月完成进度', '年完成进度'],
             x: 'right',
-            orient:'vertical' //布局走向 vertical 垂直 horizontal水平
+            orient: 'vertical' //布局走向 vertical 垂直 horizontal水平
           },
           grid: {
             left: '2%',
@@ -195,7 +195,7 @@ angular.module('myApp.controllers')
               axisLabel: {
                 show: true,
                 interval: 'auto',
-                formatter:function(val){
+                formatter: function (val) {
                   return val.split("").join("\n");
                 }
               },
@@ -232,18 +232,18 @@ angular.module('myApp.controllers')
         };
 
         //设置数据项样式
-        for(var i = 0;i<option.series.length;i++){
+        for (var i = 0; i < option.series.length; i++) {
           option.series[i].itemStyle = {
-            normal:{
-              color:function(params){
-                if(params.data <= 50){
+            normal: {
+              color: function (params) {
+                if (params.data <= 50) {
                   return 'red';
-                }else if(params.data > 50 && params.data < 100){
+                } else if (params.data > 50 && params.data < 100) {
                   return 'yellow';
-                }else{
+                } else {
                   return 'green';
                 }
-              },label:{show:false,position:'top',formatter:'{c}%'}
+              }, label: {show: false, position: 'top', formatter: '{c}%'}
             }
           };
         }
