@@ -56,8 +56,8 @@ angular.module('myApp.controllers')
             }
           },
           legend: {
-            align:'center',//水平位置
-            verticalAlign:'bottom',//垂直位置
+            x:'center',//水平位置
+            y:'bottom',//垂直位置
             orient: 'horizontal', //布局走向 vertical 垂直 horizontal水平
             data: data.legends
           },
