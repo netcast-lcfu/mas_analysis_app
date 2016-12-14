@@ -179,8 +179,9 @@ angular.module('myApp.controllers')
           },
           legend: {
             data: ['月完成进度', '年完成进度'],
-            x: 'right',
-            orient: 'vertical' //布局走向 vertical 垂直 horizontal水平
+            align:'center',//水平位置
+            verticalAlign:'bottom',//垂直位置
+            orient: 'horizontal' //布局走向 vertical 垂直 horizontal水平
           },
           grid: {
             left: '2%',
