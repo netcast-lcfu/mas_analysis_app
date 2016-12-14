@@ -12,14 +12,17 @@ angular.module('myApp.services')
       console.log('into CashFlowService getCashFlowInfo method...');
       return ApiService.getCashFlowInfo(userId, token, startPayDate, endPayDate).then(function (data) {
         if (Boolean(data.code) && data.code == 'success') {
+          console.log('CashFlowService getCashFlowInfo success...');
           return {
             legends: data.legends,
             pieDatas: data.pieDatas
           };
         } else {
+          console.log('CashFlowService getCashFlowInfo invalid...');
           return $q.reject(data.msg);
         }
       }, function (err) {
+        console.log('CashFlowService getCashFlowInfo error...');
         return $q.reject(err);
       });
     };
