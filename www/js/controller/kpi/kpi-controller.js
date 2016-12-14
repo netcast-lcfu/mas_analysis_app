@@ -76,14 +76,15 @@ angular.module('myApp.controllers')
       var year = $scope.condition.year;
       var periodId = $scope.condition.period.periodId;
 
-      KpiService.getKPICompletedProgress(userId, token, areaId, year, periodId).then(function (data) {
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'), 'macarons');
-        // 指定图表的配置项和数据
+      // 基于准备好的dom，初始化echarts实例
+      var myChart = echarts.init(document.getElementById('main'), 'macarons');
+      // 指定图表的配置项和数据
 
-        myChart.showLoading({
-          text: '正在努力加载中...'
-        });
+      myChart.showLoading({
+        text: '正在努力加载中...'
+      });
+
+      KpiService.getKPICompletedProgress(userId, token, areaId, year, periodId).then(function (data) {
 
         var actionUrl = ApiEndpoint.url + '/appKPIAction.do';
 
@@ -185,8 +186,8 @@ angular.module('myApp.controllers')
           },
           legend: {
             data: ['月完成进度', '年完成进度'],
-            align:'center',//水平位置
-            verticalAlign:'bottom',//垂直位置
+            x:'center',//水平位置
+            y:'bottom',//垂直位置
             orient: 'horizontal' //布局走向 vertical 垂直 horizontal水平
           },
           grid: {
@@ -263,6 +264,7 @@ angular.module('myApp.controllers')
         //   duration: 1000
         // });
         $cordovaToast.showShortCenter(err);
+        myChart.hideLoading();
       });
     };
 
