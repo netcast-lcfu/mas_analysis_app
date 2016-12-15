@@ -1,7 +1,7 @@
 angular.module('myApp.controllers')
 
 //主营业务状态变化分析
-  .controller('mainBusiStateChangeAnalysisCtrl', function ($scope, $ionicLoading, $cordovaToast, MainBusiService, UserService) {
+  .controller('mainBusiStateChangeAnalysisCtrl', function ($scope, $filter, $ionicLoading, $cordovaToast, MainBusiService, UserService) {
 
     // 添加返回按钮
     $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
@@ -18,7 +18,7 @@ angular.module('myApp.controllers')
     $scope.condition = {
       baseUserType: '',
       addrAdminArea: '',
-      startActiveDate: new Date(),
+      startActiveDate: defaultStartActiveDate,
       endActiveDate: new Date()
     };
 
@@ -35,6 +35,10 @@ angular.module('myApp.controllers')
       $scope.condition.addrAdminArea = addrAdminAreaDatas[0];
     }, function (error) {
       $cordovaToast.showShortCenter(error);
+      // $ionicLoading.show({
+      //   template: error,
+      //   duration: 1000
+      // });
     });
 
     //查询用户类型下拉框数据
@@ -44,27 +48,51 @@ angular.module('myApp.controllers')
       $scope.condition.baseUserType = baseUserTypeDatas[0];
     }, function (error) {
       $cordovaToast.showShortCenter(error);
+      // $ionicLoading.show({
+      //   template: error,
+      //   duration: 1000
+      // });
     });
 
     $scope.query = function () {
       if (!Boolean($scope.condition.addrAdminArea)) {
         $cordovaToast.showShortCenter('请选择行政区域!');
+        // $ionicLoading.show({
+        //   template: '请选择行政区域!',
+        //   duration: 1000
+        // });
         return;
       }
       if (!Boolean($scope.condition.baseUserType)) {
         $cordovaToast.showShortCenter('请选择用户类型!');
+        // $ionicLoading.show({
+        //   template: '请选择用户类型!',
+        //   duration: 1000
+        // });
         return;
       }
       if (!Boolean($scope.condition.startActiveDate)) {
         $cordovaToast.showShortCenter('请选择开始月份!');
+        // $ionicLoading.show({
+        //   template: '请选择开始月份!',
+        //   duration: 1000
+        // });
         return;
       }
       if (!Boolean($scope.condition.endActiveDate)) {
         $cordovaToast.showShortCenter('请选择结束月份!');
+        // $ionicLoading.show({
+        //   template: '请选择结束月份!',
+        //   duration: 1000
+        // });
         return;
       }
       if ($scope.condition.startActiveDate.getTime() >= $scope.condition.endActiveDate.getTime()) {
         $cordovaToast.showShortCenter('开始月份不能大于结束月份!');
+        // $ionicLoading.show({
+        //   template: '开始月份不能大于结束月份!',
+        //   duration: 1000
+        // });
         return;
       }
 
@@ -78,8 +106,10 @@ angular.module('myApp.controllers')
 
       $ionicLoading.show();
       MainBusiService.getBusiStateChangesAnalysisEcharsData(userId, token, adminAreaId, startActiveDate, endActiveDate, userTypeId).then(function (data) {
+        console.log('into mainBusiStateChangeAnalysisCtrl query method...');
+        console.log(data);
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'), 'macarons');
+        var myChart = echarts.init(document.getElementById('mainBusiChart'), 'macarons');
         // 指定图表的配置项和数据
         var option = {
           title: {      //标题组件
@@ -91,13 +121,14 @@ angular.module('myApp.controllers')
           },
           legend: {     //图例组件
             data: data.legendData,
-            x: 'left',
-            orient: 'vertical' //布局走向 vertical 垂直 horizontal水平
+            x: 'center',
+            y: 'bottom',
+            orient: 'horizontal' //布局走向 vertical 垂直 horizontal水平
           },
           grid: {       //直角坐标系内绘图网格
-            left: '12%',
-            right: '4%',
-            bottom: '3%',
+            left: '2%',
+            right: '40px',
+            bottom: '120px',
             containLabel: true
           },
           toolbox: {     //工具栏
@@ -133,13 +164,17 @@ angular.module('myApp.controllers')
       }, function (error) {
         $ionicLoading.hide();
         $cordovaToast.showShortCenter(error);
+        // $ionicLoading.show({
+        //   template: error,
+        //   duration: 1000
+        // });
       });
     };
 
     $scope.resetData = function () {
       $scope.condition.addrAdminArea = addrAdminAreaDatas[0];
       $scope.condition.baseUserType = baseUserTypeDatas[0];
-      $scope.condition.startActiveDate = new Date();
+      $scope.condition.startActiveDate = defaultStartActiveDate;
       $scope.condition.endActiveDate = new Date();
     };
 

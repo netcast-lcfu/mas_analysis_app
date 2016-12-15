@@ -64,9 +64,9 @@ angular.module('myApp.services')
           console.log('CashFlowService getBusiStateChangesAnalysisEcharsData success');
           console.log(data);
           return {
-            xAxisData: data.category,
-            legendData: data.legend,
-            seriesData: data.series
+            xAxisData: data.echartData.category,
+            legendData: data.echartData.legend,
+            seriesData: data.echartData.series
           };
         } else {
           console.log('MainBusiService getBusiStateChangesAnalysisEcharsData invalid');

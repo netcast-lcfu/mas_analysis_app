@@ -2,6 +2,12 @@ angular.module('myApp.controllers')
 
 //查询KPI完成进度
   .controller('queryKpiCompletedProgressCtrl', function ($scope, $ionicLoading, $cordovaToast, UserService, KpiService, ApiEndpoint) {
+
+    // 添加返回按钮
+    $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+      viewData.enableBack = true;
+    });
+
     $scope.condition = {
       area: '',
       year: '',
@@ -10,11 +16,6 @@ angular.module('myApp.controllers')
 
     //是否显示查询结果
     $scope.show_query_result = false;
-
-    // 添加返回按钮
-    $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
-      viewData.enableBack = true;
-    });
 
     var adminAreaDatas = [{areaId: '1001', areaName: '马鞍山'}, {areaId: '001', areaName: '当涂'}];
     var yearDatas = ['2016', '2012'];
@@ -63,24 +64,33 @@ angular.module('myApp.controllers')
 
     //查询按钮
     $scope.query = function () {
-
-      console.log("into query kpi data...");
-      console.log($scope.condition);
-
+      //获取查询条件
       var areaId = $scope.condition.area.areaId;
       var year = $scope.condition.year;
       var periodId = $scope.condition.period.periodId;
 
       if (!Boolean(areaId)) {
         $cordovaToast.showShortCenter('请选择行政区域!');
+        // $ionicLoading.show({
+        //   template: '请选择行政区域!',
+        //   duration: 1000
+        // });
         return;
       }
       if (!Boolean(year)) {
         $cordovaToast.showShortCenter('请选择年份!');
+        // $ionicLoading.show({
+        //   template: '请选择年份!',
+        //   duration: 1000
+        // });
         return;
       }
       if (!Boolean(periodId)) {
         $cordovaToast.showShortCenter('请选择月份!');
+        // $ionicLoading.show({
+        //   template: '请选择月份!',
+        //   duration: 1000
+        // });
         return;
       }
 
@@ -92,7 +102,7 @@ angular.module('myApp.controllers')
       KpiService.getKPICompletedProgress(userId, token, areaId, year, periodId).then(function (data) {
         var actionUrl = ApiEndpoint.url + '/appKPIAction.do';
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'), 'macarons');
+        var myChart = echarts.init(document.getElementById('kpiChart'), 'macarons');
         // 指定图表的配置项和数据
         var option = {
           title: {
@@ -125,18 +135,18 @@ angular.module('myApp.controllers')
                     res += '</br>月计划指标量：' + msg.planMount;
                     res += '</br>月实际完成量：' + msg.actMount;
                   } else {
-                    // $ionicLoading.show({
-                    //   template: '服务器未响应,请稍后再试！',
-                    //   duration: 1000
-                    // });
-                    $cordovaToast.showShortCenter('服务器未响应,请稍后再试！');
+                    $ionicLoading.show({
+                      template: '服务器未响应,请稍后再试！',
+                      duration: 1000
+                    });
+                    // $cordovaToast.showShortCenter('服务器未响应,请稍后再试！');
                   }
                 }, error: function (msg) {
-                  // $ionicLoading.show({
-                  //   template: '服务器拒绝访问,ajax调用失败!',
-                  //   duration: 1000
-                  // });
-                  $cordovaToast.showShortCenter('服务器拒绝访问,ajax调用失败!');
+                  $ionicLoading.show({
+                    template: '服务器拒绝访问,ajax调用失败!',
+                    duration: 1000
+                  });
+                  // $cordovaToast.showShortCenter('服务器拒绝访问,ajax调用失败!');
                 }
               });
 
@@ -198,7 +208,7 @@ angular.module('myApp.controllers')
           },
           grid: {
             left: '2%',
-            right: '2%',
+            right: '65px',
             bottom: '2%',
             containLabel: true
           },
@@ -265,12 +275,12 @@ angular.module('myApp.controllers')
         myChart.setOption(option);
         $ionicLoading.hide();
       }, function (err) {
+        $ionicLoading.hide();
+        $cordovaToast.showShortCenter(err);
         // $ionicLoading.show({
         //   template: err,
         //   duration: 1000
         // });
-        $ionicLoading.hide();
-        $cordovaToast.showShortCenter(err);
       });
     };
 

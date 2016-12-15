@@ -8,7 +8,7 @@ myApp.constant("ApiEndpoint", {
   url: 'http://10.1.1.92:8080/mas_analysis',
   //url: 'http://127.0.0.1:8080/mas_analysis',
   //访问超时时间6s
-  timeout: 6000
+  timeout: 30000
 });
 // //配置
 // myApp.config(function ($httpProvider) {
@@ -117,6 +117,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
         }
       }
     })
+    //主营业务状态变化分析
     .state('tab.mainBusiStateChangeAnalysis', {
       url: '/tab1/mainBusiStateChangeAnalysis',
       views: {
@@ -126,6 +127,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
         }
       }
     })
+    //现金缴费渠道分析
     .state('tab.cashFlowChannelAnalysis', {
       url: '/tab2/cashFlowChannelAnalysis',
       views: {
@@ -135,6 +137,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
         }
       }
     })
+    //KPI完成进度查询
     .state('tab.queryKpiCompletedProgress', {
       url: '/tab3/queryKpiCompletedProgress',
       views: {
@@ -143,11 +146,6 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
           controller: 'queryKpiCompletedProgressCtrl'
         }
       }
-    })
-    .state('showIonDatetimePicker', {
-      url: '/showIonDatetimePicker',
-      templateUrl: 'templates/test/ion-datetime-picker.html',
-      controller: 'testIonDatePickerCtrl'
     })
   ;
   //主页
@@ -179,26 +177,26 @@ myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, UserServi
       console.log("isLogin:");
       console.log(UserService.isLogin());
       if (UserService.isLogin()) {
-        $cordovaToast.showShortBottom("登录成功!");
-        // $ionicLoading.show({
-        //   template: "登录成功!",
-        //   duration: 1500
-        // });
+        //$cordovaToast.showShortBottom("登录成功!");
+        $ionicLoading.show({
+          template: "登录成功!",
+          duration: 1500
+        });
         $state.go("tab.tab1");
       } else {
-        // $ionicLoading.show({
-        //   template: "本地保存数据和服务器不同步,请重新登录!",
-        //   duration: 1500
-        // });
-        $cordovaToast.showShortBottom("本地保存数据和服务器不同步,请重新登录!");
+        $ionicLoading.show({
+          template: "本地保存数据和服务器不同步,请重新登录!",
+          duration: 1500
+        });
+        //$cordovaToast.showShortBottom("本地保存数据和服务器不同步,请重新登录!");
         $state.go("login");
       }
     }, function (err) {
-      // $ionicLoading.show({
-      //   template: "之前未登录,或本地凭据已失效,请重新登录!",
-      //   duration: 1500
-      // });
-      $cordovaToast.showShortBottom("您之前未登录或登录保存的凭据已过期,请重新登录!");
+      $ionicLoading.show({
+        template: "之前未登录,或本地凭据已失效,请重新登录!",
+        duration: 1500
+      });
+      //$cordovaToast.showShortBottom("您之前未登录或登录保存的凭据已过期,请重新登录!");
       $state.go("login");
     });
   });

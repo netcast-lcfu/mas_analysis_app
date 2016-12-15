@@ -13,24 +13,36 @@ angular.module('myApp.controllers')
 
     //默认起始时间一周前
     var defaultStartPayDate = new Date();
-    defaultStartPayDate.setDay(new Date().getDay() - 7);
+    defaultStartPayDate.setDate(new Date().getDate() - 7);
 
     $scope.condition = {
-      startPayDate: new Date(),
+      startPayDate: defaultStartPayDate,
       endPayDate: new Date()
     };
 
     $scope.query = function () {
       if (!Boolean($scope.condition.startPayDate)) {
         $cordovaToast.showShortCenter('请选择开始日期!');
-        return;
+        // $ionicLoading.show({
+        //   template: "请选择开始日期!",
+        //   duration: 1000
+        // });
+        // return;
       }
       if (!Boolean($scope.condition.endPayDate)) {
         $cordovaToast.showShortCenter('请选择结束日期!');
+        // $ionicLoading.show({
+        //   template: "请选择结束日期!",
+        //   duration: 1000
+        // });
         return;
       }
       if ($scope.condition.startPayDate.getTime() >= $scope.condition.endPayDate.getTime()) {
         $cordovaToast.showShortCenter('开始日期不能大于结束日期!');
+        // $ionicLoading.show({
+        //   template: "开始日期不能大于结束日期!",
+        //   duration: 1000
+        // });
         return;
       }
 
@@ -46,7 +58,7 @@ angular.module('myApp.controllers')
       //访问后台获取图表数据
       CashFlowService.getCashFlowInfo(userId, token, startPayDate, endPayDate).then(function (data) {
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'), 'macarons');
+        var myChart = echarts.init(document.getElementById('cashFlowChart'), 'macarons');
         // 指定图表的配置项和数据
         var option = {
           title: {
@@ -100,11 +112,15 @@ angular.module('myApp.controllers')
       }, function (err) {
         $ionicLoading.hide();
         $cordovaToast.showShortCenter(err);
+        // $ionicLoading.show({
+        //   template: err,
+        //   duration: 1000
+        // });
       });
     };
 
     $scope.resetData = function () {
-      $scope.condition.startPayDate = new Date();
+      $scope.condition.startPayDate = defaultStartPayDate;
       $scope.condition.endPayDate = new Date();
     };
 
