@@ -86,14 +86,11 @@ angular.module('myApp.controllers')
 
       //显示查询结果
       $scope.show_query_result = true;
-
       //提示等待
       $ionicLoading.show();
-
+      //访问后台获取数据
       KpiService.getKPICompletedProgress(userId, token, areaId, year, periodId).then(function (data) {
-
         var actionUrl = ApiEndpoint.url + '/appKPIAction.do';
-
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main'), 'macarons');
         // 指定图表的配置项和数据

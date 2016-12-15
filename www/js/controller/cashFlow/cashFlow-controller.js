@@ -16,7 +16,7 @@ angular.module('myApp.controllers')
     defaultStartPayDate.setDay(new Date().getDay() - 7);
 
     $scope.condition = {
-      startPayDate: defaultStartPayDate,
+      startPayDate: new Date(),
       endPayDate: new Date()
     };
 
@@ -36,15 +36,14 @@ angular.module('myApp.controllers')
 
       //显示查询结果
       $scope.show_query_result = true;
-
-      var startPayDate = $filter('date')($scope.condition.startPayDate, 'yyyy-MM-dd HH:mm:ss');
-      var endPayDate = $filter('date')($scope.condition.endPayDate, 'yyyy-MM-dd HH:mm:ss');
-
-      var userId = UserService.getLoginUser().userId;
-      var token = UserService.getLoginUser().token;
-
       //提示等待
       $ionicLoading.show();
+      //获取参数
+      var startPayDate = $filter('date')($scope.condition.startPayDate, 'yyyy-MM-dd HH:mm:ss');
+      var endPayDate = $filter('date')($scope.condition.endPayDate, 'yyyy-MM-dd HH:mm:ss');
+      var userId = UserService.getLoginUser().userId;
+      var token = UserService.getLoginUser().token;
+      //访问后台获取图表数据
       CashFlowService.getCashFlowInfo(userId, token, startPayDate, endPayDate).then(function (data) {
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main'), 'macarons');
@@ -105,7 +104,7 @@ angular.module('myApp.controllers')
     };
 
     $scope.resetData = function () {
-      $scope.condition.startPayDate = defaultStartPayDate;
+      $scope.condition.startPayDate = new Date();
       $scope.condition.endPayDate = new Date();
     };
 

@@ -18,7 +18,7 @@ angular.module('myApp.controllers')
     $scope.condition = {
       baseUserType: '',
       addrAdminArea: '',
-      startActiveDate: defaultStartActiveDate,
+      startActiveDate: new Date(),
       endActiveDate: new Date()
     };
 
@@ -139,7 +139,7 @@ angular.module('myApp.controllers')
     $scope.resetData = function () {
       $scope.condition.addrAdminArea = addrAdminAreaDatas[0];
       $scope.condition.baseUserType = baseUserTypeDatas[0];
-      $scope.condition.startActiveDate = defaultStartActiveDate;
+      $scope.condition.startActiveDate = new Date();
       $scope.condition.endActiveDate = new Date();
     };
 
