@@ -213,13 +213,202 @@ angular.module("myApp.services")
         });
     };
 
+    /**
+     * 获取基本用户类型
+     * @param userId
+     * @param token
+     * @returns {*}
+     */
+    var getBaseUserTypeToJson = function (userId, token) {
+      console.log("into api service getBaseUserTypeToJson method...");
+      var req = {
+        method: 'post',
+        url: ApiEndpoint.url + '/appMainBusiAction.do?method=getBaseUserTypeToJson',
+        params: {
+          userId: userId,
+          token: token
+        },
+        timeout: ApiEndpoint.timeout
+      };
+
+      return $http.post(req.url, null, req)
+        .then(function (response) {
+          console.log(response);
+          if (typeof response.data === 'object') {
+            console.log("api service getBaseUserTypeToJson success");
+            return response.data;
+          } else {
+            console.log("api service getBaseUserTypeToJson invalid");
+            // invalid response
+            return $q.reject(response.data);
+          }
+        }, function (error) {
+          console.log("api service getBaseUserTypeToJson error");
+          console.log(error);
+          return $q.reject('服务器连接超时,请检查网络!');
+        });
+    };
+
+    /**
+     * 获取业务类型
+     * @param userId
+     * @param token
+     * @returns {*}
+     */
+    var getBusiTypeToJson = function (userId, token) {
+      console.log("into api service getBusiTypeToJson method...");
+      var req = {
+        method: 'post',
+        url: ApiEndpoint.url + '/appMainBusiAction.do?method=getBusiTypeToJson',
+        params: {
+          userId: userId,
+          token: token
+        },
+        timeout: ApiEndpoint.timeout
+      };
+
+      return $http.post(req.url, null, req)
+        .then(function (response) {
+          console.log(response);
+          if (typeof response.data === 'object') {
+            console.log("api service getBusiTypeToJson success");
+            return response.data;
+          } else {
+            console.log("api service getBusiTypeToJson invalid");
+            // invalid response
+            return $q.reject(response.data);
+          }
+        }, function (error) {
+          console.log("api service getBusiTypeToJson error");
+          console.log(error);
+          return $q.reject('服务器连接超时,请检查网络!');
+        });
+    };
+
+    /**
+     * 获取业务状态
+     * @param userId
+     * @param token
+     * @returns {*}
+     */
+    var getBusiStatusToJson = function (userId, token) {
+      console.log("into api service getBusiStatusToJson method...");
+      var req = {
+        method: 'post',
+        url: ApiEndpoint.url + '/appMainBusiAction.do?method=getBusiStatusToJson',
+        params: {
+          userId: userId,
+          token: token
+        },
+        timeout: ApiEndpoint.timeout
+      };
+
+      return $http.post(req.url, null, req)
+        .then(function (response) {
+          console.log(response);
+          if (typeof response.data === 'object') {
+            console.log("api service getBusiStatusToJson success");
+            return response.data;
+          } else {
+            console.log("api service getBusiStatusToJson invalid");
+            // invalid response
+            return $q.reject(response.data);
+          }
+        }, function (error) {
+          console.log("api service getBusiStatusToJson error");
+          console.log(error);
+          return $q.reject('服务器连接超时,请检查网络!');
+        });
+    };
+
+    /**
+     * 获取行政区域
+     * @param userId
+     * @param token
+     * @returns {*}
+     */
+    var getAddrAdminAreaToJson = function (userId, token) {
+      console.log("into api service getAddrAdminAreaToJson method...");
+      var req = {
+        method: 'post',
+        url: ApiEndpoint.url + '/appMainBusiAction.do?method=getAddrAdminAreaToJson',
+        params: {
+          userId: userId,
+          token: token
+        },
+        timeout: ApiEndpoint.timeout
+      };
+
+      return $http.post(req.url, null, req)
+        .then(function (response) {
+          console.log(response);
+          if (typeof response.data === 'object') {
+            console.log("api service getAddrAdminAreaToJson success");
+            return response.data;
+          } else {
+            console.log("api service getAddrAdminAreaToJson invalid");
+            // invalid response
+            return $q.reject(response.data);
+          }
+        }, function (error) {
+          console.log("api service getAddrAdminAreaToJson error");
+          console.log(error);
+          return $q.reject('服务器连接超时,请检查网络!');
+        });
+    };
+
+    /**
+     * 获取业务状态变化Echarts数据
+     * @param userId
+     * @param token
+     * @returns {*}
+     */
+    var getBusiStateChangesAnalysisEcharsData = function (userId, token, adminAreaId, startActiveMonth, endActiveMonth, userTypeId) {
+      console.log("into api service getBusiStateChangesAnalysisEcharsData method...");
+      var req = {
+        method: 'post',
+        url: ApiEndpoint.url + '/appMainBusiAction.do?method=getBusiStateChangesAnalysisEcharsData',
+        params: {
+          userId: userId,
+          token: token,
+          adminAreaId: adminAreaId,
+          startActiveMonth: startActiveMonth,
+          endActiveMonth: endActiveMonth,
+          userTypeId: userTypeId
+        },
+        timeout: ApiEndpoint.timeout
+      };
+
+      return $http.post(req.url, null, req)
+        .then(function (response) {
+          console.log(response);
+          if (typeof response.data === 'object') {
+            console.log("api service getBusiStateChangesAnalysisEcharsData success");
+            return response.data;
+          } else {
+            console.log("api service getBusiStateChangesAnalysisEcharsData invalid");
+            // invalid response
+            return $q.reject(response.data);
+          }
+        }, function (error) {
+          console.log("api service getBusiStateChangesAnalysisEcharsData error");
+          console.log(error);
+          return $q.reject('服务器连接超时,请检查网络!');
+        });
+    };
+
     return {
       login: login,
       getUserInfo: getUserInfo,
       loginOut: loginOut,
       getKpiCompletedProgressCondition: getKpiCompletedProgressCondition,
       getKPICompletedProgress: getKPICompletedProgress,
-      getCashFlowInfo: getCashFlowInfo
+      getCashFlowInfo: getCashFlowInfo,
+      getBaseUserTypeToJson: getBaseUserTypeToJson,
+      getBusiTypeToJson: getBusiTypeToJson,
+      getBusiStatusToJson: getBusiStatusToJson,
+      getAddrAdminAreaToJson: getAddrAdminAreaToJson,
+      getBusiStateChangesAnalysisEcharsData: getBusiStateChangesAnalysisEcharsData
     }
   });
 

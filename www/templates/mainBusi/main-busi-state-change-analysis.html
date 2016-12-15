@@ -6,22 +6,25 @@
         <div class="input-label">
           行政区域:
         </div>
-        <select ng-model="condition.area"
-                ng-options="area.areaName for area in adminAreaData track by area.areaId"></select>
+        <select ng-model="condition.addrAdminArea"
+                ng-options="area.adminAreaName for area in addrAdminAreaData track by area.adminAreaId"></select>
       </div>
       <div class="item item-input item-select">
         <div class="input-label">
-          年份:
+          用户类型:
         </div>
-        <select ng-model="condition.year"
-                ng-options="year for year in yearData"></select>
+        <select ng-model="condition.baseUserType"
+                ng-options="user.userTypeName for user in baseUserTypeData track by user.userTypeId"></select>
       </div>
-      <div class="item item-input item-select">
-        <div class="input-label">
-          月份:
-        </div>
-        <select ng-model="condition.period"
-                ng-options="period.periodName for period in periodData track by period.periodId"></select>
+      <div class="item item-icon-left" ion-datetime-picker date monday-first ng-model="condition.startActiveDate">
+        <span>开始月份:</span>
+        <i class="icon ion-ios-calendar-outline positive"></i>
+        <strong>{{condition.startActiveDate| date: "yyyy-MM"}}</strong>
+      </div>
+      <div class="item item-icon-left" ion-datetime-picker date monday-first ng-model="condition.endActiveDate">
+        <span>结束月份:</span>
+        <i class="icon ion-ios-calendar-outline positive"></i>
+        <strong>{{condition.endActiveDate| date: "yyyy-MM"}}</strong>
       </div>
       <div class="item item-text-wrap">
         <a class="button button-block icon-left ion-search calm" ng-click="query()">查询</a>
@@ -29,9 +32,11 @@
       </div>
     </div>
     </div>
-    <div class="item item-divider">查询结果展示:</div>
-    <div class="item item-text-wrap">
-      <div id="main" style="width: 95%;height:420px;"></div>
+    <div ng-if="show_query_result" class="list">
+      <div class="item item-divider">查询结果展示:</div>
+      <div class="item item-text-wrap">
+        <div id="main" style="width: 95%;height:460px;"></div>
+      </div>
     </div>
   </ion-content>
 </ion-view>

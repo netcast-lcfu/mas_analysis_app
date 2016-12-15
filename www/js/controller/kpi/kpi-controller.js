@@ -63,18 +63,29 @@ angular.module('myApp.controllers')
 
     //查询按钮
     $scope.query = function () {
-      //显示查询结果
-      $scope.show_query_result = true;
 
       console.log("into query kpi data...");
       console.log($scope.condition);
 
-      var userId = UserService.getLoginUser().userId;
-      var token = UserService.getLoginUser().token;
-
       var areaId = $scope.condition.area.areaId;
       var year = $scope.condition.year;
       var periodId = $scope.condition.period.periodId;
+
+      if (!Boolean(areaId)) {
+        $cordovaToast.showShortCenter('请选择行政区域!');
+        return;
+      }
+      if (!Boolean(year)) {
+        $cordovaToast.showShortCenter('请选择年份!');
+        return;
+      }
+      if (!Boolean(periodId)) {
+        $cordovaToast.showShortCenter('请选择月份!');
+        return;
+      }
+
+      //显示查询结果
+      $scope.show_query_result = true;
 
       //提示等待
       $ionicLoading.show();
@@ -86,11 +97,6 @@ angular.module('myApp.controllers')
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main'), 'macarons');
         // 指定图表的配置项和数据
-
-        // myChart.showLoading({
-        //   text: '正在努力加载中...'
-        // });
-
         var option = {
           title: {
             show: true,
@@ -260,7 +266,6 @@ angular.module('myApp.controllers')
         }
 
         myChart.setOption(option);
-        //myChart.hideLoading();
         $ionicLoading.hide();
       }, function (err) {
         // $ionicLoading.show({

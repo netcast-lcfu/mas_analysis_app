@@ -17,9 +17,11 @@
         <a class="button button-block icon-left ion-refresh dark" ng-click="resetData()">重置</a>
       </div>
     </div>
-    <div class="item item-divider">查询结果展示:</div>
-    <div class="item item-text-wrap">
-      <div id="main" style="width: 95%;height:260px;"></div>
+    <div ng-if="show_query_result" class="list">
+      <div class="item item-divider">查询结果展示:</div>
+      <div class="item item-text-wrap">
+        <div id="main" style="width: 95%;height:260px;"></div>
+      </div>
     </div>
   </ion-content>
 </ion-view>
