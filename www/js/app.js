@@ -229,7 +229,7 @@ myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, UserServi
       //   template: "之前未登录,或本地保存数据已过期,请重新登录!",
       //   duration: 1500
       // });
-      $cordovaToast.showShortBottom("之前未登录,或本地保存数据已过期,请重新登录!");
+      $cordovaToast.showShortBottom(err);
       $state.go("login");
     });
   });

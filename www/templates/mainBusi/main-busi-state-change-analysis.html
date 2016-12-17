@@ -16,13 +16,19 @@
         <select ng-model="condition.baseUserType"
                 ng-options="user.userTypeName for user in baseUserTypeData track by user.userTypeId"></select>
       </div>
+      <div class="input-label">
+        开始月份:
+      </div>
       <div class="item item-icon-left" ion-datetime-picker date monday-first ng-model="condition.startActiveDate">
-        <span>开始月份:</span>
+        <!--<span>开始月份:</span>-->
         <i class="icon ion-ios-calendar-outline positive"></i>
         <strong>{{condition.startActiveDate| date: "yyyy-MM"}}</strong>
       </div>
+      <div class="input-label">
+        结束月份:
+      </div>
       <div class="item item-icon-left" ion-datetime-picker date monday-first ng-model="condition.endActiveDate">
-        <span>结束月份:</span>
+        <!--<span>结束月份:</span>-->
         <i class="icon ion-ios-calendar-outline positive"></i>
         <strong>{{condition.endActiveDate| date: "yyyy-MM"}}</strong>
       </div>
