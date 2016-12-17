@@ -208,6 +208,8 @@ angular.module('myApp.controllers')
           series: [{
             name:'现金流量',
             type:'line',
+            smooth:true,
+            itemStyle: {normal: {areaStyle: {type: 'default'}}},
             data:data.seriesData
           }]
         };
@@ -314,6 +316,8 @@ angular.module('myApp.controllers')
           series: [{
             name:'现金流量',
             type:'line',
+            smooth:true,
+            itemStyle: {normal: {areaStyle: {type: 'default'}}},
             data:data.seriesData
           }]
         };
@@ -420,6 +424,8 @@ angular.module('myApp.controllers')
           series: [{
             name:'现金流量',
             type:'line',
+            smooth:true,
+            itemStyle: {normal: {areaStyle: {type: 'default'}}},
             data:data.seriesData
           }]
         };

@@ -9,17 +9,17 @@ angular.module('myApp.services')
     },{
       id: 1,
       icon: 'icon ion-cash',
-      name: '现金流量日分析',
+      name: '日现金流量分析',
       url: 'tab2/cashFlowDayAnalysis'
     },{
       id: 2,
       icon: 'icon ion-cash',
-      name: '现金流量月分析',
+      name: '月现金流量分析',
       url: 'tab2/cashFlowMonthAnalysis'
     },{
       id: 3,
       icon: 'icon ion-cash',
-      name: '现金流量年分析',
+      name: '年现金流量分析',
       url: 'tab2/cashFlowYearAnalysis'
     }];
 

@@ -53,7 +53,7 @@ angular.module('myApp.controllers')
       //月份数据(时段)
       $scope.periodData = periodDatas;
       //默认选择当前月
-      $scope.condition.period = periodDatas[new Date().getMonth() + 1];
+      $scope.condition.period = periodDatas[new Date().getMonth()];
     }, function (err) {
       console.log(err);
       // $ionicLoading.show({
@@ -289,7 +289,7 @@ angular.module('myApp.controllers')
     $scope.resetData = function () {
       $scope.condition.area = adminAreaDatas[0];
       $scope.condition.year = yearDatas[0];
-      $scope.condition.period = periodDatas[new Date().getMonth() + 1];
+      $scope.condition.period = periodDatas[new Date().getMonth()];
     };
 
   });
