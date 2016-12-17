@@ -2,13 +2,13 @@
   <ion-content class="padding">
     <div class="list">
       <div class="item item-divider">查询条件</div>
+      <label class="item-input">开始时间:</label>
       <div class="item item-icon-left" ion-datetime-picker monday-first seconds ng-model="condition.startPayDate">
-        <span>开始:</span>
         <i class="icon ion-ios-calendar-outline positive"></i>
         <strong>{{condition.startPayDate| date: "yyyy-MM-dd HH:mm:ss"}}</strong>
       </div>
+      <label class="item-input">结束时间:</label>
       <div class="item item-icon-left" ion-datetime-picker monday-first seconds ng-model="condition.endPayDate">
-        <span>结束:</span>
         <i class="icon ion-ios-calendar-outline positive"></i>
         <strong>{{condition.endPayDate| date: "yyyy-MM-dd HH:mm:ss"}}</strong>
       </div>

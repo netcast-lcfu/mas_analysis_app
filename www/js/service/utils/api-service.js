@@ -361,6 +361,10 @@ angular.module("myApp.services")
      * 获取业务状态变化Echarts数据
      * @param userId
      * @param token
+     * @param adminAreaId
+     * @param startActiveMonth
+     * @param endActiveMonth
+     * @param userTypeId
      * @returns {*}
      */
     var getBusiStateChangesAnalysisEcharsData = function (userId, token, adminAreaId, startActiveMonth, endActiveMonth, userTypeId) {
@@ -397,6 +401,158 @@ angular.module("myApp.services")
         });
     };
 
+    /**
+     * 获取现金流量日分析数据
+     * @param userId
+     * @param token
+     * @param day
+     * @returns {*}
+     */
+    var getCashFlowDayInfo = function (userId, token,day) {
+      console.log("into api service getCashFlowDayInfo method...");
+      var req = {
+        method: 'post',
+        url: ApiEndpoint.url + '/appCashFlowAction.do?method=getCashFlowDayInfo',
+        params: {
+          userId: userId,
+          token: token,
+          day: day
+        },
+        timeout: ApiEndpoint.timeout
+      };
+
+      return $http.post(req.url, null, req)
+        .then(function (response) {
+          console.log(response);
+          if (typeof response.data === 'object') {
+            console.log("api service getCashFlowDayInfo success");
+            return response.data;
+          } else {
+            console.log("api service getCashFlowDayInfo invalid");
+            // invalid response
+            return $q.reject(response.data);
+          }
+        }, function (error) {
+          console.log("api service getCashFlowDayInfo error");
+          console.log(error);
+          return $q.reject('服务器连接超时,请检查网络!');
+        });
+    };
+
+    /**
+     * 获取现金流量月分析数据
+     * @param userId
+     * @param token
+     * @param month
+     * @returns {*}
+     */
+    var getCashFlowMonthInfo = function (userId, token,month) {
+      console.log("into api service getCashFlowMonthInfo method...");
+      var req = {
+        method: 'post',
+        url: ApiEndpoint.url + '/appCashFlowAction.do?method=getCashFlowMonthInfo',
+        params: {
+          userId: userId,
+          token: token,
+          month: month
+        },
+        timeout: ApiEndpoint.timeout
+      };
+
+      return $http.post(req.url, null, req)
+        .then(function (response) {
+          console.log(response);
+          if (typeof response.data === 'object') {
+            console.log("api service getCashFlowMonthInfo success");
+            return response.data;
+          } else {
+            console.log("api service getCashFlowMonthInfo invalid");
+            // invalid response
+            return $q.reject(response.data);
+          }
+        }, function (error) {
+          console.log("api service getCashFlowMonthInfo error");
+          console.log(error);
+          return $q.reject('服务器连接超时,请检查网络!');
+        });
+    };
+
+    /**
+     * 获取现金流量年分析数据 (按月份)
+     * @param userId
+     * @param token
+     * @param year
+     * @returns {*}
+     */
+    var getCashFlowYearForMonthInfo = function (userId, token,year) {
+      console.log("into api service getCashFlowYearForMonthInfo method...");
+      var req = {
+        method: 'post',
+        url: ApiEndpoint.url + '/appCashFlowAction.do?method=getCashFlowYearForMonthInfo',
+        params: {
+          userId: userId,
+          token: token,
+          year: year
+        },
+        timeout: ApiEndpoint.timeout
+      };
+
+      return $http.post(req.url, null, req)
+        .then(function (response) {
+          console.log(response);
+          if (typeof response.data === 'object') {
+            console.log("api service getCashFlowYearForMonthInfo success");
+            return response.data;
+          } else {
+            console.log("api service getCashFlowYearForMonthInfo invalid");
+            // invalid response
+            return $q.reject(response.data);
+          }
+        }, function (error) {
+          console.log("api service getCashFlowYearForMonthInfo error");
+          console.log(error);
+          return $q.reject('服务器连接超时,请检查网络!');
+        });
+    };
+
+    /**
+     * 获取现金流量年分析数据(按季度)
+     * @param userId
+     * @param token
+     * @param year
+     * @returns {*}
+     */
+    var getCashFlowYearForQuarterInfo = function (userId, token,year) {
+      console.log("into api service getCashFlowYearForQuarterInfo method...");
+      var req = {
+        method: 'post',
+        url: ApiEndpoint.url + '/appCashFlowAction.do?method=getCashFlowYearForQuarterInfo',
+        params: {
+          userId: userId,
+          token: token,
+          year: year
+        },
+        timeout: ApiEndpoint.timeout
+      };
+
+      return $http.post(req.url, null, req)
+        .then(function (response) {
+          console.log(response);
+          if (typeof response.data === 'object') {
+            console.log("api service getCashFlowYearForQuarterInfo success");
+            return response.data;
+          } else {
+            console.log("api service getCashFlowYearForQuarterInfo invalid");
+            // invalid response
+            return $q.reject(response.data);
+          }
+        }, function (error) {
+          console.log("api service getCashFlowYearForQuarterInfo error");
+          console.log(error);
+          return $q.reject('服务器连接超时,请检查网络!');
+        });
+    };
+
     return {
       login: login,
       getUserInfo: getUserInfo,
@@ -408,7 +564,11 @@ angular.module("myApp.services")
       getBusiTypeToJson: getBusiTypeToJson,
       getBusiStatusToJson: getBusiStatusToJson,
       getAddrAdminAreaToJson: getAddrAdminAreaToJson,
-      getBusiStateChangesAnalysisEcharsData: getBusiStateChangesAnalysisEcharsData
+      getBusiStateChangesAnalysisEcharsData: getBusiStateChangesAnalysisEcharsData,
+      getCashFlowDayInfo:getCashFlowDayInfo,
+      getCashFlowMonthInfo:getCashFlowMonthInfo,
+      getCashFlowYearForMonthInfo:getCashFlowYearForMonthInfo,
+      getCashFlowYearForQuarterInfo:getCashFlowYearForQuarterInfo
     }
   });
 

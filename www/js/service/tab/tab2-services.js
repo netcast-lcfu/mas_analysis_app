@@ -6,6 +6,21 @@ angular.module('myApp.services')
       icon: 'icon ion-cash',
       name: '现金流量渠道分析',
       url: 'tab2/cashFlowChannelAnalysis'
+    },{
+      id: 1,
+      icon: 'icon ion-cash',
+      name: '现金流量日分析',
+      url: 'tab2/cashFlowDayAnalysis'
+    },{
+      id: 2,
+      icon: 'icon ion-cash',
+      name: '现金流量月分析',
+      url: 'tab2/cashFlowMonthAnalysis'
+    },{
+      id: 3,
+      icon: 'icon ion-cash',
+      name: '现金流量年分析',
+      url: 'tab2/cashFlowYearAnalysis'
     }];
 
     return {

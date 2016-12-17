@@ -74,6 +74,9 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
   $ionicConfigProvider.platform.ios.views.transition('ios');
   $ionicConfigProvider.platform.android.views.transition('android');
 
+  //导航栏标题居中
+  $ionicConfigProvider.navBar.alignTitle('center');
+
   // Android 将tab位置移到底部
   $ionicConfigProvider.tabs.position('bottom');
   $ionicConfigProvider.tabs.style('');
@@ -137,6 +140,36 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
         }
       }
     })
+    //现金流量日分析
+    .state('tab.cashFlowDayAnalysis', {
+      url: '/tab2/cashFlowDayAnalysis',
+      views: {
+        'tab-tab2': {
+          templateUrl: 'templates/cashFlow/cash-flow-day-analysis.html',
+          controller: 'cashFlowDayAnalysisCtrl'
+        }
+      }
+    })
+    //现金流量月分析
+    .state('tab.cashFlowMonthAnalysis', {
+      url: '/tab2/cashFlowMonthAnalysis',
+      views: {
+        'tab-tab2': {
+          templateUrl: 'templates/cashFlow/cash-flow-month-analysis.html',
+          controller: 'cashFlowMonthAnalysisCtrl'
+        }
+      }
+    })
+    //现金流量年分析
+    .state('tab.cashFlowYearAnalysis', {
+      url: '/tab2/cashFlowYearAnalysis',
+      views: {
+        'tab-tab2': {
+          templateUrl: 'templates/cashFlow/cash-flow-year-analysis.html',
+          controller: 'cashFlowYearAnalysisCtrl'
+        }
+      }
+    })
     //KPI完成进度查询
     .state('tab.queryKpiCompletedProgress', {
       url: '/tab3/queryKpiCompletedProgress',
@@ -177,26 +210,26 @@ myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, UserServi
       console.log("isLogin:");
       console.log(UserService.isLogin());
       if (UserService.isLogin()) {
-        //$cordovaToast.showShortBottom("登录成功!");
-        $ionicLoading.show({
-          template: "登录成功!",
-          duration: 1500
-        });
+        $cordovaToast.showShortBottom("登录成功!");
+        // $ionicLoading.show({
+        //   template: "登录成功!",
+        //   duration: 1500
+        // });
         $state.go("tab.tab1");
       } else {
-        $ionicLoading.show({
-          template: "本地保存数据和服务器不同步,请重新登录!",
-          duration: 1500
-        });
-        //$cordovaToast.showShortBottom("本地保存数据和服务器不同步,请重新登录!");
+        // $ionicLoading.show({
+        //   template: "本地保存数据和服务器不同步,请重新登录!",
+        //   duration: 1500
+        // });
+        $cordovaToast.showShortBottom("本地保存数据和服务器不同步,请重新登录!");
         $state.go("login");
       }
     }, function (err) {
-      $ionicLoading.show({
-        template: "之前未登录,或本地凭据已失效,请重新登录!",
-        duration: 1500
-      });
-      //$cordovaToast.showShortBottom("您之前未登录或登录保存的凭据已过期,请重新登录!");
+      // $ionicLoading.show({
+      //   template: "之前未登录,或本地保存数据已过期,请重新登录!",
+      //   duration: 1500
+      // });
+      $cordovaToast.showShortBottom("之前未登录,或本地保存数据已过期,请重新登录!");
       $state.go("login");
     });
   });

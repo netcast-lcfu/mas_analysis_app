@@ -1,0 +1,22 @@
+<ion-view view-title="现金流量月分析">
+  <ion-content class="padding">
+    <div class="list">
+      <div class="item item-divider">查询条件</div>
+      <label class="item-input">现金流量月:</label>
+      <div class="item item-icon-left" ion-datetime-picker monday-first date ng-model="condition.month">
+        <i class="icon ion-ios-calendar-outline positive"></i>
+        <strong>{{condition.month| date: "yyyy-MM"}}</strong>
+      </div>
+      <div class="item item-text-wrap">
+        <a class="button button-block icon-left ion-search calm" ng-click="query()">查询</a>
+        <a class="button button-block icon-left ion-refresh dark" ng-click="resetData()">重置</a>
+      </div>
+    </div>
+    <div ng-if="show_query_result" class="list">
+      <div class="item item-divider">查询结果展示:</div>
+      <div class="item item-text-wrap">
+        <div id="cashFlowChart" style="width: 95%;height:360px;"></div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
