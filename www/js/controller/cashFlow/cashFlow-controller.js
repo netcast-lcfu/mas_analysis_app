@@ -1,6 +1,6 @@
 angular.module('myApp.controllers')
 
-//现金流量渠道分析
+  //现金流量渠道分析
   .controller('cashFlowChannelAnalysisCtrl', function ($scope, $filter, $ionicLoading, $cordovaToast, UserService, CashFlowService) {
 
     // 添加返回按钮
@@ -133,6 +133,8 @@ angular.module('myApp.controllers')
       viewData.enableBack = true;
     });
 
+    //是否显示查询条件
+    $scope.show_query_condition = false;
     //是否显示查询结果
     $scope.show_query_result = false;
 
@@ -140,6 +142,12 @@ angular.module('myApp.controllers')
       day: new Date()
     };
 
+    //查看和隐藏查询条件
+    $scope.toggleQueryCondition = function () {
+      $scope.show_query_condition = !$scope.show_query_condition;
+    };
+
+    //查询
     $scope.query = function () {
       if (!Boolean($scope.condition.day)) {
         $cordovaToast.showShortCenter('请选择日期!');
@@ -232,6 +240,7 @@ angular.module('myApp.controllers')
       });
     };
 
+    //重置
     $scope.resetData = function () {
       $scope.condition.day = new Date();
     };

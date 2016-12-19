@@ -1,6 +1,6 @@
 <ion-view view-title="现金流量日分析">
   <ion-content class="padding">
-    <div class="list">
+    <div ng-if="show_query_condition" class="list" >
       <div class="item item-divider">查询条件</div>
       <div class="item item-icon-left" ion-datetime-picker monday-first date ng-model="condition.day">
         <span>现金流量日:</span>
@@ -13,7 +13,7 @@
       </div>
     </div>
     <div ng-if="show_query_result" class="list">
-      <div class="item item-divider">查询结果展示:</div>
+      <div class="item item-divider">查询结果:</div>
       <div class="item item-text-wrap">
         <div id="cashFlowChart" style="width: 95%;height:360px;"></div>
       </div>

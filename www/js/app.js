@@ -182,7 +182,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
     })
   ;
   //主页
-  $urlRouterProvider.otherwise('login');
+  $urlRouterProvider.otherwise('/tab/tab1');
 });
 myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, UserService, $ionicLoading, $cordovaToast, $ionicPickerI18n) {
   $ionicPlatform.ready(function () {
