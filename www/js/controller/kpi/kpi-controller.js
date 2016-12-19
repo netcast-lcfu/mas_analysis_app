@@ -116,7 +116,7 @@ angular.module('myApp.controllers')
             formatter: function (params, ticket, callback) {
               var res = params[0].name;
               var busiSubName = params[0].name;
-
+              //访问KPI月完成进度所需参数
               var params1 = {
                 "method": "getMonthCompletedProgressItemDetail",
                 "areaId": areaId,
@@ -124,6 +124,7 @@ angular.module('myApp.controllers')
                 "periodId": periodId,
                 "busiSubName": busiSubName
               };
+              //ajax请求KPI完成进度
               $.ajax({
                 type: "POST",
                 url: actionUrl,
@@ -150,13 +151,14 @@ angular.module('myApp.controllers')
                   $cordovaToast.showShortCenter('服务器拒绝访问,ajax调用失败!');
                 }
               });
-
+              //访问年完成进度所需参数
               var params2 = {
                 "method": "getYearCompletedProgressItemDetail",
                 "areaId": areaId,
                 "year": year,
                 "busiSubName": busiSubName
               };
+              //ajax请求年完成进度
               $.ajax({
                 type: "POST",
                 url: actionUrl,
@@ -183,9 +185,9 @@ angular.module('myApp.controllers')
                   $cordovaToast.showShortCenter('服务器拒绝访问,ajax调用失败!');
                 }
               });
-
+              //模拟异步回调 500毫秒后显示
               setTimeout(function () {
-                callback(ticket, res);// 仅为了模拟异步回调
+                callback(ticket, res);
               }, 500);
               return 'loading...';
             },

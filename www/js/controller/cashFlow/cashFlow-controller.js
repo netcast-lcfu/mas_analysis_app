@@ -169,8 +169,9 @@ angular.module('myApp.controllers')
           },
           tooltip: {    //提示框组件
             trigger: 'axis', //触发类型 axis坐标轴 item单项
-            formatter: function (params,ticket, callback) {
-                return params[0].name + '点</br>' +params[0].seriesName + ' : ' + params[0].value;
+            // 格式化鼠标悬浮提示数据 加上点便于用户识别当前时间的现金流量
+            formatter: function (params, ticket, callback) {
+              return params[0].name + '点</br>' + params[0].seriesName + ' : ' + params[0].value;
             }
           },
           legend: {     //图例组件
@@ -209,11 +210,11 @@ angular.module('myApp.controllers')
             }
           },
           series: [{
-            name:'现金流量',
-            type:'line',
-            smooth:true,
+            name: '现金流量',
+            type: 'line',
+            smooth: true,
             itemStyle: {normal: {areaStyle: {type: 'default'}}},
-            data:data.seriesData
+            data: data.seriesData
           }]
         };
         window.onresize = function () {
@@ -317,11 +318,11 @@ angular.module('myApp.controllers')
             }
           },
           series: [{
-            name:'现金流量',
-            type:'line',
-            smooth:true,
+            name: '现金流量',
+            type: 'line',
+            smooth: true,
             itemStyle: {normal: {areaStyle: {type: 'default'}}},
-            data:data.seriesData
+            data: data.seriesData
           }]
         };
         window.onresize = function () {
@@ -425,11 +426,11 @@ angular.module('myApp.controllers')
             }
           },
           series: [{
-            name:'现金流量',
-            type:'line',
-            smooth:true,
+            name: '现金流量',
+            type: 'line',
+            smooth: true,
             itemStyle: {normal: {areaStyle: {type: 'default'}}},
-            data:data.seriesData
+            data: data.seriesData
           }]
         };
         window.onresize = function () {
