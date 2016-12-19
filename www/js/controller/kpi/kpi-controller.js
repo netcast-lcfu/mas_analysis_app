@@ -136,18 +136,18 @@ angular.module('myApp.controllers')
                     res += '</br>月计划指标量：' + msg.planMount;
                     res += '</br>月实际完成量：' + msg.actMount;
                   } else {
-                    $ionicLoading.show({
-                      template: '服务器未响应,请稍后再试！',
-                      duration: 1000
-                    });
-                    // $cordovaToast.showShortCenter('服务器未响应,请稍后再试！');
+                    // $ionicLoading.show({
+                    //   template: '服务器未响应,请稍后再试！',
+                    //   duration: 1000
+                    // });
+                    $cordovaToast.showShortCenter('服务器未响应,请稍后再试！');
                   }
                 }, error: function (msg) {
-                  $ionicLoading.show({
-                    template: '服务器拒绝访问,ajax调用失败!',
-                    duration: 1000
-                  });
-                  // $cordovaToast.showShortCenter('服务器拒绝访问,ajax调用失败!');
+                  // $ionicLoading.show({
+                  //   template: '服务器拒绝访问,ajax调用失败!',
+                  //   duration: 1000
+                  // });
+                  $cordovaToast.showShortCenter('服务器拒绝访问,ajax调用失败!');
                 }
               });
 

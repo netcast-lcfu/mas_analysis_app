@@ -168,7 +168,10 @@ angular.module('myApp.controllers')
             x: 'center'
           },
           tooltip: {    //提示框组件
-            trigger: 'axis' //触发类型 axis坐标轴 item单项
+            trigger: 'axis', //触发类型 axis坐标轴 item单项
+            formatter: function (params,ticket, callback) {
+                return params[0].name + '点</br>' +params[0].seriesName + ' : ' + params[0].value;
+            }
           },
           legend: {     //图例组件
             data: ['现金流量'],
