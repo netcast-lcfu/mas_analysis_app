@@ -8,6 +8,9 @@ angular.module('myApp.controllers')
       viewData.enableBack = true;
     });
 
+    //是否显示查询条件
+    $scope.show_query_condition = true;
+
     //是否显示查询结果
     $scope.show_query_result = false;
 
@@ -20,6 +23,11 @@ angular.module('myApp.controllers')
       addrAdminArea: '',
       startActiveDate: defaultStartActiveDate,
       endActiveDate: new Date()
+    };
+
+    //查看和隐藏查询条件
+    $scope.toggleQueryCondition = function () {
+      $scope.show_query_condition = !$scope.show_query_condition;
     };
 
     var addrAdminAreaDatas = [{adminAreaId: 1001, adminAreaName: '马鞍山'}];
@@ -160,6 +168,8 @@ angular.module('myApp.controllers')
           myChart.resize(); //使图表适应屏幕
         };
         myChart.setOption(option);
+        //隐藏查询条件
+        $scope.show_query_condition = false;
         $ionicLoading.hide();
       }, function (error) {
         $ionicLoading.hide();

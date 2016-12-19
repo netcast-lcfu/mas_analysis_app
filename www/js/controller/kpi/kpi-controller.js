@@ -14,8 +14,16 @@ angular.module('myApp.controllers')
       period: ''
     };
 
+    //是否显示查询条件
+    $scope.show_query_condition = true;
+
     //是否显示查询结果
     $scope.show_query_result = false;
+
+    //查看和隐藏查询条件
+    $scope.toggleQueryCondition = function () {
+      $scope.show_query_condition = !$scope.show_query_condition;
+    };
 
     var adminAreaDatas = [{areaId: '1001', areaName: '马鞍山'}, {areaId: '001', areaName: '当涂'}];
     var yearDatas = ['2016', '2012'];
@@ -276,6 +284,8 @@ angular.module('myApp.controllers')
         }
 
         myChart.setOption(option);
+        //隐藏查询条件
+        $scope.show_query_condition = false;
         $ionicLoading.hide();
       }, function (err) {
         $ionicLoading.hide();

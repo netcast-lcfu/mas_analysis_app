@@ -1,6 +1,6 @@
 angular.module('myApp.controllers')
 
-  //现金流量渠道分析
+//现金流量渠道分析
   .controller('cashFlowChannelAnalysisCtrl', function ($scope, $filter, $ionicLoading, $cordovaToast, UserService, CashFlowService) {
 
     // 添加返回按钮
@@ -8,6 +8,8 @@ angular.module('myApp.controllers')
       viewData.enableBack = true;
     });
 
+    //是否显示查询条件
+    $scope.show_query_condition = true;
     //是否显示查询结果
     $scope.show_query_result = false;
 
@@ -18,6 +20,11 @@ angular.module('myApp.controllers')
     $scope.condition = {
       startPayDate: defaultStartPayDate,
       endPayDate: new Date()
+    };
+
+    //查看和隐藏查询条件
+    $scope.toggleQueryCondition = function () {
+      $scope.show_query_condition = !$scope.show_query_condition;
     };
 
     $scope.query = function () {
@@ -108,6 +115,8 @@ angular.module('myApp.controllers')
           myChart.resize(); //使图表适应屏幕
         };
         myChart.setOption(option);
+        //隐藏查询条件
+        $scope.show_query_condition = false;
         $ionicLoading.hide();
       }, function (err) {
         $ionicLoading.hide();
@@ -134,7 +143,7 @@ angular.module('myApp.controllers')
     });
 
     //是否显示查询条件
-    $scope.show_query_condition = false;
+    $scope.show_query_condition = true;
     //是否显示查询结果
     $scope.show_query_result = false;
 
@@ -157,10 +166,11 @@ angular.module('myApp.controllers')
         // });
         return;
       }
-      //显示查询结果
-      $scope.show_query_result = true;
+
       //提示等待
       $ionicLoading.show();
+      //显示查询结果
+      $scope.show_query_result = true;
       //获取参数
       var day = $filter('date')($scope.condition.day, 'yyyy-MM-dd');
       var userId = UserService.getLoginUser().userId;
@@ -173,13 +183,14 @@ angular.module('myApp.controllers')
         var option = {
           title: {      //标题组件
             text: '日现金流量分析',
+            subtext: '总金额:' + $filter('currency')(data.sumMoney, '￥', 2),
             x: 'center'
           },
           tooltip: {    //提示框组件
             trigger: 'axis', //触发类型 axis坐标轴 item单项
             // 格式化鼠标悬浮提示数据 加上点便于用户识别当前时间的现金流量
             formatter: function (params, ticket, callback) {
-              return params[0].name + '点</br>' + params[0].seriesName + ' : ' + params[0].value +'元';
+              return params[0].name + '点</br>' + params[0].seriesName + ' : ' + params[0].value + '元';
             }
           },
           legend: {     //图例组件
@@ -229,6 +240,9 @@ angular.module('myApp.controllers')
           myChart.resize(); //使图表适应屏幕
         };
         myChart.setOption(option);
+        //隐藏查询条件
+        $scope.show_query_condition = false;
+        //隐藏提示
         $ionicLoading.hide();
       }, function (err) {
         $ionicLoading.hide();
@@ -254,11 +268,19 @@ angular.module('myApp.controllers')
       viewData.enableBack = true;
     });
 
+    //是否显示查询条件
+    $scope.show_query_condition = true;
+
     //是否显示查询结果
     $scope.show_query_result = false;
 
     $scope.condition = {
       month: new Date()
+    };
+
+    //查看和隐藏查询条件
+    $scope.toggleQueryCondition = function () {
+      $scope.show_query_condition = !$scope.show_query_condition;
     };
 
     $scope.query = function () {
@@ -286,12 +308,13 @@ angular.module('myApp.controllers')
         var option = {
           title: {      //标题组件
             text: '月现金流量分析',
+            subtext: '总金额:' + $filter('currency')(data.sumMoney, '￥', 2),
             x: 'center'
           },
           tooltip: {    //提示框组件
             trigger: 'axis', //触发类型 axis坐标轴 item单项
             formatter: function (params, ticket, callback) {
-              return params[0].name + '</br>' + params[0].seriesName + ' : ' + params[0].value +'元';
+              return params[0].name + '</br>' + params[0].seriesName + ' : ' + params[0].value + '元';
             }
           },
           legend: {     //图例组件
@@ -341,6 +364,8 @@ angular.module('myApp.controllers')
           myChart.resize(); //使图表适应屏幕
         };
         myChart.setOption(option);
+        //隐藏查询条件
+        $scope.show_query_condition = false;
         $ionicLoading.hide();
       }, function (err) {
         $ionicLoading.hide();
@@ -365,11 +390,19 @@ angular.module('myApp.controllers')
       viewData.enableBack = true;
     });
 
+    //是否显示查询条件
+    $scope.show_query_condition = true;
+
     //是否显示查询结果
     $scope.show_query_result = false;
 
     $scope.condition = {
       year: new Date()
+    };
+
+    //查看和隐藏查询条件
+    $scope.toggleQueryCondition = function () {
+      $scope.show_query_condition = !$scope.show_query_condition;
     };
 
     $scope.query = function () {
@@ -397,12 +430,13 @@ angular.module('myApp.controllers')
         var option = {
           title: {      //标题组件
             text: '年现金流量分析',
+            subtext: '总金额:' + $filter('currency')(data.sumMoney, '￥', 2),
             x: 'center'
           },
           tooltip: {    //提示框组件
             trigger: 'axis', //触发类型 axis坐标轴 item单项
             formatter: function (params, ticket, callback) {
-              return params[0].name + '</br>' + params[0].seriesName + ' : ' + params[0].value +'元';
+              return params[0].name + '</br>' + params[0].seriesName + ' : ' + params[0].value + '元';
             }
           },
           legend: {     //图例组件
@@ -452,6 +486,8 @@ angular.module('myApp.controllers')
           myChart.resize(); //使图表适应屏幕
         };
         myChart.setOption(option);
+        //隐藏查询条件
+        $scope.show_query_condition = false;
         $ionicLoading.hide();
       }, function (err) {
         $ionicLoading.hide();

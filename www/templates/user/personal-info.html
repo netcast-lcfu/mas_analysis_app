@@ -1,0 +1,16 @@
+<ion-view title="个人信息">
+  <ion-content has-bouncing="true" overflow-scroll="false">
+    <ion-list>
+      <ion-item class="item item-text-wrap">
+        <div class="row row-center col-center">
+          欢迎您,<span ng-bind="loginUser.userName"></span>!
+        </div>
+      </ion-item>
+      <div class="padding">
+        <button class="button button-block button-positive" ng-click="loginOut()">
+          注销
+        </button>
+      </div>
+    </ion-list>
+  </ion-content>
+</ion-view>

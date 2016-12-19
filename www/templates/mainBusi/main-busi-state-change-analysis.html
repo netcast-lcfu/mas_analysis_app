@@ -1,41 +1,48 @@
 <ion-view view-title="主营业务状态变化分析">
   <ion-content class="padding">
     <div class="list">
-      <div class="item item-divider">查询条件</div>
-      <div class="item item-input item-select">
-        <div class="input-label">
-          行政区域:
+      <div class="item item-divider item-icon-right">
+        查询条件
+        <div ng-click="toggleQueryCondition()">
+          <i class="icon {{ show_query_condition ? 'ion-arrow-up-b' : 'ion-arrow-down-b' }}"></i>
         </div>
-        <select ng-model="condition.addrAdminArea"
-                ng-options="area.adminAreaName for area in addrAdminAreaData track by area.adminAreaId"></select>
       </div>
-      <div class="item item-input item-select">
-        <div class="input-label">
-          用户类型:
+      <div ng-if="show_query_condition">
+        <div class="item item-input item-select">
+          <div class="input-label">
+            行政区域:
+          </div>
+          <select ng-model="condition.addrAdminArea"
+                  ng-options="area.adminAreaName for area in addrAdminAreaData track by area.adminAreaId"></select>
         </div>
-        <select ng-model="condition.baseUserType"
-                ng-options="user.userTypeName for user in baseUserTypeData track by user.userTypeId"></select>
-      </div>
-      <div class="item item-icon-left" ion-datetime-picker date monday-first ng-model="condition.startActiveDate">
-        <span>开始月份:</span>
-        <i class="icon ion-ios-calendar-outline positive"></i>
-        <strong>{{condition.startActiveDate| date: "yyyy-MM"}}</strong>
-      </div>
-      <div class="item item-icon-left" ion-datetime-picker date monday-first ng-model="condition.endActiveDate">
-        <span>结束月份:</span>
-        <i class="icon ion-ios-calendar-outline positive"></i>
-        <strong>{{condition.endActiveDate| date: "yyyy-MM"}}</strong>
-      </div>
-      <div class="item item-text-wrap">
-        <a class="button button-block icon-left ion-search calm" ng-click="query()">查询</a>
-        <a class="button button-block icon-left ion-refresh dark" ng-click="resetData()">重置</a>
+        <div class="item item-input item-select">
+          <div class="input-label">
+            用户类型:
+          </div>
+          <select ng-model="condition.baseUserType"
+                  ng-options="user.userTypeName for user in baseUserTypeData track by user.userTypeId"></select>
+        </div>
+        <div class="item item-icon-left" ion-datetime-picker date monday-first ng-model="condition.startActiveDate">
+          <span>开始月份:</span>
+          <i class="icon ion-ios-calendar-outline positive"></i>
+          <strong>{{condition.startActiveDate| date: "yyyy-MM"}}</strong>
+        </div>
+        <div class="item item-icon-left" ion-datetime-picker date monday-first ng-model="condition.endActiveDate">
+          <span>结束月份:</span>
+          <i class="icon ion-ios-calendar-outline positive"></i>
+          <strong>{{condition.endActiveDate| date: "yyyy-MM"}}</strong>
+        </div>
+        <div class="item item-text-wrap">
+          <a class="button button-block icon-left ion-search calm" ng-click="query()">查询</a>
+          <a class="button button-block icon-left ion-refresh dark" ng-click="resetData()">重置</a>
+        </div>
       </div>
     </div>
     </div>
     <div ng-if="show_query_result" class="list">
-      <div class="item item-divider">查询结果展示:</div>
+      <div class="item item-divider">查询结果</div>
       <div class="item item-text-wrap">
-        <div id="mainBusiChart" style="width: 95%;height:660px;"></div>
+        <div id="mainBusiChart" style="width: 95%;height:480px;"></div>
       </div>
     </div>
   </ion-content>

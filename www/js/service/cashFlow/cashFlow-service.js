@@ -15,6 +15,7 @@ angular.module('myApp.services')
           console.log('CashFlowService getCashFlowInfo success');
           console.log(data);
           return {
+            sumMoney: data.sumMoney,
             legends: data.legends,
             pieDatas: data.pieDatas
           };
@@ -34,21 +35,22 @@ angular.module('myApp.services')
      * @param token
      * @param day
      */
-    var getCashFlowDayInfo = function (userId, token,day) {
+    var getCashFlowDayInfo = function (userId, token, day) {
       console.log('into CashFlowService getCashFlowDayInfo method...');
-      return ApiService.getCashFlowDayInfo(userId,token,day).then(function (data) {
-        if(Boolean(data.code) && data.code == 'success'){
+      return ApiService.getCashFlowDayInfo(userId, token, day).then(function (data) {
+        if (Boolean(data.code) && data.code == 'success') {
           console.log('CashFlowService getCashFlowDayInfo success');
           console.log(data);
           return {
-            xAxisData:data.xAxisData,
-            seriesData:data.seriesData
+            sumMoney: data.sumMoney,
+            xAxisData: data.xAxisData,
+            seriesData: data.seriesData
           };
-        }else{
+        } else {
           console.log('CashFlowService getCashFlowDayInfo invalid');
           return $q.reject(data.msg);
         }
-      },function (error) {
+      }, function (error) {
         console.log('CashFlowService getCashFlowDayInfo error');
         return $q.reject(error);
       });
@@ -60,21 +62,22 @@ angular.module('myApp.services')
      * @param token
      * @param month
      */
-    var getCashFlowMonthInfo = function (userId, token,month) {
+    var getCashFlowMonthInfo = function (userId, token, month) {
       console.log('into CashFlowService getCashFlowMonthInfo method...');
-      return ApiService.getCashFlowMonthInfo(userId,token,month).then(function (data) {
-        if(Boolean(data.code) && data.code == 'success'){
+      return ApiService.getCashFlowMonthInfo(userId, token, month).then(function (data) {
+        if (Boolean(data.code) && data.code == 'success') {
           console.log('CashFlowService getCashFlowMonthInfo success');
           console.log(data);
           return {
-            xAxisData:data.xAxisData,
-            seriesData:data.seriesData
+            sumMoney: data.sumMoney,
+            xAxisData: data.xAxisData,
+            seriesData: data.seriesData
           };
-        }else{
+        } else {
           console.log('CashFlowService getCashFlowMonthInfo invalid');
           return $q.reject(data.msg);
         }
-      },function (error) {
+      }, function (error) {
         console.log('CashFlowService getCashFlowMonthInfo error');
         return $q.reject(error);
       });
@@ -86,21 +89,22 @@ angular.module('myApp.services')
      * @param token
      * @param year
      */
-    var getCashFlowYearForMonthInfo = function (userId, token,year) {
+    var getCashFlowYearForMonthInfo = function (userId, token, year) {
       console.log('into CashFlowService getCashFlowYearForMonthInfo method...');
-      return ApiService.getCashFlowYearForMonthInfo(userId,token,year).then(function (data) {
-        if(Boolean(data.code) && data.code == 'success'){
+      return ApiService.getCashFlowYearForMonthInfo(userId, token, year).then(function (data) {
+        if (Boolean(data.code) && data.code == 'success') {
           console.log('CashFlowService getCashFlowYearForMonthInfo success');
           console.log(data);
           return {
-            xAxisData:data.xAxisData,
-            seriesData:data.seriesData
+            sumMoney: data.sumMoney,
+            xAxisData: data.xAxisData,
+            seriesData: data.seriesData
           };
-        }else{
+        } else {
           console.log('CashFlowService getCashFlowYearForMonthInfo invalid');
           return $q.reject(data.msg);
         }
-      },function (error) {
+      }, function (error) {
         console.log('CashFlowService getCashFlowYearForMonthInfo error');
         return $q.reject(error);
       });
@@ -112,21 +116,22 @@ angular.module('myApp.services')
      * @param token
      * @param year
      */
-    var getCashFlowYearForQuarterInfo = function (userId, token,year) {
+    var getCashFlowYearForQuarterInfo = function (userId, token, year) {
       console.log('into CashFlowService getCashFlowYearForQuarterInfo method...');
-      return ApiService.getCashFlowYearForQuarterInfo(userId,token,year).then(function (data) {
-        if(Boolean(data.code) && data.code == 'success'){
+      return ApiService.getCashFlowYearForQuarterInfo(userId, token, year).then(function (data) {
+        if (Boolean(data.code) && data.code == 'success') {
           console.log('CashFlowService getCashFlowYearForQuarterInfo success');
           console.log(data);
           return {
-            xAxisData:data.xAxisData,
-            seriesData:data.seriesData
+            sumMoney: data.sumMoney,
+            xAxisData: data.xAxisData,
+            seriesData: data.seriesData
           };
-        }else{
+        } else {
           console.log('CashFlowService getCashFlowYearForQuarterInfo invalid');
           return $q.reject(data.msg);
         }
-      },function (error) {
+      }, function (error) {
         console.log('CashFlowService getCashFlowYearForQuarterInfo error');
         return $q.reject(error);
       });
@@ -134,9 +139,9 @@ angular.module('myApp.services')
 
     return {
       getCashFlowInfo: getCashFlowInfo,
-      getCashFlowDayInfo:getCashFlowDayInfo,
-      getCashFlowMonthInfo:getCashFlowMonthInfo,
-      getCashFlowYearForMonthInfo:getCashFlowYearForMonthInfo,
-      getCashFlowYearForQuarterInfo:getCashFlowYearForQuarterInfo
+      getCashFlowDayInfo: getCashFlowDayInfo,
+      getCashFlowMonthInfo: getCashFlowMonthInfo,
+      getCashFlowYearForMonthInfo: getCashFlowYearForMonthInfo,
+      getCashFlowYearForQuarterInfo: getCashFlowYearForQuarterInfo
     };
   });

@@ -120,6 +120,12 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
         }
       }
     })
+    //个人信息
+    .state('personalInfo', {
+      url: '/personalInfo',
+      templateUrl: 'templates/user/personal-info.html',
+      controller: 'personalInfoCtrl'
+    })
     //主营业务状态变化分析
     .state('tab.mainBusiStateChangeAnalysis', {
       url: '/tab1/mainBusiStateChangeAnalysis',

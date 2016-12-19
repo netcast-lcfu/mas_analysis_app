@@ -2,7 +2,6 @@ angular.module('myApp.controllers')
 
 //登录控制器
   .controller('loginController', function ($scope, $state, $ionicPopup, $ionicLoading, UserService, $cordovaToast) {
-    $scope.title = 'loginController';
     $scope.user = {};
     $scope.show_psd = false;
     $scope.showPassword = function () {
@@ -46,4 +45,24 @@ angular.module('myApp.controllers')
         });
       }
     };
+  })
+  //
+  .controller('personalInfoCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, UserService, $cordovaToast) {
+    // 添加返回按钮
+    $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+      viewData.enableBack = true;
+    });
+
+    //获取登陆用户
+    $scope.loginUser = UserService.getLoginUser();
+
+    //退出
+    $scope.loginOut = function () {
+        UserService.loginOut().then(function (data) {
+          $cordovaToast.showShortBottom(data.msg);
+          $state.go("login");
+        }, function (err) {
+          $cordovaToast.showShortCenter(err);
+        });
+      };
   });

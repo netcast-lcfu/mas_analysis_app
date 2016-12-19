@@ -62,6 +62,7 @@ angular.module('myApp.services')
               //移除本地的凭据
               StorageUtil.remove("userId");
               StorageUtil.remove("token");
+              return data;
             }
           }, function (err) {
             return $q.reject(err);
