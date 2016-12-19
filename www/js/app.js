@@ -8,7 +8,7 @@ myApp.constant("ApiEndpoint", {
   url: 'http://10.1.1.89:8080/mas_analysis',
   //url: 'http://127.0.0.1:8080/mas_analysis',
   //访问超时时间6s
-  timeout: 30000
+  timeout: 26000
 });
 // //配置
 // myApp.config(function ($httpProvider) {
