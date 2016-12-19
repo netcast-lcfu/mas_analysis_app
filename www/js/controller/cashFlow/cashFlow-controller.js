@@ -424,8 +424,8 @@ angular.module('myApp.controllers')
           series: [{
             name:'现金流量',
             type:'line',
-            smooth:true,
-            itemStyle: {normal: {areaStyle: {type: 'default'}}},
+            smooth:true,//让曲线变平滑
+            itemStyle: {normal: {areaStyle: {type: 'default'}}}, //曲线平滑区域样式 默认
             data:data.seriesData
           }]
         };
