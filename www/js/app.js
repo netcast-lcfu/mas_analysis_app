@@ -10,8 +10,8 @@ var myApp = angular.module("myApp", ['ionic', 'ngCordova', 'ion-datetime-picker'
 myApp.constant("ApiEndpoint", {
   url: 'http://10.1.1.89:8080/mas_analysis',
   //url: 'http://127.0.0.1:8080/mas_analysis',
-  //访问超时时间26s
-  timeout: 26000
+  //访问超时时间6s
+  timeout: 6000
 });
 
 // //配置 $http访问带参的方式,暂时未用到
@@ -216,11 +216,11 @@ myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, $ionicLoa
     $ionicPickerI18n.ok = "确定";
     $ionicPickerI18n.cancel = "取消";
 
-    //状态栏
-    if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
-    }
+    //状态栏(与苹果原生状态栏冲突暂不用)
+    // if (window.StatusBar) {
+    //   // org.apache.cordova.statusbar required
+    //   StatusBar.styleDefault();
+    // }
 
     //本地加载token实现免登陆
     UserService.readLocalToken().then(function () {

@@ -380,7 +380,9 @@ appService.factory('ApiService', function ($http, $q, $filter, ApiEndpoint) {
         endActiveMonth: endActiveMonth,
         userTypeId: userTypeId
       },
-      timeout: ApiEndpoint.timeout
+      // /timeout: ApiEndpoint.timeout
+      //访问数据量较大
+      timeout: 26000
     };
 
     return $http.post(req.url, null, req)
