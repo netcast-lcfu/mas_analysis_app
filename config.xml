@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.netcast.mas_project" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.netcast.mas_analysis_app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>马鞍山大数据分析</name>
-  <description>&#xD;
-    中广有线&#xD;
+  <description>
+    中广有线马鞍山分公司大数据分析
   </description>
-  <author email="you@example.com" href="http://example.com.com/">&#xD;
-    上海南广&#xD;
+  <author email="lcfu@netcast.com.cn" href="http://www.netcast.com.cn/">
+    上海南广南广电子技术有限公司
   </author>
   <content src="index.html"/>
   <feature name="StatusBar">
