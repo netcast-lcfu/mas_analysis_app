@@ -195,15 +195,17 @@ appControllers.controller('cashFlowDayAnalysisCtrl', function ($scope, $filter, 
           }
         },
         legend: {     //图例组件
+          show: false,
           data: ['现金流量'],
           x: 'center',
           y: 'bottom',
           orient: 'horizontal' //布局走向 vertical 垂直 horizontal水平
         },
         grid: {       //直角坐标系内绘图网格
+          top: '80px',
           left: '2%',
           right: '40px',
-          bottom: '60px',
+          bottom: '30px',
           containLabel: true
         },
         toolbox: {     //工具栏
@@ -320,12 +322,14 @@ appControllers.controller('cashFlowMonthAnalysisCtrl', function ($scope, $filter
           }
         },
         legend: {     //图例组件
+          show: false,
           data: ['现金流量'],
           x: 'center',
           y: 'bottom',
           orient: 'horizontal' //布局走向 vertical 垂直 horizontal水平
         },
         grid: {       //直角坐标系内绘图网格
+          top: '80px',
           left: '2%',
           right: '40px',
           bottom: '60px',
@@ -443,12 +447,14 @@ appControllers.controller('cashFlowYearAnalysisCtrl', function ($scope, $filter,
           }
         },
         legend: {     //图例组件
+          show: false,
           data: ['现金流量'],
           x: 'center',
           y: 'bottom',
           orient: 'horizontal' //布局走向 vertical 垂直 horizontal水平
         },
         grid: {       //直角坐标系内绘图网格
+          top: '80px',
           left: '2%',
           right: '40px',
           bottom: '60px',
