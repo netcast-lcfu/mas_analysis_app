@@ -1,5 +1,6 @@
-var app = angular.module('app', []);
+var app = angular.module('myApp', []);
 
+//展示的控制器
 app.controller('lineCtrl', function ($scope) {
   $scope.legend = ["Berlin", "London", 'New York', 'Tokyo'];
   $scope.item = ['Jan', 'Feb', 'Mar', 'Apr', 'Mar', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -11,9 +12,10 @@ app.controller('lineCtrl', function ($scope) {
   ];
 });
 
-
+//折线图指令
 app.directive('line', function () {
   return {
+    //独立的作用域
     scope: {
       id: "@",
       legend: "=",
@@ -55,7 +57,7 @@ app.directive('line', function () {
             serie.push(item);
           }
           return serie;
-        }()
+        }
       };
       var myChart = echarts.init(document.getElementById($scope.id), 'macarons');
       myChart.setOption(option);

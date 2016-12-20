@@ -2,15 +2,19 @@
 angular.module('myApp.controllers', []);
 angular.module('myApp.services', []);
 angular.module("myApp.utils", []);
+
+//App全局模块
 var myApp = angular.module("myApp", ['ionic', 'ngCordova', 'ion-datetime-picker', 'myApp.controllers', 'myApp.services', 'myApp.utils']);
+
 //定义常量
 myApp.constant("ApiEndpoint", {
   url: 'http://10.1.1.89:8080/mas_analysis',
   //url: 'http://127.0.0.1:8080/mas_analysis',
-  //访问超时时间6s
+  //访问超时时间26s
   timeout: 26000
 });
-// //配置
+
+// //配置 $http访问带参的方式,暂时未用到
 // myApp.config(function ($httpProvider) {
 //   // 头部配置
 //   $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
@@ -58,6 +62,8 @@ myApp.constant("ApiEndpoint", {
 //     return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
 //   }];
 // });
+
+//初始化配置
 myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
   $ionicConfigProvider.platform.ios.tabs.style('standard');
@@ -81,6 +87,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
   $ionicConfigProvider.tabs.position('bottom');
   $ionicConfigProvider.tabs.style('');
 
+  //Angular Router路由配置
   $stateProvider
   //登陆
     .state('login', {
@@ -190,6 +197,8 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
   //主页
   $urlRouterProvider.otherwise('/tab/tab1');
 });
+
+//启动App的全局初始化工作
 myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, UserService, $ionicLoading, $cordovaToast, $ionicPickerI18n) {
   $ionicPlatform.ready(function () {
     //使用 cordova InAppBrowser 插件
@@ -207,10 +216,12 @@ myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, UserServi
     $ionicPickerI18n.ok = "确定";
     $ionicPickerI18n.cancel = "取消";
 
-    // if (window.StatusBar) {
-    //   // org.apache.cordova.statusbar required
-    //   StatusBar.styleDefault();
-    // }
+    //状态栏
+    if (window.StatusBar) {
+      // org.apache.cordova.statusbar required
+      StatusBar.styleDefault();
+    }
+
     //本地加载token实现免登陆
     UserService.readLocalToken().then(function () {
       console.log("isLogin:");
@@ -239,6 +250,8 @@ myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, UserServi
       $state.go("login");
     });
   });
+
+  //验证登录(tips:由于会引起循环堆栈溢出,未采用)
   //var needLoginView = ["myclass","mycomment","myfavorite","myquestion","orderlist"];//需要登录的页面state
   //没有登录跳往登录页面
   // $rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams, options) {
