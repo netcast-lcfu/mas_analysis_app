@@ -2,7 +2,18 @@ var appController = angular.module('myApp.controllers');
 
 //登录
 appController.controller('loginController', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaToast, UserService) {
-  $scope.user = {};
+
+  //初始化对象
+  $scope.user = {
+    username: '',
+    password: ''
+  };
+
+  // 隐藏返回按钮
+  $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+    viewData.enableBack = false;
+  });
+
   $scope.show_psd = false;
   $scope.showPassword = function () {
     $scope.show_psd = !$scope.show_psd;

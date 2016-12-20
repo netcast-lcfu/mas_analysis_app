@@ -8,7 +8,7 @@ var myApp = angular.module("myApp", ['ionic', 'ngCordova', 'ion-datetime-picker'
 
 //定义常量
 myApp.constant("ApiEndpoint", {
-  url: 'http://10.1.1.91:8080/mas_analysis',
+  url: 'http://211.141.224.40:8070/mas_analysis',
   //url: 'http://127.0.0.1:8080/mas_analysis',
   //访问超时时间6s
   timeout: 6000
@@ -80,6 +80,9 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
   $ionicConfigProvider.platform.ios.views.transition('ios');
   $ionicConfigProvider.platform.android.views.transition('android');
 
+  //全局禁用view缓存 及时刷新数据
+  //$ionicConfigProvider.views.maxCache(0);
+
   //导航栏标题居中
   $ionicConfigProvider.navBar.alignTitle('center');
 
@@ -92,6 +95,8 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
   //登陆
     .state('login', {
       url: '/login',
+      //禁用View缓存 避免用户信息被看到
+      cache: false,
       templateUrl: 'templates/user/login.html',
       controller: 'loginController'
     })
@@ -205,11 +210,14 @@ myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, $ionicLoa
     if (window.cordova && window.cordova.InAppBrowser) {
       window.open = window.cordova.InAppBrowser.open;
     }
+
+    //键盘的不同模式的支持
     //Hide the accessory bar by default (remove this to show the accessory bar above the keyboard for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
     }
+
     // 日期时间选择插件的本地化
     $ionicPickerI18n.weekdays = ["日", "一", "二", "三", "四", "五", "六"];
     $ionicPickerI18n.months = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
