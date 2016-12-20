@@ -1,7 +1,7 @@
 var appController = angular.module('myApp.controllers');
 
 //查询KPI完成进度
-appController.controller('queryKpiCompletedProgressCtrl', function ($scope, $ionicLoading, $cordovaToast, UserService, KpiService, ApiEndpoint) {
+appController.controller('queryKpiCompletedProgressCtrl', function ($scope, $ionicLoading, $cordovaToast, ApiEndpoint, UserService, KpiService) {
 
   // 添加返回按钮
   $scope.$on('$ionicView.beforeEnter', function (event, viewData) {

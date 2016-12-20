@@ -199,7 +199,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
 });
 
 //启动App的全局初始化工作
-myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, UserService, $ionicLoading, $cordovaToast, $ionicPickerI18n) {
+myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, $ionicLoading, $cordovaToast, $ionicPickerI18n, UserService) {
   $ionicPlatform.ready(function () {
     //使用 cordova InAppBrowser 插件
     if (window.cordova && window.cordova.InAppBrowser) {

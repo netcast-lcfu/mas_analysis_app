@@ -1,7 +1,7 @@
 var appController = angular.module('myApp.controllers');
 
 //登录
-appController.controller('loginController', function ($scope, $state, $ionicPopup, $ionicLoading, UserService, $cordovaToast) {
+appController.controller('loginController', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaToast, UserService) {
   $scope.user = {};
   $scope.show_psd = false;
   $scope.showPassword = function () {
