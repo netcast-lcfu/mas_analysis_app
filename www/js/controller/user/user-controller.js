@@ -1,7 +1,7 @@
 var appController = angular.module('myApp.controllers');
 
 //登录
-appController.controller('loginController', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaToast, UserService) {
+appController.controller('loginController', function ($rootScope,$scope, $state, $ionicPopup, $ionicLoading, $cordovaToast, UserService) {
 
   //初始化对象
   $scope.user = {
@@ -43,6 +43,7 @@ appController.controller('loginController', function ($scope, $state, $ionicPopu
         //   template: '登录成功!',
         //   duration: 1500
         // });
+        $rootScope.isLogin = true;
         $cordovaToast.showShortBottom("登录成功!");
         $state.go("tab.tab1");
       }, function (err) {

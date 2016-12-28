@@ -232,6 +232,7 @@ myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, $ionicLoa
 
     //本地加载token实现免登陆
     UserService.readLocalToken().then(function () {
+      $rootScope.isLogin = true;
       console.log("isLogin:");
       console.log(UserService.isLogin());
       if (UserService.isLogin()) {
@@ -247,8 +248,6 @@ myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, $ionicLoa
         //   duration: 1500
         // });
         $cordovaToast.showShortBottom("本地保存数据和服务器不同步,请重新登录!");
-        //清空浏览历史防止用户未登录点击返回前往首页
-        $ionicHistory.clearHistory();
         $state.go("login");
       }
     }, function (err) {
@@ -256,27 +255,20 @@ myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, $ionicLoa
       //   template: "之前未登录,或本地保存数据已过期,请重新登录!",
       //   duration: 1500
       // });
+      $rootScope.isLogin = false;
       $cordovaToast.showShortBottom(err);
-      $ionicHistory.clearHistory();
       $state.go("login");
     });
   });
 
   //验证登录(tips:由于会引起循环堆栈溢出,未采用)
-  //var needLoginView = ["myclass","mycomment","myfavorite","myquestion","orderlist"];//需要登录的页面state
+  var needLoginView = ["personalInfo","tab.mainBusiStateChangeAnalysis","tab.cashFlowChannelAnalysis","tab.cashFlowDayAnalysis","tab.cashFlowMonthAnalysis","tab.cashFlowYearAnalysis","tab.queryKpiCompletedProgress"];//需要登录的页面state
   //没有登录跳往登录页面
-  // $rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams, options) {
-  //   // if (needLoginView.indexOf(toState.name) >= 0 && UserService.isLogin) {//判断当前是否登录
-  //   //   $state.go("login");//跳转到登录页
-  //   //   event.preventDefault(); //阻止默认事件，即原本页面的加载
-  //   // }
-  //   // console.log("isLogin:");
-  //   // console.log(UserService.isLogin());
-  //   // if(!UserService.isLogin()) {//判断当前是否登录
-  //   //   $state.go("login");//已登录跳转到首页
-  //   //   event.preventDefault();//阻止模板解析的发生
-  //   // }
-  //
-  //
-  // });
+  $rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams, options) {
+    if (needLoginView.indexOf(toState.name) >= 0 && !$rootScope.isLogin) {//判断当前是否登录
+      $cordovaToast.showShortBottom("页面需要登录才能访问!");
+      $state.go("login");//跳转到登录页
+      event.preventDefault(); //阻止默认事件，即原本页面的加载
+    }
+  });
 });
