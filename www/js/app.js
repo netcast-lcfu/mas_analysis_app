@@ -148,6 +148,16 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
         }
       }
     })
+    //用户运营分析
+    .state('tab.operationDayAnalysis', {
+      url: '/tab1/operationDayAnalysis',
+      views: {
+        'tab-tab1': {
+          templateUrl: 'templates/mainBusi/operation-day-analysis.html',
+          controller: 'operationDayAnalysisCtrl'
+        }
+      }
+    })
     //现金缴费渠道分析
     .state('tab.cashFlowChannelAnalysis', {
       url: '/tab2/cashFlowChannelAnalysis',
@@ -261,12 +271,12 @@ myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, $ionicLoa
     });
   });
 
-  //验证登录(tips:由于会引起循环堆栈溢出,未采用)
+  //验证登录
   var needLoginView = ["personalInfo","tab.mainBusiStateChangeAnalysis","tab.cashFlowChannelAnalysis","tab.cashFlowDayAnalysis","tab.cashFlowMonthAnalysis","tab.cashFlowYearAnalysis","tab.queryKpiCompletedProgress"];//需要登录的页面state
   //没有登录跳往登录页面
   $rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams, options) {
     if (needLoginView.indexOf(toState.name) >= 0 && !$rootScope.isLogin) {//判断当前是否登录
-      $cordovaToast.showShortBottom("页面需要登录才能访问!");
+      $cordovaToast.showShortBottom("页面需要登录才能访问,请登录!");
       $state.go("login");//跳转到登录页
       event.preventDefault(); //阻止默认事件，即原本页面的加载
     }

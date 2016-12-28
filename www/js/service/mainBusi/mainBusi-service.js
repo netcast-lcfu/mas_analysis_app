@@ -63,7 +63,7 @@ appService.factory('MainBusiService', function ($q, $filter, ApiService) {
     console.log('into MainBusiService getBusiStateChangesAnalysisEcharsData method...');
     return ApiService.getBusiStateChangesAnalysisEcharsData(userId, token, adminAreaId, startActiveMonth, endActiveMonth, userTypeId).then(function (data) {
       if (Boolean(data.code) && data.code == 'success') {
-        console.log('CashFlowService getBusiStateChangesAnalysisEcharsData success');
+        console.log('MainBusiService getBusiStateChangesAnalysisEcharsData success');
         console.log(data);
         return {
           xAxisData: data.echartData.category,
@@ -80,9 +80,38 @@ appService.factory('MainBusiService', function ($q, $filter, ApiService) {
     });
   };
 
+  /**
+   * 获取用户运营报表数据
+   * @param userId
+   * @param token
+   * @returns {*}
+   */
+  var getOperationDayAnalysisEcharsData = function (userId, token, day) {
+    console.log('into MainBusiService getOperationDayAnalysisEcharsData method...');
+    return ApiService.getOperationDayAnalysisEcharsData(userId, token, day).then(function (data) {
+      if (Boolean(data.code) && data.code == 'success') {
+        console.log('MainBusiService getOperationDayAnalysisEcharsData success');
+        console.log(data);
+        return {
+          xAxisData: data.echartData.category,
+          legendData: data.echartData.legend,
+          seriesData: data.echartData.series
+        };
+      } else {
+        console.log('MainBusiService getOperationDayAnalysisEcharsData invalid');
+        return $q.reject(data.msg);
+      }
+    }, function (err) {
+      console.log('MainBusiService getOperationDayAnalysisEcharsData error');
+      return $q.reject(err);
+    });
+  };
+
+
   return {
     getBaseUserTypeToJson: getBaseUserTypeToJson,
     getAddrAdminAreaToJson: getAddrAdminAreaToJson,
-    getBusiStateChangesAnalysisEcharsData: getBusiStateChangesAnalysisEcharsData
+    getBusiStateChangesAnalysisEcharsData: getBusiStateChangesAnalysisEcharsData,
+    getOperationDayAnalysisEcharsData:getOperationDayAnalysisEcharsData
   };
 });

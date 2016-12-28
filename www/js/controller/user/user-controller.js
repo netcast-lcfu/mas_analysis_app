@@ -60,7 +60,7 @@ appController.controller('loginController', function ($rootScope,$scope, $state,
 });
 
 //个人信息
-appController.controller('personalInfoCtrl', function ($scope, $state,$ionicHistory,$ionicPopup, $ionicLoading, UserService, $cordovaToast) {
+appController.controller('personalInfoCtrl', function ($rootScope,$scope, $state,$ionicHistory,$ionicPopup, $ionicLoading, UserService, $cordovaToast) {
   // 添加返回按钮
   $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
     viewData.enableBack = true;
@@ -69,14 +69,30 @@ appController.controller('personalInfoCtrl', function ($scope, $state,$ionicHist
   //获取登陆用户
   $scope.loginUser = UserService.getLoginUser();
 
+  //退出登录提示框
+  function showConfirm() {
+    var confirmPopup = $ionicPopup.confirm({
+      title: '<strong>退出登录?</strong>',
+      template: '你确定要退出登录吗?',
+      okText: '退出',
+      cancelText: '取消'
+    });
+    confirmPopup.then(function (res) {
+      if (res) {
+        //ionic.Platform.exitApp();
+        UserService.loginOut().then(function (data) {
+          $cordovaToast.showShortBottom(data.msg);
+          $rootScope.isLogin = false;
+          $state.go("login");
+        }, function (err) {
+          $cordovaToast.showShortCenter(err);
+        });
+      }
+    });
+  }
+
   //退出
   $scope.loginOut = function () {
-    UserService.loginOut().then(function (data) {
-      $cordovaToast.showShortBottom(data.msg);
-      $ionicHistory.clearHistory();
-      $state.go("login");
-    }, function (err) {
-      $cordovaToast.showShortCenter(err);
-    });
+    showConfirm();
   };
 });

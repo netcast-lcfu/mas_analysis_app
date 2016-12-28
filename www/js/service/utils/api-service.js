@@ -404,6 +404,46 @@ appService.factory('ApiService', function ($http, $q, $filter, ApiEndpoint) {
   };
 
   /**
+   * 获取用户运营情况数据
+   * @param userId
+   * @param token
+   * @param day
+   * @returns {*}
+   */
+  var getOperationDayAnalysisEcharsData = function (userId, token, day) {
+    console.log("into api service getOperationDayAnalysisEcharsData method...");
+    var req = {
+      method: 'post',
+      url: ApiEndpoint.url + '/appMainBusiAction.do?method=getOperationDayAnalysisEcharsData',
+      params: {
+        userId: userId,
+        token: token,
+        day :day
+      },
+      // /timeout: ApiEndpoint.timeout
+      //访问数据量较大
+      timeout: 26000
+    };
+
+    return $http.post(req.url, null, req)
+      .then(function (response) {
+        console.log(response);
+        if (typeof response.data === 'object') {
+          console.log("api service getOperationDayAnalysisEcharsData success");
+          return response.data;
+        } else {
+          console.log("api service getOperationDayAnalysisEcharsData invalid");
+          // invalid response
+          return $q.reject(response.data);
+        }
+      }, function (error) {
+        console.log("api service getOperationDayAnalysisEcharsData error");
+        console.log(error);
+        return $q.reject('服务器连接超时,请检查网络!');
+      });
+  };
+
+  /**
    * 获取现金流量日分析数据
    * @param userId
    * @param token
@@ -567,6 +607,7 @@ appService.factory('ApiService', function ($http, $q, $filter, ApiEndpoint) {
     getBusiStatusToJson: getBusiStatusToJson,
     getAddrAdminAreaToJson: getAddrAdminAreaToJson,
     getBusiStateChangesAnalysisEcharsData: getBusiStateChangesAnalysisEcharsData,
+    getOperationDayAnalysisEcharsData:getOperationDayAnalysisEcharsData,
     getCashFlowDayInfo: getCashFlowDayInfo,
     getCashFlowMonthInfo: getCashFlowMonthInfo,
     getCashFlowYearForMonthInfo: getCashFlowYearForMonthInfo,

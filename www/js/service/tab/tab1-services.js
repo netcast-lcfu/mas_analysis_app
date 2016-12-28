@@ -5,8 +5,8 @@ appService.factory('Chats', function () {
   var chats = [{
     id: 0,
     icon: 'icon ion-android-stopwatch',
-    name: '每日运营分析',
-    url: 'tab1/mainBusiStateChangeAnalysis'
+    name: '每日运营报表',
+    url: 'tab1/operationDayAnalysis'
   }, {
     id: 1,
     icon: 'icon ion-ios-analytics',

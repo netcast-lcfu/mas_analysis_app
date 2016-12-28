@@ -1,7 +1,7 @@
-var appControllers = angular.module('myApp.controllers');
+var appController = angular.module('myApp.controllers');
 
 //现金流量渠道分析
-appControllers.controller('cashFlowChannelAnalysisCtrl', function ($scope, $filter, $ionicLoading, $cordovaToast, UserService, CashFlowService) {
+appController.controller('cashFlowChannelAnalysisCtrl', function ($scope, $filter, $ionicLoading, $cordovaToast, UserService, CashFlowService) {
 
   // 添加返回按钮
   $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
@@ -136,7 +136,7 @@ appControllers.controller('cashFlowChannelAnalysisCtrl', function ($scope, $filt
 });
 
 //现金流量日分析
-appControllers.controller('cashFlowDayAnalysisCtrl', function ($scope, $filter, $ionicLoading, $cordovaToast, UserService, CashFlowService) {
+appController.controller('cashFlowDayAnalysisCtrl', function ($scope, $filter, $ionicLoading, $cordovaToast, UserService, CashFlowService) {
 
   // 添加返回按钮
   $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
@@ -266,7 +266,7 @@ appControllers.controller('cashFlowDayAnalysisCtrl', function ($scope, $filter, 
 });
 
 //现金流量月分析
-appControllers.controller('cashFlowMonthAnalysisCtrl', function ($scope, $filter, $ionicLoading, $cordovaToast, UserService, CashFlowService) {
+appController.controller('cashFlowMonthAnalysisCtrl', function ($scope, $filter, $ionicLoading, $cordovaToast, UserService, CashFlowService) {
 
   // 添加返回按钮
   $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
@@ -391,7 +391,7 @@ appControllers.controller('cashFlowMonthAnalysisCtrl', function ($scope, $filter
 });
 
 //现金流量年分析
-appControllers.controller('cashFlowYearAnalysisCtrl', function ($scope, $filter, $ionicLoading, $cordovaToast, UserService, CashFlowService) {
+appController.controller('cashFlowYearAnalysisCtrl', function ($scope, $filter, $ionicLoading, $cordovaToast, UserService, CashFlowService) {
 
   // 添加返回按钮
   $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
