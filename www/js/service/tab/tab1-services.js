@@ -4,6 +4,11 @@ var appService = angular.module('myApp.services');
 appService.factory('Chats', function () {
   var chats = [{
     id: 0,
+    icon: 'icon ion-android-stopwatch',
+    name: '每日运营分析',
+    url: 'tab1/mainBusiStateChangeAnalysis'
+  }, {
+    id: 1,
     icon: 'icon ion-ios-analytics',
     name: '主营业务状态变化分析',
     url: 'tab1/mainBusiStateChangeAnalysis'

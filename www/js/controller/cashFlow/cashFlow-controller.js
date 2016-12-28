@@ -75,7 +75,7 @@ appControllers.controller('cashFlowChannelAnalysisCtrl', function ($scope, $filt
         },
         tooltip: {
           trigger: 'item',
-          formatter: "{a} <br/>{b} : {c} ({d}%)"
+          formatter: "{a} <br/> 渠道名称: {b} <br/> 金额:￥{c} <br/> 占比:({d}%)" //a:series名称 b:legend名称 c:series值 d:占比
         },
         toolbox: {     //工具栏
           show: false,
@@ -149,7 +149,8 @@ appControllers.controller('cashFlowDayAnalysisCtrl', function ($scope, $filter, 
   $scope.show_query_result = false;
 
   $scope.condition = {
-    day: new Date()
+    //默认查询日期为昨天
+    day: new Date(new Date().getTime() - 1000 * 60 * 60 * 24)
   };
 
   //查看和隐藏查询条件
@@ -259,7 +260,7 @@ appControllers.controller('cashFlowDayAnalysisCtrl', function ($scope, $filter, 
 
   //重置
   $scope.resetData = function () {
-    $scope.condition.day = new Date();
+    $scope.condition.day = new Date(new Date().getTime() - 1000 * 60 * 60 * 24);
   };
 
 });

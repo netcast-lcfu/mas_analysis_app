@@ -60,8 +60,8 @@ appController.controller('queryKpiCompletedProgressCtrl', function ($scope, $ion
 
     //月份数据(时段)
     $scope.periodData = periodDatas;
-    //默认选择当前月
-    $scope.condition.period = periodDatas[new Date().getMonth()];
+    //默认选择上一个月
+    $scope.condition.period = periodDatas[new Date().getMonth() > 0 ? new Date().getMonth() - 1 : 0];
   }, function (err) {
     console.log(err);
     // $ionicLoading.show({
@@ -301,7 +301,7 @@ appController.controller('queryKpiCompletedProgressCtrl', function ($scope, $ion
   $scope.resetData = function () {
     $scope.condition.area = adminAreaDatas[0];
     $scope.condition.year = yearDatas[0];
-    $scope.condition.period = periodDatas[new Date().getMonth()];
+    $scope.condition.period = periodDatas[new Date().getMonth() > 0 ? new Date().getMonth() - 1 : 0];
   };
 
 });

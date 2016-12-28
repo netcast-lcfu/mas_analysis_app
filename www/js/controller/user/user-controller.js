@@ -59,7 +59,7 @@ appController.controller('loginController', function ($scope, $state, $ionicPopu
 });
 
 //个人信息
-appController.controller('personalInfoCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, UserService, $cordovaToast) {
+appController.controller('personalInfoCtrl', function ($scope, $state,$ionicHistory,$ionicPopup, $ionicLoading, UserService, $cordovaToast) {
   // 添加返回按钮
   $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
     viewData.enableBack = true;
@@ -72,6 +72,7 @@ appController.controller('personalInfoCtrl', function ($scope, $state, $ionicPop
   $scope.loginOut = function () {
     UserService.loginOut().then(function (data) {
       $cordovaToast.showShortBottom(data.msg);
+      $ionicHistory.clearHistory();
       $state.go("login");
     }, function (err) {
       $cordovaToast.showShortCenter(err);

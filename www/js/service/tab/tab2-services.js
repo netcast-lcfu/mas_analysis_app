@@ -3,20 +3,25 @@ var appService = angular.module('myApp.services');
 //第二个选项卡列表数据
 appService.factory('Chats2', function () {
   var chats = [{
-    id: 0,
+    id: 1,
     icon: 'icon ion-ios-clock-outline',
-    name: '日现金流量分析',
+    name: '日收入分析',
     url: 'tab2/cashFlowDayAnalysis'
   }, {
-    id: 1,
+    id: 2,
     icon: 'icon ion-ios-calendar-outline',
-    name: '月现金流量分析',
+    name: '月收入分析',
     url: 'tab2/cashFlowMonthAnalysis'
   }, {
-    id: 2,
+    id: 3,
     icon: 'icon ion-ios-speedometer-outline',
-    name: '年现金流量分析',
+    name: '年收入分析',
     url: 'tab2/cashFlowYearAnalysis'
+  }, {
+    id: 4,
+    icon: 'icon ion-social-usd',
+    name: '缴费渠道分析',
+    url: 'tab2/cashFlowChannelAnalysis'
   }];
 
   return {

@@ -9,7 +9,7 @@ var myApp = angular.module("myApp", ['ionic', 'ngCordova', 'ion-datetime-picker'
 //定义常量
 myApp.constant("ApiEndpoint", {
   // url: 'http://211.141.224.40:8070/mas_analysis',
-  url: 'http://10.1.1.88:8080/mas_analysis',
+  url: 'http://10.1.1.93:8080/mas_analysis',
   //访问超时时间10s
   timeout: 10000
 });
@@ -247,6 +247,8 @@ myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, $ionicLoa
         //   duration: 1500
         // });
         $cordovaToast.showShortBottom("本地保存数据和服务器不同步,请重新登录!");
+        //清空浏览历史防止用户未登录点击返回前往首页
+        $ionicHistory.clearHistory();
         $state.go("login");
       }
     }, function (err) {
@@ -255,6 +257,7 @@ myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, $ionicLoa
       //   duration: 1500
       // });
       $cordovaToast.showShortBottom(err);
+      $ionicHistory.clearHistory();
       $state.go("login");
     });
   });
