@@ -70,7 +70,7 @@ appController.controller('personalInfoCtrl', function ($rootScope,$scope, $state
   $scope.loginUser = UserService.getLoginUser();
 
   //退出登录提示框
-  function showConfirm() {
+  function showExitConfirm() {
     var confirmPopup = $ionicPopup.confirm({
       title: '<strong>退出登录?</strong>',
       template: '你确定要退出登录吗?',
@@ -93,6 +93,6 @@ appController.controller('personalInfoCtrl', function ($rootScope,$scope, $state
 
   //退出
   $scope.loginOut = function () {
-    showConfirm();
+    showExitConfirm();
   };
 });

@@ -9,7 +9,7 @@ var myApp = angular.module("myApp", ['ionic', 'ngCordova', 'ion-datetime-picker'
 //定义常量
 myApp.constant("ApiEndpoint", {
   // url: 'http://211.141.224.40:8070/mas_analysis',
-  url: 'http://10.1.1.93:8080/mas_analysis',
+  url: 'http://10.1.1.95:8080/mas_analysis',
   //访问超时时间10s
   timeout: 10000
 });
