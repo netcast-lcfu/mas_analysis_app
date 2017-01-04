@@ -45,7 +45,7 @@ appController.controller('loginController', function ($rootScope,$scope, $state,
         // });
         $rootScope.isLogin = true;
         $cordovaToast.showShortBottom("登录成功!");
-        $state.go("tab.tab1");
+        $state.go("function.userNet");
       }, function (err) {
         $ionicLoading.hide();
         //登录失败

@@ -4,12 +4,14 @@ angular.module('myApp.services', []);
 angular.module("myApp.utils", []);
 
 //App全局模块
-var myApp = angular.module("myApp", ['ionic', 'ngCordova', 'ion-datetime-picker', 'myApp.controllers', 'myApp.services', 'myApp.utils']);
+var myApp = angular.module("myApp", ['ionic', 'ngCordova', 'myApp.controllers', 'myApp.services', 'myApp.utils']);
+//var myApp = angular.module("myApp", ['ionic', 'ngCordova', 'ion-datetime-picker', 'myApp.controllers', 'myApp.services', 'myApp.utils']);
+
 
 //定义常量
 myApp.constant("ApiEndpoint", {
-  // url: 'http://211.141.224.40:8070/mas_analysis',
-  url: 'http://10.1.1.95:8080/mas_analysis',
+  url: 'http://211.141.224.40:8070/mas_analysis',
+  //url: 'http://10.1.1.95:8080/mas_analysis',
   //访问超时时间10s
   timeout: 10000
 });
@@ -100,121 +102,156 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
       templateUrl: 'templates/user/login.html',
       controller: 'loginController'
     })
-    .state('tab', {
-      url: "/tab",
-      abstract: true,
-      templateUrl: 'templates/tab/tabs.html'
-    })
-    .state('tab.tab1', {
-      url: '/tab1',
-      views: {
-        'tab-tab1': {
-          templateUrl: 'templates/tab/tab-tab1.html',
-          controller: 'tab1Controller'
-        }
-      }
-    })
-    .state('tab.tab2', {
-      url: '/tab2',
-      views: {
-        'tab-tab2': {
-          templateUrl: 'templates/tab/tab-tab2.html',
-          controller: 'tab2Controller'
-        }
-      }
-    })
-    .state('tab.tab3', {
-      url: '/tab3',
-      views: {
-        'tab-tab3': {
-          templateUrl: 'templates/tab/tab-tab3.html',
-          controller: 'tab3Controller'
-        }
-      }
-    })
     //个人信息
     .state('personalInfo', {
       url: '/personalInfo',
       templateUrl: 'templates/user/personal-info.html',
       controller: 'personalInfoCtrl'
     })
-    //主营业务状态变化分析
-    .state('tab.mainBusiStateChangeAnalysis', {
-      url: '/tab1/mainBusiStateChangeAnalysis',
+
+    .state('function', {
+      url: "/function",
+      abstract: true,
+      templateUrl: 'templates/functions/functions.html'
+    })
+    .state('function.userNet', {
+      url: '/userNet',
       views: {
-        'tab-tab1': {
-          templateUrl: 'templates/mainBusi/main-busi-state-change-analysis.html',
-          controller: 'mainBusiStateChangeAnalysisCtrl'
+        'function-userNet': {
+          templateUrl: 'templates/functions/user-net.html',
+          controller: 'userNetCtrl'
         }
       }
     })
-    //用户运营分析
-    .state('tab.operationDayAnalysis', {
-      url: '/tab1/operationDayAnalysis',
+    .state('function.cashFlow', {
+      url: '/cashFlow',
       views: {
-        'tab-tab1': {
-          templateUrl: 'templates/mainBusi/operation-day-analysis.html',
-          controller: 'operationDayAnalysisCtrl'
+        'function-cashFlow': {
+          templateUrl: 'templates/tab/cash-flow.html',
+          controller: 'cashFlowCtrl'
         }
       }
     })
-    //现金缴费渠道分析
-    .state('tab.cashFlowChannelAnalysis', {
-      url: '/tab2/cashFlowChannelAnalysis',
+    .state('function.userDevelop', {
+      url: '/userDevelop',
       views: {
-        'tab-tab2': {
-          templateUrl: 'templates/cashFlow/cash-flow-channel-analysis.html',
-          controller: 'cashFlowChannelAnalysisCtrl'
+        'function-userDevelop': {
+          templateUrl: 'templates/tab/user-develop.html',
+          controller: 'userDevelopCtrl'
         }
       }
     })
-    //现金流量日分析
-    .state('tab.cashFlowDayAnalysis', {
-      url: '/tab2/cashFlowDayAnalysis',
-      views: {
-        'tab-tab2': {
-          templateUrl: 'templates/cashFlow/cash-flow-day-analysis.html',
-          controller: 'cashFlowDayAnalysisCtrl'
-        }
-      }
-    })
-    //现金流量月分析
-    .state('tab.cashFlowMonthAnalysis', {
-      url: '/tab2/cashFlowMonthAnalysis',
-      views: {
-        'tab-tab2': {
-          templateUrl: 'templates/cashFlow/cash-flow-month-analysis.html',
-          controller: 'cashFlowMonthAnalysisCtrl'
-        }
-      }
-    })
-    //现金流量年分析
-    .state('tab.cashFlowYearAnalysis', {
-      url: '/tab2/cashFlowYearAnalysis',
-      views: {
-        'tab-tab2': {
-          templateUrl: 'templates/cashFlow/cash-flow-year-analysis.html',
-          controller: 'cashFlowYearAnalysisCtrl'
-        }
-      }
-    })
-    //KPI完成进度查询
-    .state('tab.queryKpiCompletedProgress', {
-      url: '/tab3/queryKpiCompletedProgress',
-      views: {
-        'tab-tab3': {
-          templateUrl: 'templates/kpi/query-kpi-completed-progress.html',
-          controller: 'queryKpiCompletedProgressCtrl'
-        }
-      }
-    })
+
+    // .state('tab', {
+    //   url: "/tab",
+    //   abstract: true,
+    //   templateUrl: 'templates/tab/tabs.html'
+    // })
+    // .state('tab.tab1', {
+    //   url: '/tab1',
+    //   views: {
+    //     'tab-tab1': {
+    //       templateUrl: 'templates/tab/tab-tab1.html',
+    //       controller: 'tab1Controller'
+    //     }
+    //   }
+    // })
+    // .state('tab.tab2', {
+    //   url: '/tab2',
+    //   views: {
+    //     'tab-tab2': {
+    //       templateUrl: 'templates/tab/tab-tab2.html',
+    //       controller: 'tab2Controller'
+    //     }
+    //   }
+    // })
+    // .state('tab.tab3', {
+    //   url: '/tab3',
+    //   views: {
+    //     'tab-tab3': {
+    //       templateUrl: 'templates/tab/tab-tab3.html',
+    //       controller: 'tab3Controller'
+    //     }
+    //   }
+    // })
+
+    // //主营业务状态变化分析
+    // .state('tab.mainBusiStateChangeAnalysis', {
+    //   url: '/tab1/mainBusiStateChangeAnalysis',
+    //   views: {
+    //     'tab-tab1': {
+    //       templateUrl: 'templates/mainBusi/main-busi-state-change-analysis.html',
+    //       controller: 'mainBusiStateChangeAnalysisCtrl'
+    //     }
+    //   }
+    // })
+    // //用户运营分析
+    // .state('tab.operationDayAnalysis', {
+    //   url: '/tab1/operationDayAnalysis',
+    //   views: {
+    //     'tab-tab1': {
+    //       templateUrl: 'templates/mainBusi/operation-day-analysis.html',
+    //       controller: 'operationDayAnalysisCtrl'
+    //     }
+    //   }
+    // })
+    // //现金缴费渠道分析
+    // .state('tab.cashFlowChannelAnalysis', {
+    //   url: '/tab2/cashFlowChannelAnalysis',
+    //   views: {
+    //     'tab-tab2': {
+    //       templateUrl: 'templates/cashFlow/cash-flow-channel-analysis.html',
+    //       controller: 'cashFlowChannelAnalysisCtrl'
+    //     }
+    //   }
+    // })
+    // //现金流量日分析
+    // .state('tab.cashFlowDayAnalysis', {
+    //   url: '/tab2/cashFlowDayAnalysis',
+    //   views: {
+    //     'tab-tab2': {
+    //       templateUrl: 'templates/cashFlow/cash-flow-day-analysis.html',
+    //       controller: 'cashFlowDayAnalysisCtrl'
+    //     }
+    //   }
+    // })
+    // //现金流量月分析
+    // .state('tab.cashFlowMonthAnalysis', {
+    //   url: '/tab2/cashFlowMonthAnalysis',
+    //   views: {
+    //     'tab-tab2': {
+    //       templateUrl: 'templates/cashFlow/cash-flow-month-analysis.html',
+    //       controller: 'cashFlowMonthAnalysisCtrl'
+    //     }
+    //   }
+    // })
+    // //现金流量年分析
+    // .state('tab.cashFlowYearAnalysis', {
+    //   url: '/tab2/cashFlowYearAnalysis',
+    //   views: {
+    //     'tab-tab2': {
+    //       templateUrl: 'templates/cashFlow/cash-flow-year-analysis.html',
+    //       controller: 'cashFlowYearAnalysisCtrl'
+    //     }
+    //   }
+    // })
+    // //KPI完成进度查询
+    // .state('tab.queryKpiCompletedProgress', {
+    //   url: '/tab3/queryKpiCompletedProgress',
+    //   views: {
+    //     'tab-tab3': {
+    //       templateUrl: 'templates/kpi/query-kpi-completed-progress.html',
+    //       controller: 'queryKpiCompletedProgressCtrl'
+    //     }
+    //   }
+    // })
   ;
   //主页
-  $urlRouterProvider.otherwise('/tab/tab1');
+  $urlRouterProvider.otherwise('/login');
 });
 
 //启动App的全局初始化工作
-myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, $ionicLoading, $cordovaToast, $ionicPickerI18n, UserService) {
+myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, $ionicLoading, $cordovaToast, UserService) {
   $ionicPlatform.ready(function () {
     //使用 cordova InAppBrowser 插件
     if (window.cordova && window.cordova.InAppBrowser) {
@@ -228,11 +265,11 @@ myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, $ionicLoa
       cordova.plugins.Keyboard.disableScroll(true);
     }
 
-    // 日期时间选择插件的本地化
-    $ionicPickerI18n.weekdays = ["日", "一", "二", "三", "四", "五", "六"];
-    $ionicPickerI18n.months = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
-    $ionicPickerI18n.ok = "确定";
-    $ionicPickerI18n.cancel = "取消";
+    // // 日期时间选择插件的本地化
+    // $ionicPickerI18n.weekdays = ["日", "一", "二", "三", "四", "五", "六"];
+    // $ionicPickerI18n.months = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
+    // $ionicPickerI18n.ok = "确定";
+    // $ionicPickerI18n.cancel = "取消";
 
     //状态栏(与苹果原生状态栏冲突暂不用)
     // if (window.StatusBar) {
@@ -251,7 +288,7 @@ myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, $ionicLoa
         //   template: "登录成功!",
         //   duration: 1500
         // });
-        $state.go("tab.tab1");
+        $state.go("function.userNet");
       } else {
         // $ionicLoading.show({
         //   template: "本地保存数据和服务器不同步,请重新登录!",
@@ -272,9 +309,9 @@ myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, $ionicLoa
   });
 
   //验证登录
-  var needLoginView = ["personalInfo","tab.mainBusiStateChangeAnalysis","tab.cashFlowChannelAnalysis","tab.cashFlowDayAnalysis","tab.cashFlowMonthAnalysis","tab.cashFlowYearAnalysis","tab.queryKpiCompletedProgress"];//需要登录的页面state
+  var needLoginView = ["personalInfo", "function.userNet", "function.cashFlow", "function.userDevelop"];//需要登录的页面state
   //没有登录跳往登录页面
-  $rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams, options) {
+  $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams, options) {
     if (needLoginView.indexOf(toState.name) >= 0 && !$rootScope.isLogin) {//判断当前是否登录
       $cordovaToast.showShortBottom("页面需要登录才能访问,请登录!");
       $state.go("login");//跳转到登录页

@@ -595,6 +595,114 @@ appService.factory('ApiService', function ($http, $q, $filter, ApiEndpoint) {
       });
   };
 
+  /**
+   * 获取近7日用户净增信息
+   * @param userId
+   * @param token
+   * @returns {*}
+   */
+  var getUserNetDayInfoEchartsData = function (userId, token) {
+    console.log("into api service getUserNetDayInfoEchartsData method...");
+    var req = {
+      method: 'post',
+      url: ApiEndpoint.url + '/appUserNetAction.do?method=getUserNetDayInfoEchartsData',
+      params: {
+        userId: userId,
+        token: token
+      },
+      timeout: ApiEndpoint.timeout
+    };
+
+    return $http.post(req.url, null, req)
+      .then(function (response) {
+        console.log(response);
+        if (typeof response.data === 'object') {
+          console.log("api service getUserNetDayInfoEchartsData success");
+          return response.data;
+        } else {
+          console.log("api service getUserNetDayInfoEchartsData invalid");
+          // invalid response
+          return $q.reject(response.data);
+        }
+      }, function (error) {
+        console.log("api service getUserNetDayInfoEchartsData error");
+        console.log(error);
+        return $q.reject('服务器连接超时,请检查网络!');
+      });
+  };
+
+  /**
+   * 获取近7周用户净增信息
+   * @param userId
+   * @param token
+   * @returns {*}
+   */
+  var getUserNetWeekInfoEchartsData = function (userId, token) {
+    console.log("into api service getUserNetWeekInfoEchartsData method...");
+    var req = {
+      method: 'post',
+      url: ApiEndpoint.url + '/appUserNetAction.do?method=getUserNetWeekInfoEchartsData',
+      params: {
+        userId: userId,
+        token: token
+      },
+      timeout: ApiEndpoint.timeout
+    };
+
+    return $http.post(req.url, null, req)
+      .then(function (response) {
+        console.log(response);
+        if (typeof response.data === 'object') {
+          console.log("api service getUserNetWeekInfoEchartsData success");
+          return response.data;
+        } else {
+          console.log("api service getUserNetWeekInfoEchartsData invalid");
+          // invalid response
+          return $q.reject(response.data);
+        }
+      }, function (error) {
+        console.log("api service getUserNetWeekInfoEchartsData error");
+        console.log(error);
+        return $q.reject('服务器连接超时,请检查网络!');
+      });
+  };
+
+  /**
+   * 获取近7月用户净增信息
+   * @param userId
+   * @param token
+   * @returns {*}
+   */
+  var getUserNetMonthInfoEchartsData = function (userId, token) {
+    console.log("into api service getUserNetMonthInfoEchartsData method...");
+    var req = {
+      method: 'post',
+      url: ApiEndpoint.url + '/appUserNetAction.do?method=getUserNetMonthInfoEchartsData',
+      params: {
+        userId: userId,
+        token: token
+      },
+      timeout: ApiEndpoint.timeout
+    };
+
+    return $http.post(req.url, null, req)
+      .then(function (response) {
+        console.log(response);
+        if (typeof response.data === 'object') {
+          console.log("api service getUserNetMonthInfoEchartsData success");
+          return response.data;
+        } else {
+          console.log("api service getUserNetMonthInfoEchartsData invalid");
+          // invalid response
+          return $q.reject(response.data);
+        }
+      }, function (error) {
+        console.log("api service getUserNetMonthInfoEchartsData error");
+        console.log(error);
+        return $q.reject('服务器连接超时,请检查网络!');
+      });
+  };
+
   return {
     login: login,
     getUserInfo: getUserInfo,
@@ -611,7 +719,10 @@ appService.factory('ApiService', function ($http, $q, $filter, ApiEndpoint) {
     getCashFlowDayInfo: getCashFlowDayInfo,
     getCashFlowMonthInfo: getCashFlowMonthInfo,
     getCashFlowYearForMonthInfo: getCashFlowYearForMonthInfo,
-    getCashFlowYearForQuarterInfo: getCashFlowYearForQuarterInfo
+    getCashFlowYearForQuarterInfo: getCashFlowYearForQuarterInfo,
+    getUserNetDayInfoEchartsData:getUserNetDayInfoEchartsData,
+    getUserNetWeekInfoEchartsData:getUserNetWeekInfoEchartsData,
+    getUserNetMonthInfoEchartsData:getUserNetMonthInfoEchartsData
   }
 });
 
