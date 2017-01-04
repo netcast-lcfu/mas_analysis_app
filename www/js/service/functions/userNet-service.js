@@ -69,7 +69,7 @@ appService.factory('UserNetService', function ($q, $filter, ApiService) {
    */
   var getUserNetMonthInfoEchartsData = function (userId, token) {
     console.log('into UserNetService getUserNetMonthInfoEchartsData method...');
-    return ApiService.getUserNetWeekInfoEchartsData(userId, token).then(function (data) {
+    return ApiService.getUserNetMonthInfoEchartsData(userId, token).then(function (data) {
       if (Boolean(data.code) && data.code == 'success') {
         console.log('UserNetService getUserNetMonthInfoEchartsData success');
         console.log(data);
