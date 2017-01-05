@@ -83,7 +83,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
   $ionicConfigProvider.platform.android.views.transition('android');
 
   //全局禁用view缓存 及时刷新数据
-  //$ionicConfigProvider.views.maxCache(0);
+  // $ionicConfigProvider.views.maxCache(0);
 
   //导航栏标题居中
   $ionicConfigProvider.navBar.alignTitle('center');

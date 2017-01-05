@@ -2,10 +2,8 @@ var appController = angular.module('myApp.controllers');
 
 appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading, $cordovaToast, UserService, UserNetService) {
 
-  queryDayUserNetInfo();
-
   $scope.flag = 'day';
-
+  queryDayUserNetInfo();
   $scope.queryDayUserNetInfo = queryDayUserNetInfo;
   $scope.queryWeekUserNetInfo = queryWeekUserNetInfo;
   $scope.queryMonthUserNetInfo = queryMonthUserNetInfo;
@@ -113,6 +111,15 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
       ],
       series: data.echartData1.series
     };
+    //柱状图显示数据
+    for (var index = 0, size = option1.series.length; index < size; index++) {
+      option1.series[index].label = {
+        normal: {
+          show: true,
+          position: 'top'
+        }
+      };
+    }
     window.onresize = function () {
       myChart1.resize(); //使图表适应屏幕
     };
@@ -141,7 +148,7 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
         x: 'center',//水平位置
         y: 'top',//垂直位置
         orient: 'horizontal', //布局走向 vertical 垂直 horizontal水平
-        data: data.echartData1.legend
+        data: data.echartData2.legend
       },
       grid: {
         left: '2%',
@@ -153,7 +160,7 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
         {
           type: 'category',
           name: xAxisLable,
-          data: data.echartData1.category
+          data: data.echartData2.category
         }
       ],
       yAxis: [
@@ -162,8 +169,17 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
           name: '净增用户'
         }
       ],
-      series: data.echartData1.series
+      series: data.echartData2.series
     };
+    //柱状图显示数据
+    for (var index = 0, size = option2.series.length; index < size; index++) {
+      option2.series[index].label = {
+        normal: {
+          show: true,
+          position: 'top'
+        }
+      };
+    }
     window.onresize = function () {
       myChart2.resize(); //使图表适应屏幕
     };
@@ -192,7 +208,7 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
         x: 'center',//水平位置
         y: 'top',//垂直位置
         orient: 'horizontal', //布局走向 vertical 垂直 horizontal水平
-        data: data.echartData1.legend
+        data: data.echartData3.legend
       },
       grid: {
         left: '2%',
@@ -204,7 +220,7 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
         {
           type: 'category',
           name: xAxisLable,
-          data: data.echartData1.category
+          data: data.echartData3.category
         }
       ],
       yAxis: [
@@ -213,8 +229,17 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
           name: '净增用户'
         }
       ],
-      series: data.echartData1.series
+      series: data.echartData3.series
     };
+    //柱状图显示数据
+    for (var index = 0, size = option3.series.length; index < size; index++) {
+      option3.series[index].label = {
+        normal: {
+          show: true,
+          position: 'top'
+        }
+      };
+    }
     window.onresize = function () {
       myChart3.resize(); //使图表适应屏幕
     };
@@ -243,7 +268,7 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
         x: 'center',//水平位置
         y: 'top',//垂直位置
         orient: 'horizontal', //布局走向 vertical 垂直 horizontal水平
-        data: data.echartData1.legend
+        data: data.echartData4.legend
       },
       grid: {
         left: '2%',
@@ -255,7 +280,7 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
         {
           type: 'category',
           name: xAxisLable,
-          data: data.echartData1.category
+          data: data.echartData4.category
         }
       ],
       yAxis: [
@@ -264,8 +289,17 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
           name: '净增用户'
         }
       ],
-      series: data.echartData1.series
+      series: data.echartData4.series
     };
+    //柱状图显示数据
+    for (var index = 0, size = option4.series.length; index < size; index++) {
+      option4.series[index].label = {
+        normal: {
+          show: true,
+          position: 'top'
+        }
+      };
+    }
     window.onresize = function () {
       myChart4.resize(); //使图表适应屏幕
     };
@@ -294,7 +328,7 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
         x: 'center',//水平位置
         y: 'top',//垂直位置
         orient: 'horizontal', //布局走向 vertical 垂直 horizontal水平
-        data: data.echartData1.legend
+        data: data.echartData5.legend
       },
       grid: {
         left: '2%',
@@ -306,7 +340,7 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
         {
           type: 'category',
           name: xAxisLable,
-          data: data.echartData1.category
+          data: data.echartData5.category
         }
       ],
       yAxis: [
@@ -315,8 +349,17 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
           name: '净增用户'
         }
       ],
-      series: data.echartData1.series
+      series: data.echartData5.series
     };
+    //柱状图显示数据
+    for (var index = 0, size = option5.series.length; index < size; index++) {
+      option5.series[index].label = {
+        normal: {
+          show: true,
+          position: 'top'
+        }
+      };
+    }
     window.onresize = function () {
       myChart5.resize(); //使图表适应屏幕
     };

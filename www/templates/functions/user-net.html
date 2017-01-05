@@ -2,19 +2,25 @@
   <ion-nav-buttons side="right">
     <button class="button" ui-sref="personalInfo">个人信息</button>
   </ion-nav-buttons>
-  <ion-content>
-    <ion-refresher pulling-text="下拉刷新" on-refresh="deRefresh()"></ion-refresher>
+  <ion-header-bar class="bar-subheader" style="height: 56px;">
     <div class="row">
       <div class="col">
-        <button class="button button-block" ng-click="queryDayUserNetInfo()">日</button>
+        <div class="col-demo main-select" ng-class="{activity : flag == 'day'}" ng-click="queryDayUserNetInfo()">日</div>
       </div>
       <div class="col">
-        <button class="button button-block" ng-click="queryWeekUserNetInfo()">周</button>
+        <div class="col-demo main-select" ng-class="{activity : flag == 'week'}"
+             ng-click="queryWeekUserNetInfo()">周
+        </div>
       </div>
       <div class="col">
-        <button class="button button-block" ng-click="queryMonthUserNetInfo()">月</button>
+        <div class="col-demo main-select" ng-class="{activity : flag == 'month'}"
+             ng-click="queryMonthUserNetInfo()">月
+        </div>
       </div>
     </div>
+  </ion-header-bar>
+  <ion-content has-bouncing="false" overflow-scroll="false">
+    <ion-refresher pulling-text="下拉刷新" on-refresh="deRefresh()"></ion-refresher>
     <div class="list">
       <div class="item item-text-wrap">
         <div id="userNetChart1" style="width: 95%;height:260px;"></div>
@@ -30,17 +36,6 @@
       </div>
       <div class="item item-text-wrap">
         <div id="userNetChart5" style="width: 95%;height:260px;"></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <button class="button button-block" ng-click="queryDayUserNetInfo()">日</button>
-      </div>
-      <div class="col">
-        <button class="button button-block" ng-click="queryWeekUserNetInfo()">周</button>
-      </div>
-      <div class="col">
-        <button class="button button-block" ng-click="queryMonthUserNetInfo()">月</button>
       </div>
     </div>
   </ion-content>
