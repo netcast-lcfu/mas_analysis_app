@@ -1,148 +1,117 @@
 var appService = angular.module('myApp.services');
 
-appService.factory('CashFlowService', function ($q, $filter, ApiService) {
+appService.factory('CashFlowFuncService', function ($q, $filter, ApiService) {
   /**
-   * 获取现金流量渠道分析
+   * 获取当日现金流信息
    * @param userId
    * @param token
-   * @param startPayDate
-   * @param endPayDate
    * @returns {*}
    */
-  var getCashFlowInfo = function (userId, token, startPayDate, endPayDate) {
-    console.log('into CashFlowService getCashFlowInfo method...');
-    return ApiService.getCashFlowInfo(userId, token, startPayDate, endPayDate).then(function (data) {
+  var getTodayCashFlowInfo = function (userId, token) {
+    console.log('into CashFlowFuncService getTodayCashFlowInfo method...');
+    return ApiService.getTodayCashFlowInfo(userId, token).then(function (data) {
       if (Boolean(data.code) && data.code == 'success') {
-        console.log('CashFlowService getCashFlowInfo success');
+        console.log('CashFlowFuncService getTodayCashFlowInfo success');
         console.log(data);
         return {
-          sumMoney: data.sumMoney,
-          legends: data.legends,
-          pieDatas: data.pieDatas
+          legends: data.legends,//缴费图例
+          pieDatas: data.pieDatas //缴费饼状图数据
         };
       } else {
-        console.log('CashFlowService getCashFlowInfo invalid');
+        console.log('CashFlowFuncService getTodayCashFlowInfo invalid');
         return $q.reject(data.msg);
       }
     }, function (err) {
-      console.log('CashFlowService getCashFlowInfo error');
+      console.log('CashFlowFuncService getTodayCashFlowInfo error');
       return $q.reject(err);
     });
   };
 
   /**
-   * 获取日现金流量分析
+   * 查询日流量信息
    * @param userId
    * @param token
-   * @param day
+   * @returns {*}
    */
-  var getCashFlowDayInfo = function (userId, token, day) {
-    console.log('into CashFlowService getCashFlowDayInfo method...');
-    return ApiService.getCashFlowDayInfo(userId, token, day).then(function (data) {
+  var getDayCashFlowInfo = function (userId, token) {
+    console.log('into CashFlowFuncService getDayCashFlowInfo method...');
+    return ApiService.getDayCashFlowInfo(userId, token).then(function (data) {
       if (Boolean(data.code) && data.code == 'success') {
-        console.log('CashFlowService getCashFlowDayInfo success');
+        console.log('CashFlowFuncService getDayCashFlowInfo success');
         console.log(data);
         return {
-          sumMoney: data.sumMoney,
-          xAxisData: data.xAxisData,
-          seriesData: data.seriesData
+          echartData1: data.echartData1, //营业厅
+          echartData2: data.echartData2, //代收代扣
+          echartData9: data.echartData9 //其他
         };
       } else {
-        console.log('CashFlowService getCashFlowDayInfo invalid');
+        console.log('CashFlowFuncService getDayCashFlowInfo invalid');
         return $q.reject(data.msg);
       }
-    }, function (error) {
-      console.log('CashFlowService getCashFlowDayInfo error');
-      return $q.reject(error);
+    }, function (err) {
+      console.log('CashFlowFuncService getDayCashFlowInfo error');
+      return $q.reject(err);
     });
   };
 
   /**
-   * 获取月现金流量分析
+   * 查询周流量信息
    * @param userId
    * @param token
-   * @param month
+   * @returns {*}
    */
-  var getCashFlowMonthInfo = function (userId, token, month) {
-    console.log('into CashFlowService getCashFlowMonthInfo method...');
-    return ApiService.getCashFlowMonthInfo(userId, token, month).then(function (data) {
+  var getWeekCashFlowInfo = function (userId, token) {
+    console.log('into CashFlowFuncService getWeekCashFlowInfo method...');
+    return ApiService.getWeekCashFlowInfo(userId, token).then(function (data) {
       if (Boolean(data.code) && data.code == 'success') {
-        console.log('CashFlowService getCashFlowMonthInfo success');
+        console.log('CashFlowFuncService getWeekCashFlowInfo success');
         console.log(data);
         return {
-          sumMoney: data.sumMoney,
-          xAxisData: data.xAxisData,
-          seriesData: data.seriesData
+          echartData1: data.echartData1, //营业厅
+          echartData2: data.echartData2, //代收代扣
+          echartData9: data.echartData9 //其他
         };
       } else {
-        console.log('CashFlowService getCashFlowMonthInfo invalid');
+        console.log('CashFlowFuncService getWeekCashFlowInfo invalid');
         return $q.reject(data.msg);
       }
-    }, function (error) {
-      console.log('CashFlowService getCashFlowMonthInfo error');
-      return $q.reject(error);
+    }, function (err) {
+      console.log('CashFlowFuncService getWeekCashFlowInfo error');
+      return $q.reject(err);
     });
   };
 
   /**
-   * 获取年现金流量分析(按月份)
+   * 查询月现金流信息
    * @param userId
    * @param token
-   * @param year
+   * @returns {*}
    */
-  var getCashFlowYearForMonthInfo = function (userId, token, year) {
-    console.log('into CashFlowService getCashFlowYearForMonthInfo method...');
-    return ApiService.getCashFlowYearForMonthInfo(userId, token, year).then(function (data) {
+  var getMonthCashFlowInfo = function (userId, token) {
+    console.log('into CashFlowFuncService getMonthCashFlowInfo method...');
+    return ApiService.getMonthCashFlowInfo(userId, token).then(function (data) {
       if (Boolean(data.code) && data.code == 'success') {
-        console.log('CashFlowService getCashFlowYearForMonthInfo success');
+        console.log('CashFlowFuncService getMonthCashFlowInfo success');
         console.log(data);
         return {
-          sumMoney: data.sumMoney,
-          xAxisData: data.xAxisData,
-          seriesData: data.seriesData
+          echartData1: data.echartData1, //营业厅
+          echartData2: data.echartData2, //代收代扣
+          echartData9: data.echartData9 //其他
         };
       } else {
-        console.log('CashFlowService getCashFlowYearForMonthInfo invalid');
+        console.log('CashFlowFuncService getMonthCashFlowInfo invalid');
         return $q.reject(data.msg);
       }
-    }, function (error) {
-      console.log('CashFlowService getCashFlowYearForMonthInfo error');
-      return $q.reject(error);
-    });
-  };
-
-  /**
-   * 获取年现金流量分析(按季度)
-   * @param userId
-   * @param token
-   * @param year
-   */
-  var getCashFlowYearForQuarterInfo = function (userId, token, year) {
-    console.log('into CashFlowService getCashFlowYearForQuarterInfo method...');
-    return ApiService.getCashFlowYearForQuarterInfo(userId, token, year).then(function (data) {
-      if (Boolean(data.code) && data.code == 'success') {
-        console.log('CashFlowService getCashFlowYearForQuarterInfo success');
-        console.log(data);
-        return {
-          sumMoney: data.sumMoney,
-          xAxisData: data.xAxisData,
-          seriesData: data.seriesData
-        };
-      } else {
-        console.log('CashFlowService getCashFlowYearForQuarterInfo invalid');
-        return $q.reject(data.msg);
-      }
-    }, function (error) {
-      console.log('CashFlowService getCashFlowYearForQuarterInfo error');
-      return $q.reject(error);
+    }, function (err) {
+      console.log('CashFlowFuncService getMonthCashFlowInfo error');
+      return $q.reject(err);
     });
   };
 
   return {
-    getCashFlowInfo: getCashFlowInfo,
-    getCashFlowDayInfo: getCashFlowDayInfo,
-    getCashFlowMonthInfo: getCashFlowMonthInfo,
-    getCashFlowYearForMonthInfo: getCashFlowYearForMonthInfo,
-    getCashFlowYearForQuarterInfo: getCashFlowYearForQuarterInfo
+    getTodayCashFlowInfo: getTodayCashFlowInfo,
+    getDayCashFlowInfo: getDayCashFlowInfo,
+    getWeekCashFlowInfo: getWeekCashFlowInfo,
+    getMonthCashFlowInfo: getMonthCashFlowInfo
   };
 });

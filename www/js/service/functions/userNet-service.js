@@ -16,11 +16,11 @@ appService.factory('UserNetService', function ($q, $filter, ApiService) {
         console.log('UserNetService getUserNetDayInfoEchartsData success');
         console.log(data);
         return {
-          echartData1:data.echartData1,
-          echartData2:data.echartData2,
-          echartData3:data.echartData3,
-          echartData4:data.echartData4,
-          echartData5:data.echartData5
+          echartData1: data.echartData1, //主机
+          echartData2: data.echartData2, //副一机
+          echartData3: data.echartData3, //高清
+          echartData4: data.echartData4, //互动
+          echartData5: data.echartData5 //宽带
         };
       } else {
         console.log('UserNetService getUserNetDayInfoEchartsData invalid');
@@ -45,11 +45,11 @@ appService.factory('UserNetService', function ($q, $filter, ApiService) {
         console.log('UserNetService getUserNetWeekInfoEchartsData success');
         console.log(data);
         return {
-          echartData1:data.echartData1,
-          echartData2:data.echartData2,
-          echartData3:data.echartData3,
-          echartData4:data.echartData4,
-          echartData5:data.echartData5
+          echartData1: data.echartData1, //主机
+          echartData2: data.echartData2, //副一机
+          echartData3: data.echartData3, //高清
+          echartData4: data.echartData4, //互动
+          echartData5: data.echartData5 //宽带
         };
       } else {
         console.log('UserNetService getUserNetWeekInfoEchartsData invalid');
@@ -74,11 +74,11 @@ appService.factory('UserNetService', function ($q, $filter, ApiService) {
         console.log('UserNetService getUserNetMonthInfoEchartsData success');
         console.log(data);
         return {
-          echartData1:data.echartData1,
-          echartData2:data.echartData2,
-          echartData3:data.echartData3,
-          echartData4:data.echartData4,
-          echartData5:data.echartData5
+          echartData1: data.echartData1, //主机
+          echartData2: data.echartData2, //副一机
+          echartData3: data.echartData3, //高清
+          echartData4: data.echartData4, //互动
+          echartData5: data.echartData5 //宽带
         };
       } else {
         console.log('UserNetService getUserNetMonthInfoEchartsData invalid');
@@ -91,8 +91,8 @@ appService.factory('UserNetService', function ($q, $filter, ApiService) {
   };
 
   return {
-    getUserNetDayInfoEchartsData:getUserNetDayInfoEchartsData,
-    getUserNetWeekInfoEchartsData:getUserNetWeekInfoEchartsData,
-    getUserNetMonthInfoEchartsData:getUserNetMonthInfoEchartsData
+    getUserNetDayInfoEchartsData: getUserNetDayInfoEchartsData,
+    getUserNetWeekInfoEchartsData: getUserNetWeekInfoEchartsData,
+    getUserNetMonthInfoEchartsData: getUserNetMonthInfoEchartsData
   };
 });

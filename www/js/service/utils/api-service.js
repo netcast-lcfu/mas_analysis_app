@@ -418,7 +418,7 @@ appService.factory('ApiService', function ($http, $q, $filter, ApiEndpoint) {
       params: {
         userId: userId,
         token: token,
-        day :day
+        day: day
       },
       // /timeout: ApiEndpoint.timeout
       //访问数据量较大
@@ -703,6 +703,153 @@ appService.factory('ApiService', function ($http, $q, $filter, ApiEndpoint) {
       });
   };
 
+  /**
+   * 获取当日现金流信息
+   * @param userId
+   * @param token
+   * @returns {*}
+   */
+  var getTodayCashFlowInfo = function (userId, token) {
+    console.log("into api service getTodayCashFlowInfo method...");
+    var req = {
+      method: 'post',
+      url: ApiEndpoint.url + '/appCashFlowAction.do?method=getTodayCashFlowInfo',
+      params: {
+        userId: userId,
+        token: token
+      },
+      timeout: ApiEndpoint.timeout
+    };
+
+    return $http.post(req.url, null, req)
+      .then(function (response) {
+        console.log(response);
+        if (typeof response.data === 'object') {
+          console.log("api service getTodayCashFlowInfo success");
+          return response.data;
+        } else {
+          console.log("api service getTodayCashFlowInfo invalid");
+          // invalid response
+          return $q.reject(response.data);
+        }
+      }, function (error) {
+        console.log("api service getTodayCashFlowInfo error");
+        console.log(error);
+        return $q.reject('服务器连接超时,请检查网络!');
+      });
+  };
+
+  /**
+   * 获取日现金流信息
+   * @param userId
+   * @param token
+   * @returns {*}
+   */
+  var getDayCashFlowInfo = function (userId, token) {
+    console.log("into api service getDayCashFlowInfo method...");
+    var req = {
+      method: 'post',
+      url: ApiEndpoint.url + '/appCashFlowAction.do?method=getDayCashFlowInfo',
+      params: {
+        userId: userId,
+        token: token
+      },
+      // timeout: ApiEndpoint.timeout
+      timeout: 30000
+    };
+
+    return $http.post(req.url, null, req)
+      .then(function (response) {
+        console.log(response);
+        if (typeof response.data === 'object') {
+          console.log("api service getDayCashFlowInfo success");
+          return response.data;
+        } else {
+          console.log("api service getDayCashFlowInfo invalid");
+          // invalid response
+          return $q.reject(response.data);
+        }
+      }, function (error) {
+        console.log("api service getDayCashFlowInfo error");
+        console.log(error);
+        return $q.reject('服务器连接超时,请检查网络!');
+      });
+  };
+
+  /**
+   * 获取周现金流信息
+   * @param userId
+   * @param token
+   * @returns {*}
+   */
+  var getWeekCashFlowInfo = function (userId, token) {
+    console.log("into api service getWeekCashFlowInfo method...");
+    var req = {
+      method: 'post',
+      url: ApiEndpoint.url + '/appCashFlowAction.do?method=getWeekCashFlowInfo',
+      params: {
+        userId: userId,
+        token: token
+      },
+      // timeout: ApiEndpoint.timeout
+      timeout: 30000
+    };
+
+    return $http.post(req.url, null, req)
+      .then(function (response) {
+        console.log(response);
+        if (typeof response.data === 'object') {
+          console.log("api service getWeekCashFlowInfo success");
+          return response.data;
+        } else {
+          console.log("api service getWeekCashFlowInfo invalid");
+          // invalid response
+          return $q.reject(response.data);
+        }
+      }, function (error) {
+        console.log("api service getWeekCashFlowInfo error");
+        console.log(error);
+        return $q.reject('服务器连接超时,请检查网络!');
+      });
+  };
+
+  /**
+   * 获取月现金流信息
+   * @param userId
+   * @param token
+   * @returns {*}
+   */
+  var getMonthCashFlowInfo = function (userId, token) {
+    console.log("into api service getMonthCashFlowInfo method...");
+    var req = {
+      method: 'post',
+      url: ApiEndpoint.url + '/appCashFlowAction.do?method=getMonthCashFlowInfo',
+      params: {
+        userId: userId,
+        token: token
+      },
+      // timeout: ApiEndpoint.timeout
+      timeout: 30000
+    };
+
+    return $http.post(req.url, null, req)
+      .then(function (response) {
+        console.log(response);
+        if (typeof response.data === 'object') {
+          console.log("api service getMonthCashFlowInfo success");
+          return response.data;
+        } else {
+          console.log("api service getMonthCashFlowInfo invalid");
+          // invalid response
+          return $q.reject(response.data);
+        }
+      }, function (error) {
+        console.log("api service getMonthCashFlowInfo error");
+        console.log(error);
+        return $q.reject('服务器连接超时,请检查网络!');
+      });
+  };
+
   return {
     login: login,
     getUserInfo: getUserInfo,
@@ -715,14 +862,18 @@ appService.factory('ApiService', function ($http, $q, $filter, ApiEndpoint) {
     getBusiStatusToJson: getBusiStatusToJson,
     getAddrAdminAreaToJson: getAddrAdminAreaToJson,
     getBusiStateChangesAnalysisEcharsData: getBusiStateChangesAnalysisEcharsData,
-    getOperationDayAnalysisEcharsData:getOperationDayAnalysisEcharsData,
+    getOperationDayAnalysisEcharsData: getOperationDayAnalysisEcharsData,
     getCashFlowDayInfo: getCashFlowDayInfo,
     getCashFlowMonthInfo: getCashFlowMonthInfo,
     getCashFlowYearForMonthInfo: getCashFlowYearForMonthInfo,
     getCashFlowYearForQuarterInfo: getCashFlowYearForQuarterInfo,
-    getUserNetDayInfoEchartsData:getUserNetDayInfoEchartsData,
-    getUserNetWeekInfoEchartsData:getUserNetWeekInfoEchartsData,
-    getUserNetMonthInfoEchartsData:getUserNetMonthInfoEchartsData
+    getUserNetDayInfoEchartsData: getUserNetDayInfoEchartsData,
+    getUserNetWeekInfoEchartsData: getUserNetWeekInfoEchartsData,
+    getUserNetMonthInfoEchartsData: getUserNetMonthInfoEchartsData,
+    getTodayCashFlowInfo: getTodayCashFlowInfo,
+    getDayCashFlowInfo: getDayCashFlowInfo,
+    getWeekCashFlowInfo: getWeekCashFlowInfo,
+    getMonthCashFlowInfo: getMonthCashFlowInfo
   }
 });
 

@@ -2,7 +2,49 @@
   <ion-nav-buttons side="right">
     <button class="button" ui-sref="personalInfo">个人信息</button>
   </ion-nav-buttons>
-  <ion-content>
-
+  <ion-header-bar class="bar-subheader" style="height: 56px;">
+    <div class="row">
+      <div class="col">
+        <div class="col-demo main-select" ng-class="{activity : flag == 'day'}" ng-click="queryDayCashFlowInfo()">日
+        </div>
+      </div>
+      <div class="col">
+        <div class="col-demo main-select" ng-class="{activity : flag == 'week'}"
+             ng-click="queryWeekCashFlowInfo()">周
+        </div>
+      </div>
+      <div class="col">
+        <div class="col-demo main-select" ng-class="{activity : flag == 'month'}"
+             ng-click="queryMonthCashFlowInfo()">月
+        </div>
+      </div>
+    </div>
+  </ion-header-bar>
+  <ion-content has-bouncing="true" overflow-scroll="false">
+    <ion-refresher pulling-text="下拉刷新" on-refresh="deRefresh()"></ion-refresher>
+    <div ng-show="flag == 'day'">
+      <div>
+        <div ng-show="showTodayChart" class="list" style="margin-top: 12px;">
+          <div class="item item-divider">当日现金流信息</div>
+          <div class="item item-text-wrap">
+            <div id="todayCashFlowChart" style="width: 95%;height:180px;"></div>
+          </div>
+          <div class="item item-text-wrap" ng-repeat="pieData in todayCashFlowDatas">
+            <span>{{pieData.name}}</span><span>{{pieData.value |currency:'￥' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-show="showChart" class="list" style="margin-top: 12px;">
+      <div ng-show="showChart1" class="item item-text-wrap">
+        <div id="cashFlowChart1" style="width: 95%;height:260px;"></div>
+      </div>
+      <div ng-show="showChart2" class="item item-text-wrap">
+        <div id="cashFlowChart2" style="width: 95%;height:260px;"></div>
+      </div>
+      <div ng-show="showChart9" class="item item-text-wrap">
+        <div id="cashFlowChart9" style="width: 95%;height:260px;"></div>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

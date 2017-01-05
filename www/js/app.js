@@ -10,7 +10,8 @@ var myApp = angular.module("myApp", ['ionic', 'ngCordova', 'myApp.controllers', 
 
 //定义常量
 myApp.constant("ApiEndpoint", {
-  url: 'http://211.141.224.40:8070/mas_analysis',
+  //url: 'http://211.141.224.40:8070/mas_analysis',
+  url: 'http://192.252.100.20:8070/mas_analysis',
   //url: 'http://10.1.1.95:8080/mas_analysis',
   //访问超时时间10s
   timeout: 10000
@@ -127,7 +128,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
       url: '/cashFlow',
       views: {
         'function-cashFlow': {
-          templateUrl: 'templates/tab/cash-flow.html',
+          templateUrl: 'templates/functions/cash-flow.html',
           controller: 'cashFlowCtrl'
         }
       }
@@ -136,115 +137,115 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
       url: '/userDevelop',
       views: {
         'function-userDevelop': {
-          templateUrl: 'templates/tab/user-develop.html',
+          templateUrl: 'templates/functions/user-develop.html',
           controller: 'userDevelopCtrl'
         }
       }
     })
 
-    // .state('tab', {
-    //   url: "/tab",
-    //   abstract: true,
-    //   templateUrl: 'templates/tab/tabs.html'
-    // })
-    // .state('tab.tab1', {
-    //   url: '/tab1',
-    //   views: {
-    //     'tab-tab1': {
-    //       templateUrl: 'templates/tab/tab-tab1.html',
-    //       controller: 'tab1Controller'
-    //     }
-    //   }
-    // })
-    // .state('tab.tab2', {
-    //   url: '/tab2',
-    //   views: {
-    //     'tab-tab2': {
-    //       templateUrl: 'templates/tab/tab-tab2.html',
-    //       controller: 'tab2Controller'
-    //     }
-    //   }
-    // })
-    // .state('tab.tab3', {
-    //   url: '/tab3',
-    //   views: {
-    //     'tab-tab3': {
-    //       templateUrl: 'templates/tab/tab-tab3.html',
-    //       controller: 'tab3Controller'
-    //     }
-    //   }
-    // })
+  // .state('tab', {
+  //   url: "/tab",
+  //   abstract: true,
+  //   templateUrl: 'templates/tab/tabs.html'
+  // })
+  // .state('tab.tab1', {
+  //   url: '/tab1',
+  //   views: {
+  //     'tab-tab1': {
+  //       templateUrl: 'templates/tab/tab-tab1.html',
+  //       controller: 'tab1Controller'
+  //     }
+  //   }
+  // })
+  // .state('tab.tab2', {
+  //   url: '/tab2',
+  //   views: {
+  //     'tab-tab2': {
+  //       templateUrl: 'templates/tab/tab-tab2.html',
+  //       controller: 'tab2Controller'
+  //     }
+  //   }
+  // })
+  // .state('tab.tab3', {
+  //   url: '/tab3',
+  //   views: {
+  //     'tab-tab3': {
+  //       templateUrl: 'templates/tab/tab-tab3.html',
+  //       controller: 'tab3Controller'
+  //     }
+  //   }
+  // })
 
-    // //主营业务状态变化分析
-    // .state('tab.mainBusiStateChangeAnalysis', {
-    //   url: '/tab1/mainBusiStateChangeAnalysis',
-    //   views: {
-    //     'tab-tab1': {
-    //       templateUrl: 'templates/mainBusi/main-busi-state-change-analysis.html',
-    //       controller: 'mainBusiStateChangeAnalysisCtrl'
-    //     }
-    //   }
-    // })
-    // //用户运营分析
-    // .state('tab.operationDayAnalysis', {
-    //   url: '/tab1/operationDayAnalysis',
-    //   views: {
-    //     'tab-tab1': {
-    //       templateUrl: 'templates/mainBusi/operation-day-analysis.html',
-    //       controller: 'operationDayAnalysisCtrl'
-    //     }
-    //   }
-    // })
-    // //现金缴费渠道分析
-    // .state('tab.cashFlowChannelAnalysis', {
-    //   url: '/tab2/cashFlowChannelAnalysis',
-    //   views: {
-    //     'tab-tab2': {
-    //       templateUrl: 'templates/cashFlow/cash-flow-channel-analysis.html',
-    //       controller: 'cashFlowChannelAnalysisCtrl'
-    //     }
-    //   }
-    // })
-    // //现金流量日分析
-    // .state('tab.cashFlowDayAnalysis', {
-    //   url: '/tab2/cashFlowDayAnalysis',
-    //   views: {
-    //     'tab-tab2': {
-    //       templateUrl: 'templates/cashFlow/cash-flow-day-analysis.html',
-    //       controller: 'cashFlowDayAnalysisCtrl'
-    //     }
-    //   }
-    // })
-    // //现金流量月分析
-    // .state('tab.cashFlowMonthAnalysis', {
-    //   url: '/tab2/cashFlowMonthAnalysis',
-    //   views: {
-    //     'tab-tab2': {
-    //       templateUrl: 'templates/cashFlow/cash-flow-month-analysis.html',
-    //       controller: 'cashFlowMonthAnalysisCtrl'
-    //     }
-    //   }
-    // })
-    // //现金流量年分析
-    // .state('tab.cashFlowYearAnalysis', {
-    //   url: '/tab2/cashFlowYearAnalysis',
-    //   views: {
-    //     'tab-tab2': {
-    //       templateUrl: 'templates/cashFlow/cash-flow-year-analysis.html',
-    //       controller: 'cashFlowYearAnalysisCtrl'
-    //     }
-    //   }
-    // })
-    // //KPI完成进度查询
-    // .state('tab.queryKpiCompletedProgress', {
-    //   url: '/tab3/queryKpiCompletedProgress',
-    //   views: {
-    //     'tab-tab3': {
-    //       templateUrl: 'templates/kpi/query-kpi-completed-progress.html',
-    //       controller: 'queryKpiCompletedProgressCtrl'
-    //     }
-    //   }
-    // })
+  // //主营业务状态变化分析
+  // .state('tab.mainBusiStateChangeAnalysis', {
+  //   url: '/tab1/mainBusiStateChangeAnalysis',
+  //   views: {
+  //     'tab-tab1': {
+  //       templateUrl: 'templates/mainBusi/main-busi-state-change-analysis.html',
+  //       controller: 'mainBusiStateChangeAnalysisCtrl'
+  //     }
+  //   }
+  // })
+  // //用户运营分析
+  // .state('tab.operationDayAnalysis', {
+  //   url: '/tab1/operationDayAnalysis',
+  //   views: {
+  //     'tab-tab1': {
+  //       templateUrl: 'templates/mainBusi/operation-day-analysis.html',
+  //       controller: 'operationDayAnalysisCtrl'
+  //     }
+  //   }
+  // })
+  // //现金缴费渠道分析
+  // .state('tab.cashFlowChannelAnalysis', {
+  //   url: '/tab2/cashFlowChannelAnalysis',
+  //   views: {
+  //     'tab-tab2': {
+  //       templateUrl: 'templates/cashFlow/cash-flow-channel-analysis.html',
+  //       controller: 'cashFlowChannelAnalysisCtrl'
+  //     }
+  //   }
+  // })
+  // //现金流量日分析
+  // .state('tab.cashFlowDayAnalysis', {
+  //   url: '/tab2/cashFlowDayAnalysis',
+  //   views: {
+  //     'tab-tab2': {
+  //       templateUrl: 'templates/cashFlow/cash-flow-day-analysis.html',
+  //       controller: 'cashFlowDayAnalysisCtrl'
+  //     }
+  //   }
+  // })
+  // //现金流量月分析
+  // .state('tab.cashFlowMonthAnalysis', {
+  //   url: '/tab2/cashFlowMonthAnalysis',
+  //   views: {
+  //     'tab-tab2': {
+  //       templateUrl: 'templates/cashFlow/cash-flow-month-analysis.html',
+  //       controller: 'cashFlowMonthAnalysisCtrl'
+  //     }
+  //   }
+  // })
+  // //现金流量年分析
+  // .state('tab.cashFlowYearAnalysis', {
+  //   url: '/tab2/cashFlowYearAnalysis',
+  //   views: {
+  //     'tab-tab2': {
+  //       templateUrl: 'templates/cashFlow/cash-flow-year-analysis.html',
+  //       controller: 'cashFlowYearAnalysisCtrl'
+  //     }
+  //   }
+  // })
+  // //KPI完成进度查询
+  // .state('tab.queryKpiCompletedProgress', {
+  //   url: '/tab3/queryKpiCompletedProgress',
+  //   views: {
+  //     'tab-tab3': {
+  //       templateUrl: 'templates/kpi/query-kpi-completed-progress.html',
+  //       controller: 'queryKpiCompletedProgressCtrl'
+  //     }
+  //   }
+  // })
   ;
   //主页
   $urlRouterProvider.otherwise('/login');
