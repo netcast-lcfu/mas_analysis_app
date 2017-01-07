@@ -37,7 +37,7 @@
           <div class="input-label">
             状态:
           </div>
-          <select onchange="deRefresh()" ng-model="condition.purchaseAction"
+          <select ng-model="condition.purchaseAction"
                   ng-options="purchase.name for purchase in purchaseActions track by purchase.id"></select>
         </div>
       </div>

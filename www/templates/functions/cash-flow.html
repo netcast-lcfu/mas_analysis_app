@@ -30,7 +30,7 @@
           <div class="input-label">
             行政区域:
           </div>
-          <select onchange="deRefresh()" ng-model="condition.adminArea"
+          <select ng-model="condition.adminArea"
                   ng-options="area.adminAreaName for area in adminAreaData track by area.adminAreaId"></select>
         </div>
       </div>

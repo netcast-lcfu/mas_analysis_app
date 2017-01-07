@@ -80,6 +80,7 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
   }
 
   function queryDayUserNetInfo() {
+    $scope.show_query_condition = false;
     $scope.flag = 'day';
     var userId = UserService.getLoginUser().userId;
     var token = UserService.getLoginUser().token;
@@ -104,6 +105,7 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
   }
 
   function queryWeekUserNetInfo() {
+    $scope.show_query_condition = false;
     $scope.flag = 'week';
     var userId = UserService.getLoginUser().userId;
     var token = UserService.getLoginUser().token;
@@ -128,6 +130,7 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
   }
 
   function queryMonthUserNetInfo() {
+    $scope.show_query_condition = false;
     $scope.flag = 'month';
     var userId = UserService.getLoginUser().userId;
     var token = UserService.getLoginUser().token;
