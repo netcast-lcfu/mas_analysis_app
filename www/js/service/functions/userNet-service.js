@@ -2,16 +2,15 @@ var appService = angular.module('myApp.services');
 
 appService.factory('UserNetService', function ($q, $filter, ApiService) {
 
-
   /**
    * 获取近7日用户净增信息
    * @param userId
    * @param token
    * @returns {*}
    */
-  var getUserNetDayInfoEchartsData = function (userId, token) {
+  var getUserNetDayInfoEchartsData = function (userId, token, adminAreaId) {
     console.log('into UserNetService getUserNetDayInfoEchartsData method...');
-    return ApiService.getUserNetDayInfoEchartsData(userId, token).then(function (data) {
+    return ApiService.getUserNetDayInfoEchartsData(userId, token, adminAreaId).then(function (data) {
       if (Boolean(data.code) && data.code == 'success') {
         console.log('UserNetService getUserNetDayInfoEchartsData success');
         console.log(data);
@@ -38,9 +37,9 @@ appService.factory('UserNetService', function ($q, $filter, ApiService) {
    * @param token
    * @returns {*}
    */
-  var getUserNetWeekInfoEchartsData = function (userId, token) {
+  var getUserNetWeekInfoEchartsData = function (userId, token, adminAreaId) {
     console.log('into UserNetService getUserNetWeekInfoEchartsData method...');
-    return ApiService.getUserNetWeekInfoEchartsData(userId, token).then(function (data) {
+    return ApiService.getUserNetWeekInfoEchartsData(userId, token, adminAreaId).then(function (data) {
       if (Boolean(data.code) && data.code == 'success') {
         console.log('UserNetService getUserNetWeekInfoEchartsData success');
         console.log(data);
@@ -67,9 +66,9 @@ appService.factory('UserNetService', function ($q, $filter, ApiService) {
    * @param token
    * @returns {*}
    */
-  var getUserNetMonthInfoEchartsData = function (userId, token) {
+  var getUserNetMonthInfoEchartsData = function (userId, token, adminAreaId) {
     console.log('into UserNetService getUserNetMonthInfoEchartsData method...');
-    return ApiService.getUserNetMonthInfoEchartsData(userId, token).then(function (data) {
+    return ApiService.getUserNetMonthInfoEchartsData(userId, token, adminAreaId).then(function (data) {
       if (Boolean(data.code) && data.code == 'success') {
         console.log('UserNetService getUserNetMonthInfoEchartsData success');
         console.log(data);

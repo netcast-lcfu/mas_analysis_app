@@ -2,147 +2,95 @@ var appService = angular.module('myApp.services');
 
 appService.factory('UserDevelopService', function ($q, $filter, ApiService) {
   /**
-   * 获取现金流量渠道分析
+   * 获取近7日用户发展信息
    * @param userId
    * @param token
-   * @param startPayDate
-   * @param endPayDate
    * @returns {*}
    */
-  var getCashFlowInfo = function (userId, token, startPayDate, endPayDate) {
-    console.log('into CashFlowService getCashFlowInfo method...');
-    return ApiService.getCashFlowInfo(userId, token, startPayDate, endPayDate).then(function (data) {
+  var getUserDevelopDayInfoEchartsData = function (userId, token, purchaseAction, adminAreaId) {
+    console.log('into UserDevelopService getUserDevelopDayInfoEchartsData method...');
+    return ApiService.getUserDevelopDayInfoEchartsData(userId, token, purchaseAction, adminAreaId).then(function (data) {
       if (Boolean(data.code) && data.code == 'success') {
-        console.log('CashFlowService getCashFlowInfo success');
+        console.log('UserDevelopService getUserDevelopDayInfoEchartsData success');
         console.log(data);
         return {
-          sumMoney: data.sumMoney,
-          legends: data.legends,
-          pieDatas: data.pieDatas
+          echartData1: data.echartData1, //主机
+          echartData2: data.echartData2, //副一机
+          echartData3: data.echartData3, //高清
+          echartData4: data.echartData4, //互动
+          echartData5: data.echartData5 //宽带
         };
       } else {
-        console.log('CashFlowService getCashFlowInfo invalid');
-        return $q.reject(data.msg);
-      }
-    }, function (err) {
-      console.log('CashFlowService getCashFlowInfo error');
-      return $q.reject(err);
-    });
-  };
-
-  /**
-   * 获取日现金流量分析
-   * @param userId
-   * @param token
-   * @param day
-   */
-  var getCashFlowDayInfo = function (userId, token, day) {
-    console.log('into CashFlowService getCashFlowDayInfo method...');
-    return ApiService.getCashFlowDayInfo(userId, token, day).then(function (data) {
-      if (Boolean(data.code) && data.code == 'success') {
-        console.log('CashFlowService getCashFlowDayInfo success');
-        console.log(data);
-        return {
-          sumMoney: data.sumMoney,
-          xAxisData: data.xAxisData,
-          seriesData: data.seriesData
-        };
-      } else {
-        console.log('CashFlowService getCashFlowDayInfo invalid');
+        console.log('UserDevelopService getUserDevelopDayInfoEchartsData invalid');
         return $q.reject(data.msg);
       }
     }, function (error) {
-      console.log('CashFlowService getCashFlowDayInfo error');
+      console.log('UserDevelopService getUserDevelopDayInfoEchartsData error');
       return $q.reject(error);
     });
   };
 
   /**
-   * 获取月现金流量分析
+   * 获取近7周用户发展信息
    * @param userId
    * @param token
-   * @param month
+   * @returns {*}
    */
-  var getCashFlowMonthInfo = function (userId, token, month) {
-    console.log('into CashFlowService getCashFlowMonthInfo method...');
-    return ApiService.getCashFlowMonthInfo(userId, token, month).then(function (data) {
+  var getUserDevelopWeekInfoEchartsData = function (userId, token, purchaseAction, adminAreaId) {
+    console.log('into UserDevelopService getUserDevelopWeekInfoEchartsData method...');
+    return ApiService.getUserDevelopWeekInfoEchartsData(userId, token, purchaseAction, adminAreaId).then(function (data) {
       if (Boolean(data.code) && data.code == 'success') {
-        console.log('CashFlowService getCashFlowMonthInfo success');
+        console.log('UserDevelopService getUserDevelopWeekInfoEchartsData success');
         console.log(data);
         return {
-          sumMoney: data.sumMoney,
-          xAxisData: data.xAxisData,
-          seriesData: data.seriesData
+          echartData1: data.echartData1, //主机
+          echartData2: data.echartData2, //副一机
+          echartData3: data.echartData3, //高清
+          echartData4: data.echartData4, //互动
+          echartData5: data.echartData5 //宽带
         };
       } else {
-        console.log('CashFlowService getCashFlowMonthInfo invalid');
+        console.log('UserDevelopService getUserDevelopWeekInfoEchartsData invalid');
         return $q.reject(data.msg);
       }
     }, function (error) {
-      console.log('CashFlowService getCashFlowMonthInfo error');
+      console.log('UserDevelopService getUserDevelopWeekInfoEchartsData error');
       return $q.reject(error);
     });
   };
 
   /**
-   * 获取年现金流量分析(按月份)
+   * 获取近7月用户发展信息
    * @param userId
    * @param token
-   * @param year
+   * @returns {*}
    */
-  var getCashFlowYearForMonthInfo = function (userId, token, year) {
-    console.log('into CashFlowService getCashFlowYearForMonthInfo method...');
-    return ApiService.getCashFlowYearForMonthInfo(userId, token, year).then(function (data) {
+  var getUserDevelopMonthInfoEchartsData = function (userId, token, purchaseAction, adminAreaId) {
+    console.log('into UserDevelopService getUserDevelopMonthInfoEchartsData method...');
+    return ApiService.getUserDevelopMonthInfoEchartsData(userId, token, purchaseAction, adminAreaId).then(function (data) {
       if (Boolean(data.code) && data.code == 'success') {
-        console.log('CashFlowService getCashFlowYearForMonthInfo success');
+        console.log('UserDevelopService getUserDevelopMonthInfoEchartsData success');
         console.log(data);
         return {
-          sumMoney: data.sumMoney,
-          xAxisData: data.xAxisData,
-          seriesData: data.seriesData
+          echartData1: data.echartData1, //主机
+          echartData2: data.echartData2, //副一机
+          echartData3: data.echartData3, //高清
+          echartData4: data.echartData4, //互动
+          echartData5: data.echartData5 //宽带
         };
       } else {
-        console.log('CashFlowService getCashFlowYearForMonthInfo invalid');
+        console.log('UserDevelopService getUserDevelopMonthInfoEchartsData invalid');
         return $q.reject(data.msg);
       }
     }, function (error) {
-      console.log('CashFlowService getCashFlowYearForMonthInfo error');
-      return $q.reject(error);
-    });
-  };
-
-  /**
-   * 获取年现金流量分析(按季度)
-   * @param userId
-   * @param token
-   * @param year
-   */
-  var getCashFlowYearForQuarterInfo = function (userId, token, year) {
-    console.log('into CashFlowService getCashFlowYearForQuarterInfo method...');
-    return ApiService.getCashFlowYearForQuarterInfo(userId, token, year).then(function (data) {
-      if (Boolean(data.code) && data.code == 'success') {
-        console.log('CashFlowService getCashFlowYearForQuarterInfo success');
-        console.log(data);
-        return {
-          sumMoney: data.sumMoney,
-          xAxisData: data.xAxisData,
-          seriesData: data.seriesData
-        };
-      } else {
-        console.log('CashFlowService getCashFlowYearForQuarterInfo invalid');
-        return $q.reject(data.msg);
-      }
-    }, function (error) {
-      console.log('CashFlowService getCashFlowYearForQuarterInfo error');
+      console.log('UserDevelopService getUserDevelopMonthInfoEchartsData error');
       return $q.reject(error);
     });
   };
 
   return {
-    getCashFlowInfo: getCashFlowInfo,
-    getCashFlowDayInfo: getCashFlowDayInfo,
-    getCashFlowMonthInfo: getCashFlowMonthInfo,
-    getCashFlowYearForMonthInfo: getCashFlowYearForMonthInfo,
-    getCashFlowYearForQuarterInfo: getCashFlowYearForQuarterInfo
+    getUserDevelopDayInfoEchartsData: getUserDevelopDayInfoEchartsData,
+    getUserDevelopWeekInfoEchartsData: getUserDevelopWeekInfoEchartsData,
+    getUserDevelopMonthInfoEchartsData: getUserDevelopMonthInfoEchartsData
   };
 });

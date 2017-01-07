@@ -1,13 +1,68 @@
 var appController = angular.module('myApp.controllers');
 
-appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading, $cordovaToast, UserService, UserNetService) {
+appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading, $cordovaToast, UserService, UserNetService, BaseService) {
 
+  //查询标识
   $scope.flag = 'day';
+  //是否显示图表
+  $scope.showChart = true;
+  //是否显示主机图表
+  $scope.showChart1 = true;
+  //是否显示副一机图表
+  $scope.showChart2 = true;
+  //是否显示高清图表
+  $scope.showChart3 = true;
+  //是否显示互动图表
+  $scope.showChart4 = true;
+  //是否显示宽带图表
+  $scope.showChart5 = true;
+  //是否显示查询条件
+  $scope.show_query_condition = false;
+
+  //行政区域信息
+  var adminAreaDatas = [{adminAreaId: '1', adminAreaName: '马鞍山'}, {
+    adminAreaId: '1011',
+    adminAreaName: '龙山'
+  }, {adminAreaId: '1021', adminAreaName: '博望'}, {adminAreaId: '1031', adminAreaName: '和县功桥'}, {
+    adminAreaId: '1041',
+    adminAreaName: '郑蒲港新区'
+  }];
+
+  $scope.adminAreaData = adminAreaDatas;
+
+  $scope.condition = {
+    adminArea: adminAreaDatas[0]
+  };
+
+  initSelectData();
   queryDayUserNetInfo();
-  deRefresh();
   $scope.queryDayUserNetInfo = queryDayUserNetInfo;
   $scope.queryWeekUserNetInfo = queryWeekUserNetInfo;
   $scope.queryMonthUserNetInfo = queryMonthUserNetInfo;
+
+  //初始化查询条件
+  function initSelectData() {
+    var userId = UserService.getLoginUser().userId;
+    var token = UserService.getLoginUser().token;
+    BaseService.getBaseAdminAreaData(userId, token).then(function (data) {
+      adminAreaDatas = data.adminAreaDatas;
+      //行政区域数据
+      $scope.adminAreaData = adminAreaDatas;
+      $scope.condition.adminArea = adminAreaDatas[0];
+    }, function (err) {
+      console.log(err);
+      // $ionicLoading.show({
+      //   template: '查询条件数据初始化失败!',
+      //   duration: 1000
+      // });
+      $cordovaToast.showShortCenter('行政区域查询条件数据初始化失败!');
+    });
+  }
+
+  //是否显示查询条件转换事件
+  $scope.toggleQueryCondition = function () {
+    $scope.show_query_condition = !$scope.show_query_condition;
+  };
 
   $scope.deRefresh = function () {
     deRefresh();
@@ -28,14 +83,23 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
     $scope.flag = 'day';
     var userId = UserService.getLoginUser().userId;
     var token = UserService.getLoginUser().token;
+
+    var adminAreaId = $scope.condition.adminArea.adminAreaId;
+    if (!Boolean(adminAreaId)) {
+      $cordovaToast.showShortCenter('请选择行政区域!');
+      return;
+    }
+
     $ionicLoading.show();
     //访问后台获取图表数据
-    UserNetService.getUserNetDayInfoEchartsData(userId, token).then(function (data) {
+    UserNetService.getUserNetDayInfoEchartsData(userId, token, adminAreaId).then(function (data) {
       setCharts(data, '近7日用户净增', '日');
       $ionicLoading.hide();
+      $scope.showChart = true;
     }, function (err) {
       $ionicLoading.hide();
       $cordovaToast.showShortCenter(err);
+      $scope.showChart = false;
     });
   }
 
@@ -43,14 +107,23 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
     $scope.flag = 'week';
     var userId = UserService.getLoginUser().userId;
     var token = UserService.getLoginUser().token;
+
+    var adminAreaId = $scope.condition.adminArea.adminAreaId;
+    if (!Boolean(adminAreaId)) {
+      $cordovaToast.showShortCenter('请选择行政区域!');
+      return;
+    }
+
     $ionicLoading.show();
     //访问后台获取图表数据
-    UserNetService.getUserNetWeekInfoEchartsData(userId, token).then(function (data) {
+    UserNetService.getUserNetWeekInfoEchartsData(userId, token, adminAreaId).then(function (data) {
       setCharts(data, '近7周用户净增', '周');
       $ionicLoading.hide();
+      $scope.showChart = true;
     }, function (err) {
       $ionicLoading.hide();
       $cordovaToast.showShortCenter(err);
+      $scope.showChart = false;
     });
   }
 
@@ -58,22 +131,29 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
     $scope.flag = 'month';
     var userId = UserService.getLoginUser().userId;
     var token = UserService.getLoginUser().token;
+
+    var adminAreaId = $scope.condition.adminArea.adminAreaId;
+    if (!Boolean(adminAreaId)) {
+      $cordovaToast.showShortCenter('请选择行政区域!');
+      return;
+    }
+
     $ionicLoading.show();
     //访问后台获取图表数据
-    UserNetService.getUserNetMonthInfoEchartsData(userId, token).then(function (data) {
-      setCharts(data, '近7月用户净增', '月份');
+    UserNetService.getUserNetMonthInfoEchartsData(userId, token, adminAreaId).then(function (data) {
+      setCharts(data, '近7月用户净增', '月');
       $ionicLoading.hide();
+      $scope.showChart = true;
     }, function (err) {
       $ionicLoading.hide();
       $cordovaToast.showShortCenter(err);
+      $scope.showChart = false;
     });
   }
 
   function setCharts(data, title, xAxisLable) {
     if (Boolean(data)) {
-      $scope.showChart = true;
       if (Boolean(data.echartData1)) {
-        $scope.showChart1 = true;
         //主机
         var myChart1 = echarts.init(document.getElementById('userNetChart1'), 'macarons');
         var option1 = {
@@ -83,7 +163,8 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
             x: 'center'
           },
           tooltip: {
-            trigger: 'axis'
+            trigger: 'item',
+            formatter: '{b}<br/> {a} : {c} 人' //a:legend名称 b.series名称 c.数值
           },
           toolbox: {     //工具栏
             show: false,
@@ -133,12 +214,12 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
           myChart1.resize(); //使图表适应屏幕
         };
         myChart1.setOption(option1);
+        $scope.showChart1 = true;
       } else {
         $scope.showChart1 = false;
       }
 
       if (Boolean(data.echartData2)) {
-        $scope.showChart2 = true;
         //副一机
         var myChart2 = echarts.init(document.getElementById('userNetChart2'), 'macarons');
         var option2 = {
@@ -148,7 +229,8 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
             x: 'center'
           },
           tooltip: {
-            trigger: 'axis'
+            trigger: 'item',
+            formatter: '{b}<br/> {a} : {c} 人' //a:legend名称 b.series名称 c.数值
           },
           toolbox: {     //工具栏
             show: false,
@@ -198,12 +280,12 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
           myChart2.resize(); //使图表适应屏幕
         };
         myChart2.setOption(option2);
+        $scope.showChart2 = true;
       } else {
         $scope.showChart2 = false;
       }
 
       if (Boolean(data.echartData3)) {
-        $scope.showChart3 = true;
         //高清
         var myChart3 = echarts.init(document.getElementById('userNetChart3'), 'macarons');
         var option3 = {
@@ -213,7 +295,8 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
             x: 'center'
           },
           tooltip: {
-            trigger: 'axis'
+            trigger: 'item',
+            formatter: '{b}<br/> {a} : {c} 人' //a:legend名称 b.series名称 c.数值
           },
           toolbox: {     //工具栏
             show: false,
@@ -263,12 +346,12 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
           myChart3.resize(); //使图表适应屏幕
         };
         myChart3.setOption(option3);
+        $scope.showChart3 = true;
       } else {
         $scope.showChart3 = false;
       }
 
       if (Boolean(data.echartData4)) {
-        $scope.showChart4 = true;
         //互动
         var myChart4 = echarts.init(document.getElementById('userNetChart4'), 'macarons');
         var option4 = {
@@ -278,7 +361,8 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
             x: 'center'
           },
           tooltip: {
-            trigger: 'axis'
+            trigger: 'item',
+            formatter: '{b}<br/> {a} : {c} 人' //a:legend名称 b.series名称 c.数值
           },
           toolbox: {     //工具栏
             show: false,
@@ -328,12 +412,12 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
           myChart4.resize(); //使图表适应屏幕
         };
         myChart4.setOption(option4);
+        $scope.showChart4 = true;
       } else {
         $scope.showChart4 = false;
       }
 
       if (Boolean(data.echartData5)) {
-        $scope.showChart5 = true;
         //宽带
         var myChart5 = echarts.init(document.getElementById('userNetChart5'), 'macarons');
         var option5 = {
@@ -343,7 +427,8 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
             x: 'center'
           },
           tooltip: {
-            trigger: 'axis'
+            trigger: 'item',
+            formatter: '{b}<br/> {a} : {c} 人' //a:legend名称 b.series名称 c.数值
           },
           toolbox: {     //工具栏
             show: false,
@@ -393,10 +478,11 @@ appController.controller('userNetCtrl', function ($scope, $filter, $ionicLoading
           myChart5.resize(); //使图表适应屏幕
         };
         myChart5.setOption(option5);
+        $scope.showChart5 = true;
       } else {
         $scope.showChart5 = false;
       }
-
+      $scope.showChart = true;
     } else {
       $scope.showChart = false;
     }
