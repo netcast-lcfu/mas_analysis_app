@@ -1,6 +1,6 @@
 var appController = angular.module('myApp.controllers');
 
-appController.controller('userDevelopCtrl', function ($scope, $filter, $ionicLoading, $cordovaToast, UserService, UserDevelopService, BaseService) {
+appController.controller('userDevelopCtrl', function ($scope, $filter, $ionicLoading, $ionicModal, $cordovaToast, UserService, UserDevelopService, BaseService) {
   //查询标识
   $scope.flag = 'day';
   //是否显示图表
@@ -73,6 +73,34 @@ appController.controller('userDevelopCtrl', function ($scope, $filter, $ionicLoa
     $scope.show_query_condition = !$scope.show_query_condition;
   };
 
+  $ionicModal.fromTemplateUrl('templates/modal/userDevelopSelectModal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modal = modal;
+  });
+  $scope.queryData = function () {
+    $scope.modal.hide();
+    deRefresh();
+  };
+  $scope.openModal = function () {
+    $scope.modal.show();
+  };
+  $scope.closeModal = function () {
+    $scope.modal.hide();
+  };
+  //当我们用完模型时，清除它！
+  $scope.$on('$destroy', function () {
+    $scope.modal.remove();
+  });
+  // 当隐藏模型时执行动作
+  $scope.$on('modal.hide', function () {
+    // 执行动作
+  });
+  // 当移动模型时执行动作
+  $scope.$on('modal.removed', function () {
+    // 执行动作
+  });
 
   $scope.deRefresh = function () {
     deRefresh();

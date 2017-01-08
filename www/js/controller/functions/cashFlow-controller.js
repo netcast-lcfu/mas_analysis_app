@@ -1,6 +1,6 @@
 var appController = angular.module('myApp.controllers');
 
-appController.controller('cashFlowCtrl', function ($scope, $filter, $ionicLoading, $cordovaToast, UserService, CashFlowFuncService, BaseService) {
+appController.controller('cashFlowCtrl', function ($scope, $filter, $ionicLoading, $ionicModal, $cordovaToast, UserService, CashFlowFuncService, BaseService) {
 
   $scope.flag = 'day';
   //是否显示当日现金流信息图表
@@ -64,6 +64,35 @@ appController.controller('cashFlowCtrl', function ($scope, $filter, $ionicLoadin
   $scope.toggleQueryCondition = function () {
     $scope.show_query_condition = !$scope.show_query_condition;
   };
+
+  $ionicModal.fromTemplateUrl('templates/modal/cashFlowSelectModal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modal = modal;
+  });
+  $scope.queryData = function () {
+    $scope.modal.hide();
+    deRefresh();
+  };
+  $scope.openModal = function () {
+    $scope.modal.show();
+  };
+  $scope.closeModal = function () {
+    $scope.modal.hide();
+  };
+  //当我们用完模型时，清除它！
+  $scope.$on('$destroy', function () {
+    $scope.modal.remove();
+  });
+  // 当隐藏模型时执行动作
+  $scope.$on('modal.hide', function () {
+    // 执行动作
+  });
+  // 当移动模型时执行动作
+  $scope.$on('modal.removed', function () {
+    // 执行动作
+  });
 
   $scope.deRefresh = function () {
     deRefresh();
@@ -200,7 +229,7 @@ appController.controller('cashFlowCtrl', function ($scope, $filter, $ionicLoadin
           {
             name: '缴费渠道占比',
             type: 'pie',
-            radius: [0, '60%'], // 饼状图的半径 {内半径,外半径}
+            radius: [0, '50%'], // 饼状图的半径 {内半径,外半径}
             center: ['50%', '50%'], //上下左右的位置
             label: {
               normal: {

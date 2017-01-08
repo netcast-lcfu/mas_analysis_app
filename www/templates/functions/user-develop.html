@@ -2,7 +2,7 @@
   <ion-nav-buttons side="right">
     <button class="button" ui-sref="personalInfo">个人信息</button>
   </ion-nav-buttons>
-  <ion-header-bar class="bar-subheader" style="height: 96px;">
+  <ion-header-bar class="bar-subheader" style="height: 56px;">
     <div class="row">
       <div class="col">
         <div class="col-demo main-select" ng-class="{activity : flag == 'day'}" ng-click="queryDayUserDevelopInfo()">日
@@ -18,34 +18,37 @@
              ng-click="queryMonthUserDevelopInfo()">月
         </div>
       </div>
-    </div>
-    <div class="list">
-      <div class="item item-divider item-icon-right">查询条件
-        <div ng-click="toggleQueryCondition()">
-          <i class="icon {{ show_query_condition ? 'ion-arrow-up-b' : 'ion-arrow-down-b' }}"></i>
-        </div>
-      </div>
-      <div ng-show="show_query_condition">
-        <div class="item item-input item-select">
-          <div class="input-label">
-            行政区域:
-          </div>
-          <select ng-model="condition.adminArea"
-                  ng-options="area.adminAreaName for area in adminAreaData track by area.adminAreaId"></select>
-        </div>
-        <div class="item item-input item-select">
-          <div class="input-label">
-            状态:
-          </div>
-          <select ng-model="condition.purchaseAction"
-                  ng-options="purchase.name for purchase in purchaseActions track by purchase.id"></select>
-        </div>
+      <div class="col-10">
+        <a class="button icon ion-navicon" ng-click="modal.show()"></a>
       </div>
     </div>
+    <!--<div class="list">-->
+    <!--<div class="item item-divider item-icon-right">查询条件-->
+    <!--<div ng-click="toggleQueryCondition()">-->
+    <!--<i class="icon {{ show_query_condition ? 'ion-arrow-up-b' : 'ion-arrow-down-b' }}"></i>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div ng-show="show_query_condition">-->
+    <!--<div class="item item-input item-select">-->
+    <!--<div class="input-label">-->
+    <!--行政区域:-->
+    <!--</div>-->
+    <!--<select ng-model="condition.adminArea"-->
+    <!--ng-options="area.adminAreaName for area in adminAreaData track by area.adminAreaId"></select>-->
+    <!--</div>-->
+    <!--<div class="item item-input item-select">-->
+    <!--<div class="input-label">-->
+    <!--状态:-->
+    <!--</div>-->
+    <!--<select ng-model="condition.purchaseAction"-->
+    <!--ng-options="purchase.name for purchase in purchaseActions track by purchase.id"></select>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
   </ion-header-bar>
   <ion-content has-bouncing="true" overflow-scroll="false">
     <ion-refresher pulling-text="下拉刷新" on-refresh="deRefresh()"></ion-refresher>
-    <div ng-show="showChart" class="list" style="margin-top: 50px;">
+    <div ng-show="showChart" class="list card" style="margin-top: 20px;">
       <div ng-show="showChart1" class="item item-text-wrap">
         <div id="userDevelopChart1" style="width: 95%;height:260px;"></div>
       </div>
