@@ -174,7 +174,7 @@ appController.controller('cashFlowCtrl', function ($scope, $filter, $ionicLoadin
       var myChart = echarts.init(document.getElementById('todayCashFlowChart'), 'macarons');
       var option = {
         title: {
-          show: false,
+          show: true,
           text: '当日现金流量渠道占比分析',
           x: 'center'
         },
@@ -190,9 +190,9 @@ appController.controller('cashFlowCtrl', function ($scope, $filter, $ionicLoadin
           }
         },
         legend: {
-          show: false,
+          show: true,
           x: 'center',//水平位置
-          y: 'top',//垂直位置
+          y: 'bottom',//垂直位置
           orient: 'horizontal', //布局走向 vertical 垂直 horizontal水平
           data: data.legends
         },
@@ -200,17 +200,17 @@ appController.controller('cashFlowCtrl', function ($scope, $filter, $ionicLoadin
           {
             name: '缴费渠道占比',
             type: 'pie',
-            radius: [0, '90%'], // 饼状图的半径 {内半径,外半径}
+            radius: [0, '60%'], // 饼状图的半径 {内半径,外半径}
             center: ['50%', '50%'], //上下左右的位置
             label: {
               normal: {
-                position: 'inner', //内置文本标签
+                position: 'outside', //文本标签位置 outside inside center
                 formatter: '{b} {d}%' //模板变量有 {a}、{b}、{c}、{d}，分别表示系列名，数据名，数据值，百分比。
               }
             },
             labelLine: {
               normal: {
-                show: false     //不需要设置引导线
+                show: true     //设置引导线
               }
             },
             data: data.pieDatas

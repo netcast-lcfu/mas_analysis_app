@@ -42,7 +42,7 @@
       <div ng-show="showTodayChart" class="list" style="margin-top: 50px;">
         <div class="item item-divider">当日缴费渠道现金流信息</div>
         <div class="item item-text-wrap">
-          <div id="todayCashFlowChart" style="width: 95%;height:180px;"></div>
+          <div id="todayCashFlowChart" style="width: 95%;height:280px;"></div>
         </div>
         <div class="item item-text-wrap" ng-repeat="pieData in todayCashFlowDatas">
           <span>{{pieData.name}}</span><span style="float: right;">{{pieData.value |currency:'￥' }} 万</span>
