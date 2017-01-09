@@ -7,7 +7,6 @@ angular.module("myApp.utils", []);
 var myApp = angular.module("myApp", ['ionic', 'ngCordova', 'myApp.controllers', 'myApp.services', 'myApp.utils']);
 //var myApp = angular.module("myApp", ['ionic', 'ngCordova', 'ion-datetime-picker', 'myApp.controllers', 'myApp.services', 'myApp.utils']);
 
-
 //定义常量
 myApp.constant("ApiEndpoint", {
   url: 'http://211.141.224.40:8070/mas_analysis',
@@ -254,6 +253,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
 //启动App的全局初始化工作
 myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, $ionicLoading, $cordovaToast, UserService) {
   $ionicPlatform.ready(function () {
+
     //使用 cordova InAppBrowser 插件
     if (window.cordova && window.cordova.InAppBrowser) {
       window.open = window.cordova.InAppBrowser.open;
