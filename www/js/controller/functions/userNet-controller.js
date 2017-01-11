@@ -1,6 +1,6 @@
 var appController = angular.module('myApp.controllers');
 
-appController.controller('userNetCtrl', function ($scope, $filter, $ionicModal, $ionicLoading, $cordovaToast, UserService, UserNetService, BaseService) {
+appController.controller('UserNetCtrl', function ($scope, $filter, $ionicModal, $ionicLoading, $cordovaToast, UserService, UserNetService, BaseService) {
 
   //查询标识
   $scope.flag = 'day';

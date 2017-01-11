@@ -1,6 +1,6 @@
 var appController = angular.module('myApp.controllers');
 
-appController.controller('cashFlowCtrl', function ($scope, $filter, $ionicLoading, $ionicModal, $cordovaToast, UserService, CashFlowFuncService, BaseService) {
+appController.controller('CashFlowCtrl', function ($scope, $filter, $ionicLoading, $ionicModal, $cordovaToast, UserService, CashFlowFuncService, BaseService) {
 
   $scope.flag = 'day';
   //是否显示当日现金流信息图表

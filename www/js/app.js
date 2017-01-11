@@ -9,9 +9,9 @@ var myApp = angular.module("myApp", ['ionic', 'ngCordova', 'myApp.controllers', 
 
 //定义常量
 myApp.constant("ApiEndpoint", {
-  url: 'http://211.141.224.40:8070/mas_analysis',
+  // url: 'http://211.141.224.40:8070/mas_analysis',
   // url: 'http://192.252.100.20:8070/mas_analysis',
-  // url: 'http://192.168.0.185:8080/mas_analysis',
+  url: 'http://10.1.1.72:8080/mas_analysis',
   //访问超时时间10s
   timeout: 10000
 });
@@ -100,13 +100,13 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
       //禁用View缓存 避免用户信息被看到
       cache: false,
       templateUrl: 'templates/user/login.html',
-      controller: 'loginController'
+      controller: 'LoginController'
     })
     //个人信息
     .state('personalInfo', {
       url: '/personalInfo',
       templateUrl: 'templates/user/personal-info.html',
-      controller: 'personalInfoCtrl'
+      controller: 'PersonalInfoCtrl'
     })
 
     .state('function', {
@@ -119,7 +119,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
       views: {
         'function-userNet': {
           templateUrl: 'templates/functions/user-net.html',
-          controller: 'userNetCtrl'
+          controller: 'UserNetCtrl'
         }
       }
     })
@@ -128,7 +128,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
       views: {
         'function-cashFlow': {
           templateUrl: 'templates/functions/cash-flow.html',
-          controller: 'cashFlowCtrl'
+          controller: 'CashFlowCtrl'
         }
       }
     })
@@ -137,7 +137,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
       views: {
         'function-userDevelop': {
           templateUrl: 'templates/functions/user-develop.html',
-          controller: 'userDevelopCtrl'
+          controller: 'UserDevelopCtrl'
         }
       }
     })

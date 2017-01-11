@@ -19,8 +19,8 @@ appService.factory('UserService', function ($q, $filter, ApiService, StorageUtil
    * @param username
    * @param password
    */
-  var login = function (username, password) {
-    return ApiService.login(username, password)
+  var login = function (username, password,deviceId) {
+    return ApiService.login(username, password,deviceId)
       .then(function (data) {
           if (!Boolean(data.token)) {
             return $q.reject(data.msg);
@@ -111,6 +111,29 @@ appService.factory('UserService', function ($q, $filter, ApiService, StorageUtil
   };
 
   /**
+   * 获取最新版本号
+   * @param userId
+   * @param token
+   * @returns {*}
+   */
+  var getAppLastestVersionNo = function (userId, token,currentVersionNo) {
+    return ApiService.getAppLastestVersionNo(userId, token,currentVersionNo)
+      .then(function (data) {
+          if (!Boolean(data.code) || data.code == "fail") {
+            return $q.reject(data.msg);
+          } else {
+            //获取最新版本号成功
+            return {
+              lastestVersionNo:data.lastestVersionNo
+            };
+          }
+        }, function (err) {
+          return $q.reject(err);
+        }
+      );
+  };
+
+  /**
    * 判断是否登录
    * @returns {boolean}
    */
@@ -157,6 +180,7 @@ appService.factory('UserService', function ($q, $filter, ApiService, StorageUtil
     getLoginUser: getLoginUser,
     getUserInfo: getUserInfo,
     isLogin: isLogin,
-    readLocalToken: readLocalToken
+    readLocalToken: readLocalToken,
+    getAppLastestVersionNo:getAppLastestVersionNo
   }
 });

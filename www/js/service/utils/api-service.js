@@ -8,14 +8,15 @@ appService.factory('ApiService', function ($http, $q, $filter, ApiEndpoint) {
    * @param username
    * @param password
    */
-  var login = function (username, password) {
+  var login = function (username, password, deviceId) {
     console.log("into api service login method...");
     var req = {
       method: 'post',
       url: ApiEndpoint.url + '/appAction.do?method=loginForApp',
       params: {
         username: username,
-        password: password
+        password: password,
+        deviceId: deviceId
       },
       timeout: ApiEndpoint.timeout
     };
@@ -107,6 +108,44 @@ appService.factory('ApiService', function ($http, $q, $filter, ApiEndpoint) {
         return $q.reject('服务器连接超时,请检查网络!');
       });
   };
+
+  /**
+   *  获取最新版本号
+   * @param userId
+   * @param token
+   * @returns {*}
+   */
+  var getAppLastestVersionNo = function (userId, token, currentVersionNo) {
+    console.log("into api service getAppLastestVersionNo method...");
+    var req = {
+      method: 'post',
+      url: ApiEndpoint.url + '/appAction.do?method=getAppLastestVersionNo',
+      params: {
+        userId: userId,
+        token: token,
+        currentVersionNo: currentVersionNo
+      },
+      timeout: ApiEndpoint.timeout
+    };
+
+    return $http.post(req.url, null, req)
+      .then(function (response) {
+        console.log(response);
+        if (typeof response.data === 'object') {
+          console.log("api service getAppLastestVersionNo success");
+          return response.data;
+        } else {
+          console.log("api service getAppLastestVersionNo invalid");
+          // invalid response
+          return $q.reject(response.data);
+        }
+      }, function (error) {
+        console.log("api service getAppLastestVersionNo error");
+        console.log(error);
+        return $q.reject('服务器连接超时,请检查网络!');
+      });
+  };
+
 
   //获取KPI完成进度查询条件
   var getKpiCompletedProgressCondition = function (userId, token) {
@@ -1011,6 +1050,7 @@ appService.factory('ApiService', function ($http, $q, $filter, ApiEndpoint) {
   return {
     login: login,
     getUserInfo: getUserInfo,
+    getAppLastestVersionNo: getAppLastestVersionNo,
     loginOut: loginOut,
     getKpiCompletedProgressCondition: getKpiCompletedProgressCondition,
     getKPICompletedProgress: getKPICompletedProgress,

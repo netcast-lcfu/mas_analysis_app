@@ -1,6 +1,6 @@
 var appController = angular.module('myApp.controllers');
 
-appController.controller('userDevelopCtrl', function ($scope, $filter, $ionicLoading, $ionicModal, $cordovaToast, UserService, UserDevelopService, BaseService) {
+appController.controller('UserDevelopCtrl', function ($scope, $filter, $ionicLoading, $ionicModal, $cordovaToast, UserService, UserDevelopService, BaseService) {
   //查询标识
   $scope.flag = 'day';
   //是否显示图表

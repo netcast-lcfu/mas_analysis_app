@@ -22,7 +22,9 @@
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
     "cordova-plugin-x-toast",
-    "cordova-plugin-app-preferences"
+    "cordova-plugin-app-preferences",
+    "cordova-plugin-file",
+    "cordova-plugin-file-transfer"
   ],
   "cordovaPlatforms": [
     "android"
