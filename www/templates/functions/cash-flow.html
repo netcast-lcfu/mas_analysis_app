@@ -2,26 +2,46 @@
   <ion-nav-buttons side="right">
     <button class="button" ui-sref="personalInfo">个人信息</button>
   </ion-nav-buttons>
-  <ion-header-bar class="bar-subheader" style="height: 56px;">
-    <div class="row">
-      <div class="col">
-        <div class="main-select" ng-class="{activity : flag == 'day'}" ng-click="queryDayCashFlowInfo()">日
+  <ion-header-bar class="bar-subheader" style="height: 40px;">
+    <div class="self-nav-btn">
+      <div class="segmented-control">
+        <div class="control-item" ng-class="{activity : flag == 'day'}"
+             ng-click="queryDayCashFlowInfo()">
+          日
+        </div>
+        <div class="control-item" style="border-left: thin solid #007aff;border-right: thin solid #007aff;"
+             ng-class="{activity : flag == 'week'}" ng-click="queryWeekCashFlowInfo()">
+          周
+        </div>
+        <div class="control-item" ng-class="{activity : flag == 'month'}" ng-click="queryMonthCashFlowInfo()">
+          月
         </div>
       </div>
-      <div class="col">
-        <div class="main-select" ng-class="{activity : flag == 'week'}"
-             ng-click="queryWeekCashFlowInfo()">周
+      <div class="search-condition">
+        <div class="search-logo" ng-click="modal.show()">
+          筛选
         </div>
-      </div>
-      <div class="col">
-        <div class="main-select" ng-class="{activity : flag == 'month'}"
-             ng-click="queryMonthCashFlowInfo()">月
-        </div>
-      </div>
-      <div class="col-10">
-        <a class="button icon ion-navicon" ng-click="modal.show()"></a>
       </div>
     </div>
+    <!--<div class="row">-->
+    <!--<div class="col">-->
+    <!--<div class="main-select" ng-class="{activity : flag == 'day'}" ng-click="queryDayCashFlowInfo()">日-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col">-->
+    <!--<div class="main-select" ng-class="{activity : flag == 'week'}"-->
+    <!--ng-click="queryWeekCashFlowInfo()">周-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col">-->
+    <!--<div class="main-select" ng-class="{activity : flag == 'month'}"-->
+    <!--ng-click="queryMonthCashFlowInfo()">月-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-10">-->
+    <!--<a class="button icon ion-navicon" ng-click="modal.show()"></a>-->
+    <!--</div>-->
+    <!--</div>-->
     <!--<div class="list">-->
     <!--<div class="item item-divider item-icon-right">查询条件-->
     <!--<div ng-click="toggleQueryCondition()">-->

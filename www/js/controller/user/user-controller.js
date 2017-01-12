@@ -98,7 +98,7 @@ appController.controller('PersonalInfoCtrl', function ($rootScope, $scope, $stat
   function showUpdateConfirm() {
     var confirmPopup = $ionicPopup.confirm({
       title: '<strong>提示</strong>',
-      template: '有新的版本,是否下载更新?',
+      template: '有新的版本,是否更新?',
       okText: '确认',
       cancelText: '取消'
     });

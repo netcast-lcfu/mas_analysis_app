@@ -2,42 +2,49 @@
   <ion-nav-buttons side="right">
     <button class="button" ui-sref="personalInfo">个人信息</button>
   </ion-nav-buttons>
-  <ion-header-bar class="bar-subheader" style="height: 56px;">
-    <div class="row">
-      <div class="col">
-        <div class="main-select" ng-class="{activity : flag == 'day'}" ng-click="queryDayUserNetInfo()">日
+  <ion-header-bar class="bar-subheader" style="height: 40px;">
+
+    <div class="self-nav-btn">
+      <div class="segmented-control">
+        <div class="control-item" ng-class="{activity : flag == 'day'}"
+             ng-click="queryDayUserNetInfo()">
+          日
+        </div>
+        <div class="control-item" style="border-left: thin solid #007aff;border-right: thin solid #007aff;"
+             ng-class="{activity : flag == 'week'}" ng-click="queryWeekUserNetInfo()">
+          周
+        </div>
+        <div class="control-item" ng-class="{activity : flag == 'month'}" ng-click="queryMonthUserNetInfo()">
+          月
         </div>
       </div>
-      <div class="col">
-        <div class="main-select" ng-class="{activity : flag == 'week'}"
-             ng-click="queryWeekUserNetInfo()">周
+      <div class="search-condition">
+        <div class="search-logo" ng-click="modal.show()">
+          筛选
         </div>
-      </div>
-      <div class="col">
-        <div class="main-select" ng-class="{activity : flag == 'month'}"
-             ng-click="queryMonthUserNetInfo()">月
-        </div>
-      </div>
-      <div class="col-10">
-        <a class="button icon ion-navicon" ng-click="modal.show()"></a>
       </div>
     </div>
-    <!--<div class="list">-->
-    <!--<div class="item item-divider item-icon-right">查询条件-->
-    <!--<div ng-click="toggleQueryCondition()">-->
-    <!--<i class="icon {{ show_query_condition ? 'ion-arrow-up-b' : 'ion-arrow-down-b' }}"></i>-->
+
+    <!--<div class="row">-->
+    <!--<div class="col">-->
+    <!--<div class="main-select" ng-class="{activity : flag == 'day'}" ng-click="queryDayUserNetInfo()">日-->
     <!--</div>-->
     <!--</div>-->
-    <!--<div ng-show="show_query_condition">-->
-    <!--<div class="item item-input item-select">-->
-    <!--<div class="input-label">-->
-    <!--行政区域:-->
-    <!--</div>-->
-    <!--<select ng-model="condition.adminArea"-->
-    <!--ng-options="area.adminAreaName for area in adminAreaData track by area.adminAreaId"></select>-->
+    <!--<div class="col">-->
+    <!--<div class="main-select" ng-class="{activity : flag == 'week'}"-->
+    <!--ng-click="queryWeekUserNetInfo()">周-->
     <!--</div>-->
     <!--</div>-->
+    <!--<div class="col">-->
+    <!--<div class="main-select" ng-class="{activity : flag == 'month'}"-->
+    <!--ng-click="queryMonthUserNetInfo()">月-->
     <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-10">-->
+    <!--<a class="button icon ion-navicon main-select" ng-click="modal.show()"></a>-->
+    <!--</div>-->
+    <!--</div>-->
+
   </ion-header-bar>
   <ion-content has-bouncing="true" overflow-scroll="false">
     <!--<div class="list card">-->
