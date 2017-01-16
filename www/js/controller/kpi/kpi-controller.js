@@ -141,7 +141,7 @@ appController.controller('queryKpiCompletedProgressCtrl', function ($scope, $ion
               dataType: "json",
               contentType: "application/x-www-form-urlencoded; charset=utf-8",
               success: function (msg) {
-                if (msg != 'fail') {
+                if (msg.code != 'fail') {
                   res += '</br>月计划指标量：' + msg.planMount;
                   res += '</br>月实际完成量：' + msg.actMount;
                 } else {
@@ -175,7 +175,7 @@ appController.controller('queryKpiCompletedProgressCtrl', function ($scope, $ion
               dataType: "json",
               contentType: "application/x-www-form-urlencoded; charset=utf-8",
               success: function (msg) {
-                if (msg != 'fail') {
+                if (msg.code != 'fail') {
                   res += '</br>年计划指标量：' + msg.planMount;
                   res += '</br>年实际完成量：' + msg.actMount;
                 } else {

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.netcast.mas-big-data-analysis" version="1.0.4" xmlns="http://www.w3.org/ns/widgets"
+<widget id="com.netcast.mas-big-data-analysis" version="1.0.5" xmlns="http://www.w3.org/ns/widgets"
         xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>马鞍山大数据分析</name>
+  <name>马鞍山广电</name>
   <description>
     中广有线马鞍山分公司大数据分析
   </description>
   <author email="lcfu@netcast.com.cn" href="http://www.netcast.com.cn/">
-    上海南广南广电子技术有限公司
+    上海南广电子技术有限公司
   </author>
   <content src="index.html"/>
   <feature name="StatusBar">
