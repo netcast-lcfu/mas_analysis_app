@@ -205,6 +205,7 @@ appController.controller('CashFlowCtrl', function ($scope, $filter, $ionicLoadin
         title: {
           show: true,
           text: '当日现金流量渠道占比分析',
+          subtext: '总金额: ' + $filter('currency')(data.sumMoney, '￥', 2) + ' 万',
           x: 'center'
         },
         tooltip: {

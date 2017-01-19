@@ -14,6 +14,7 @@ appService.factory('CashFlowFuncService', function ($q, $filter, ApiService) {
         console.log('CashFlowFuncService getTodayCashFlowInfoEchartsData success');
         console.log(data);
         return {
+          sumMoney: data.sumMoney,//总金额
           legends: data.legends,//缴费图例
           pieDatas: data.pieDatas //缴费饼状图数据
         };
