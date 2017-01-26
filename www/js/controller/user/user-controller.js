@@ -122,14 +122,23 @@ appController.controller('PersonalInfoCtrl', function ($rootScope, $scope, $stat
 
   //检测更新
   $scope.checkUpdate = function () {
+    console.log('into user controller check update method...');
+    if(!ionic.Platform.isAndroid()){
+      window.open('https://itunes.apple.com/cn/app/zhong-guang-you-xian-ma-shan/id1188211871?mt=8', '_system');
+      return;
+    }
     $cordovaAppVersion.getVersionNumber().then(function (version) {
+      console.log('local version no is '+version);
       // 本地versionCode是否一致
       var currentVersionNo = version;
       var userId = UserService.getLoginUser().userId;
       var token = UserService.getLoginUser().token;
       UserService.getAppLastestVersionNo(userId, token, currentVersionNo).then(function (data) {
+        console.log('get app lastest version no success...');
+        console.log('lastest version no is '+data.lastestVersionNo);
         var lastestVersionNo = data.lastestVersionNo;
         if (currentVersionNo != lastestVersionNo) {
+          console.log('当前版本不是最新的,提示更新!');
           showUpdateConfirm();
         } else {
           $cordovaToast.showShortCenter('当前版本是最新的!');
