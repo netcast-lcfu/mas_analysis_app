@@ -110,6 +110,44 @@ appService.factory('ApiService', function ($http, $q, $filter, ApiEndpoint) {
   };
 
   /**
+   *  修改密码
+   * @param userId
+   * @param token
+   * @returns {*}
+   */
+  var modifyPassword = function (userId, token, oldPassword, password) {
+    console.log("into api service getUserInfo method...");
+    var req = {
+      method: 'post',
+      url: ApiEndpoint.url + '/appAction.do?method=modifyPassword',
+      params: {
+        userId: userId,
+        token: token,
+        oldPassword: oldPassword,
+        password: password
+      },
+      timeout: ApiEndpoint.timeout
+    };
+
+    return $http.post(req.url, null, req)
+      .then(function (response) {
+        console.log(response);
+        if (typeof response.data === 'object') {
+          console.log("api service modifyPassword success");
+          return response.data;
+        } else {
+          console.log("api service modifyPassword invalid");
+          // invalid response
+          return $q.reject(response.data);
+        }
+      }, function (error) {
+        console.log("api service modifyPassword error");
+        console.log(error);
+        return $q.reject('服务器连接超时,请检查网络!');
+      });
+  };
+
+  /**
    *  获取最新版本号
    * @param userId
    * @param token
@@ -1050,6 +1088,7 @@ appService.factory('ApiService', function ($http, $q, $filter, ApiEndpoint) {
   return {
     login: login,
     getUserInfo: getUserInfo,
+    modifyPassword: modifyPassword,
     getAppLastestVersionNo: getAppLastestVersionNo,
     loginOut: loginOut,
     getKpiCompletedProgressCondition: getKpiCompletedProgressCondition,

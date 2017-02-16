@@ -123,19 +123,19 @@ appController.controller('PersonalInfoCtrl', function ($rootScope, $scope, $stat
   //检测更新
   $scope.checkUpdate = function () {
     console.log('into user controller check update method...');
-    if(!ionic.Platform.isAndroid()){
+    if (!ionic.Platform.isAndroid()) {
       window.open('https://itunes.apple.com/cn/app/zhong-guang-you-xian-ma-shan/id1188211871?mt=8', '_system');
       return;
     }
     $cordovaAppVersion.getVersionNumber().then(function (version) {
-      console.log('local version no is '+version);
+      console.log('local version no is ' + version);
       // 本地versionCode是否一致
       var currentVersionNo = version;
       var userId = UserService.getLoginUser().userId;
       var token = UserService.getLoginUser().token;
       UserService.getAppLastestVersionNo(userId, token, currentVersionNo).then(function (data) {
         console.log('get app lastest version no success...');
-        console.log('lastest version no is '+data.lastestVersionNo);
+        console.log('lastest version no is ' + data.lastestVersionNo);
         var lastestVersionNo = data.lastestVersionNo;
         if (currentVersionNo != lastestVersionNo) {
           console.log('当前版本不是最新的,提示更新!');
@@ -150,4 +150,47 @@ appController.controller('PersonalInfoCtrl', function ($rootScope, $scope, $stat
       $cordovaToast.showShortCenter(err);
     });
   };
+
+  //修改密码
+  $scope.modifyPassword = function () {
+    console.log('into user controller modify  method...');
+    var user = {
+      oldPassword: '',
+      password: '',
+      confirmPassword: ''
+    };
+    if (!Boolean($scope.user.oldPassword)) {
+      $cordovaToast.showShortCenter("原密码不能为空!");
+    } else if (!Boolean($scope.user.password)) {
+      $cordovaToast.showShortCenter("新密码不能为空!");
+    } else if (!Boolean($scope.user.confirmPassword)) {
+      $cordovaToast.showShortCenter("确认密码不能为空!");
+    } else if ($scope.user.password == $scope.user.confirmPassword) {
+      $cordovaToast.showShortCenter("两次密码输入不相等!");
+    } else {
+      var userId = UserService.getLoginUser().userId;
+      var token = UserService.getLoginUser().token;
+      var oldPassword = $scope.user.oldPassword;
+      var password = $scope.user.password;
+      UserService.modifyPassword(userId, token, oldPassword, password).then(function (data) {
+        var myPopup = $ionicPopup.confirm({
+          title: '<strong>提示</strong>',
+          template: '修改密码成功!',
+          okText: '确定'
+        });
+        myPopup.then(function (res) {
+          if (res) {
+            UserService.loginOut().then(function (data) {
+              $rootScope.isLogin = false;
+              $state.go("login");
+            }, function (err) {
+              $cordovaToast.showShortCenter(err);
+            });
+          }
+        })
+      }, function (err) {
+        $cordovaToast.showShortCenter(err);
+      })
+    }
+  }
 });

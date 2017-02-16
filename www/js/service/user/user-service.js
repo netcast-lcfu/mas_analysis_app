@@ -19,8 +19,8 @@ appService.factory('UserService', function ($q, $filter, ApiService, StorageUtil
    * @param username
    * @param password
    */
-  var login = function (username, password,deviceId) {
-    return ApiService.login(username, password,deviceId)
+  var login = function (username, password, deviceId) {
+    return ApiService.login(username, password, deviceId)
       .then(function (data) {
           if (!Boolean(data.token)) {
             return $q.reject(data.msg);
@@ -111,20 +111,43 @@ appService.factory('UserService', function ($q, $filter, ApiService, StorageUtil
   };
 
   /**
+   * 修改密码
+   * @param userId
+   * @param token
+   * @returns {*}
+   */
+  var modifyPassword = function (userId, token, oldPassword, password) {
+    return ApiService.modifyPassword(userId, token, oldPassword, password)
+      .then(function (data) {
+          if (!Boolean(data.code) || data.code == "fail") {
+            return $q.reject(data.msg);
+          } else {
+            //修改密码成功
+            return {
+              msg: data.msg
+            };
+          }
+        }, function (err) {
+          return $q.reject(err);
+        }
+      );
+  };
+
+  /**
    * 获取最新版本号
    * @param userId
    * @param token
    * @returns {*}
    */
-  var getAppLastestVersionNo = function (userId, token,currentVersionNo) {
-    return ApiService.getAppLastestVersionNo(userId, token,currentVersionNo)
+  var getAppLastestVersionNo = function (userId, token, currentVersionNo) {
+    return ApiService.getAppLastestVersionNo(userId, token, currentVersionNo)
       .then(function (data) {
           if (!Boolean(data.code) || data.code == "fail") {
             return $q.reject(data.msg);
           } else {
             //获取最新版本号成功
             return {
-              lastestVersionNo:data.lastestVersionNo
+              lastestVersionNo: data.lastestVersionNo
             };
           }
         }, function (err) {
@@ -179,8 +202,9 @@ appService.factory('UserService', function ($q, $filter, ApiService, StorageUtil
     loginOut: loginOut,
     getLoginUser: getLoginUser,
     getUserInfo: getUserInfo,
+    modifyPassword:modifyPassword,
     isLogin: isLogin,
     readLocalToken: readLocalToken,
-    getAppLastestVersionNo:getAppLastestVersionNo
+    getAppLastestVersionNo: getAppLastestVersionNo
   }
 });

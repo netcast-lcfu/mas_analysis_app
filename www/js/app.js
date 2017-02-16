@@ -9,9 +9,9 @@ var myApp = angular.module("myApp", ['ionic', 'ngCordova', 'myApp.controllers', 
 
 //定义常量
 myApp.constant("ApiEndpoint", {
-  url: 'http://211.141.224.40:8070/mas_analysis',
+  //url: 'http://211.141.224.40:8070/mas_analysis',
   // url: 'http://192.252.100.20:8070/mas_analysis',
-  // url: 'http://10.1.1.74:8080/mas_analysis',
+   url: 'http://10.1.1.77:8080/mas_analysis',
   //访问超时时间10s
   timeout: 10000
 });
@@ -106,6 +106,12 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
     .state('personalInfo', {
       url: '/personalInfo',
       templateUrl: 'templates/user/personal-info.html',
+      controller: 'PersonalInfoCtrl'
+    })
+    //修改密码
+    .state('modifyPassword', {
+      url: '/modifyPassword',
+      templateUrl: 'templates/user/modify-password.html',
       controller: 'PersonalInfoCtrl'
     })
 
