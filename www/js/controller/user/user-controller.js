@@ -151,21 +151,35 @@ appController.controller('PersonalInfoCtrl', function ($rootScope, $scope, $stat
     });
   };
 
+
+});
+
+//修改密码
+appController.controller('ModifyPasswordCtrl', function ($rootScope, $scope, $state, $ionicPopup, $ionicLoading, $cordovaToast, UserService) {
+
+  // 添加返回按钮
+  $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+    viewData.enableBack = true;
+  });
+
+  //初始化对象
+  $scope.user = {
+    oldPassword: '',
+    password: '',
+    confirmPassword: ''
+  };
+
   //修改密码
   $scope.modifyPassword = function () {
     console.log('into user controller modify  method...');
-    var user = {
-      oldPassword: '',
-      password: '',
-      confirmPassword: ''
-    };
+
     if (!Boolean($scope.user.oldPassword)) {
       $cordovaToast.showShortCenter("原密码不能为空!");
     } else if (!Boolean($scope.user.password)) {
       $cordovaToast.showShortCenter("新密码不能为空!");
     } else if (!Boolean($scope.user.confirmPassword)) {
       $cordovaToast.showShortCenter("确认密码不能为空!");
-    } else if ($scope.user.password == $scope.user.confirmPassword) {
+    } else if (!$scope.user.password == $scope.user.confirmPassword) {
       $cordovaToast.showShortCenter("两次密码输入不相等!");
     } else {
       var userId = UserService.getLoginUser().userId;
@@ -175,8 +189,9 @@ appController.controller('PersonalInfoCtrl', function ($rootScope, $scope, $stat
       UserService.modifyPassword(userId, token, oldPassword, password).then(function (data) {
         var myPopup = $ionicPopup.confirm({
           title: '<strong>提示</strong>',
-          template: '修改密码成功!',
-          okText: '确定'
+          template: '修改密码成功,是否跳转登录页面?',
+          okText: '确认',
+          cancelText: '取消'
         });
         myPopup.then(function (res) {
           if (res) {
@@ -192,5 +207,5 @@ appController.controller('PersonalInfoCtrl', function ($rootScope, $scope, $stat
         $cordovaToast.showShortCenter(err);
       })
     }
-  }
+  };
 });

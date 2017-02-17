@@ -112,7 +112,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
     .state('modifyPassword', {
       url: '/modifyPassword',
       templateUrl: 'templates/user/modify-password.html',
-      controller: 'PersonalInfoCtrl'
+      controller: 'ModifyPasswordCtrl'
     })
 
     .state('function', {
