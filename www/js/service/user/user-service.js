@@ -18,6 +18,7 @@ appService.factory('UserService', function ($q, $filter, ApiService, StorageUtil
    * 登录
    * @param username
    * @param password
+   * @param deviceId
    */
   var login = function (username, password, deviceId) {
     return ApiService.login(username, password, deviceId)
@@ -114,6 +115,8 @@ appService.factory('UserService', function ($q, $filter, ApiService, StorageUtil
    * 修改密码
    * @param userId
    * @param token
+   * @param oldPassword
+   * @param password
    * @returns {*}
    */
   var modifyPassword = function (userId, token, oldPassword, password) {
@@ -137,6 +140,7 @@ appService.factory('UserService', function ($q, $filter, ApiService, StorageUtil
    * 获取最新版本号
    * @param userId
    * @param token
+   * @param currentVersionNo
    * @returns {*}
    */
   var getAppLastestVersionNo = function (userId, token, currentVersionNo) {

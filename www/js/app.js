@@ -286,10 +286,11 @@ myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, $ionicLoa
 
     //本地加载token实现免登陆
     UserService.readLocalToken().then(function () {
-      $rootScope.isLogin = true;
+      $rootScope.isLogin = false;
       console.log("isLogin:");
       console.log(UserService.isLogin());
       if (UserService.isLogin()) {
+        $rootScope.isLogin = true;
         $cordovaToast.showShortBottom("登录成功!");
         // $ionicLoading.show({
         //   template: "登录成功!",
@@ -301,6 +302,7 @@ myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, $ionicLoa
         //   template: "本地保存数据和服务器不同步,请重新登录!",
         //   duration: 1500
         // });
+        $rootScope.isLogin = false;
         $cordovaToast.showShortBottom("本地保存数据和服务器不同步,请重新登录!");
         $state.go("login");
       }
