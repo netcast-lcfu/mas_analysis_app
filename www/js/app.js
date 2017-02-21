@@ -11,7 +11,7 @@ var myApp = angular.module("myApp", ['ionic', 'ngCordova', 'myApp.controllers', 
 myApp.constant("ApiEndpoint", {
   url: 'http://211.141.224.40:8070/mas_analysis',
   // url: 'http://192.252.100.20:8070/mas_analysis',
-  //url: 'http://10.1.1.77:8080/mas_analysis',
+  // url: 'http://10.1.1.80:8080/mas_analysis',
   //访问超时时间10s
   timeout: 10000
 });
@@ -111,6 +111,8 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
     //修改密码
     .state('modifyPassword', {
       url: '/modifyPassword',
+      //禁用View缓存 避免用户信息被看到
+      cache: false,
       templateUrl: 'templates/user/modify-password.html',
       controller: 'ModifyPasswordCtrl'
     })

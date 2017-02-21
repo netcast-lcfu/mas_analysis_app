@@ -163,7 +163,7 @@ appController.controller('ModifyPasswordCtrl', function ($rootScope, $scope, $st
   });
 
   //初始化对象
-  $scope.user = {
+    $scope.user = {
     oldPassword: '',
     password: '',
     confirmPassword: ''
@@ -201,6 +201,9 @@ appController.controller('ModifyPasswordCtrl', function ($rootScope, $scope, $st
             }, function (err) {
               $cordovaToast.showShortCenter(err);
             });
+          }else{
+            //取消跳转个人信息页面
+            $state.go("personalInfo");
           }
         })
       }, function (err) {

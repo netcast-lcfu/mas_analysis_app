@@ -23,7 +23,8 @@ appService.factory('UserService', function ($q, $filter, ApiService, StorageUtil
   var login = function (username, password, deviceId) {
     return ApiService.login(username, password, deviceId)
       .then(function (data) {
-          if (!Boolean(data.token)) {
+          if (!Boolean(data.code) || data.code == "fail") {
+            console.log("login fail...");
             return $q.reject(data.msg);
           } else {
             //登录成功
@@ -206,7 +207,7 @@ appService.factory('UserService', function ($q, $filter, ApiService, StorageUtil
     loginOut: loginOut,
     getLoginUser: getLoginUser,
     getUserInfo: getUserInfo,
-    modifyPassword:modifyPassword,
+    modifyPassword: modifyPassword,
     isLogin: isLogin,
     readLocalToken: readLocalToken,
     getAppLastestVersionNo: getAppLastestVersionNo
