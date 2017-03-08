@@ -270,8 +270,9 @@ myApp.run(function ($ionicPlatform, $rootScope, $ionicHistory, $state, $ionicLoa
     //键盘的不同模式的支持
     //Hide the accessory bar by default (remove this to show the accessory bar above the keyboard for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      cordova.plugins.Keyboard.disableScroll(true);
+      //开启键盘支持 解决IOS平台下Select没有确认按钮Bug
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
+      cordova.plugins.Keyboard.disableScroll(false);
     }
 
     // // 日期时间选择插件的本地化
