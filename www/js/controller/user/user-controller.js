@@ -95,10 +95,14 @@ appController.controller('PersonalInfoCtrl', function ($rootScope, $scope, $stat
   }
 
   //更新提示框
-  function showUpdateConfirm() {
+  function showUpdateConfirm(type) {
+    var templateTxt = '有新的版本,是否更新?';
+    if (type == 'ios') {
+      templateTxt = '当前为苹果IOS系统,更新应用需要前往AppStore,是否跳转?';
+    }
     var confirmPopup = $ionicPopup.confirm({
       title: '<strong>提示</strong>',
-      template: '有新的版本,是否更新?',
+      template: templateTxt,
       okText: '确认',
       cancelText: '取消'
     });
@@ -124,6 +128,7 @@ appController.controller('PersonalInfoCtrl', function ($rootScope, $scope, $stat
   $scope.checkUpdate = function () {
     console.log('into user controller check update method...');
     if (!ionic.Platform.isAndroid()) {
+      //showUpdateConfirm('ios');
       window.open('https://itunes.apple.com/cn/app/zhong-guang-you-xian-ma-shan/id1188211871?mt=8', '_system');
       return;
     }
@@ -139,7 +144,7 @@ appController.controller('PersonalInfoCtrl', function ($rootScope, $scope, $stat
         var lastestVersionNo = data.lastestVersionNo;
         if (currentVersionNo != lastestVersionNo) {
           console.log('当前版本不是最新的,提示更新!');
-          showUpdateConfirm();
+          showUpdateConfirm('android');
         } else {
           $cordovaToast.showShortCenter('当前版本是最新的!');
         }
@@ -163,7 +168,7 @@ appController.controller('ModifyPasswordCtrl', function ($rootScope, $scope, $st
   });
 
   //初始化对象
-    $scope.user = {
+  $scope.user = {
     oldPassword: '',
     password: '',
     confirmPassword: ''
@@ -201,7 +206,7 @@ appController.controller('ModifyPasswordCtrl', function ($rootScope, $scope, $st
             }, function (err) {
               $cordovaToast.showShortCenter(err);
             });
-          }else{
+          } else {
             //取消跳转个人信息页面
             $state.go("personalInfo");
           }
