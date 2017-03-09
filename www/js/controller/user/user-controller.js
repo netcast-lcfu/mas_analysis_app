@@ -104,7 +104,7 @@ appController.controller('PersonalInfoCtrl', function ($rootScope, $scope, $stat
     });
     confirmPopup.then(function (res) {
       if (res) {
-        //判断当前应用运行平台
+        //判断当前应用运
         if (ionic.Platform.isAndroid()) {
           window.open(ApiEndpoint.url + '/apk/mas_analysis_app.apk', '_system');
         } else {
